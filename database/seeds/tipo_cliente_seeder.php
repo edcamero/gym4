@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\TipoCliente;
 
 class tipo_cliente_seeder extends Seeder
 {
@@ -11,6 +12,16 @@ class tipo_cliente_seeder extends Seeder
      */
     public function run()
     {
-        //
+
+        
+        $tc=new TipoCliente();
+        $tc->nombre='Exporadico';
+        $tc->descuento=0;
+        $tc->save();
+        $tc=new TipoCliente();
+        $tc->nombre='Habitual';
+        $tc->descuento=10;
+        $tc->save();
+        
     }
 }
