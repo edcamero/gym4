@@ -18,6 +18,8 @@ class CreatePruebasTable extends Migration
             $table->string("nickname");
             $table->timestamps();
         });
+
+       
     }
 
     /**
