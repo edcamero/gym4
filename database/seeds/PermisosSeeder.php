@@ -14,8 +14,19 @@ class PermisosSeeder extends Seeder
         Permission::create([
             'name'=>'listar clientes',
             'guard_name'=>'clientes.index',
-            
-        ]);
+            ]);
+        Permission::create([
+            'name'=>'detalle del  cliente',
+            'guard_name'=>'clientes.show',
+            ]);
+        Permission::create([
+            'name'=>'Edicion  de cliente',
+            'guard_name'=>'clientes.edit',
+            ]);
+        Permission::create([
+            'name'=>'Eliminar clientes',
+            'guard_name'=>'clientes.destroy',
+            ]);
 
 }
 }

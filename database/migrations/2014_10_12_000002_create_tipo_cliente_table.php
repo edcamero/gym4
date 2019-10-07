@@ -14,9 +14,9 @@ class CreateTipoClienteTable extends Migration
     public function up()
     {
         Schema::create('tipo_cliente', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->Increments('id');
             $table->string('nombre');
-            $table->float('descuento');
+            $table->integer('descuento');
             $table->timestamps();
         });
     }

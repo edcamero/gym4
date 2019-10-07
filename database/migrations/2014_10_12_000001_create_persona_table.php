@@ -14,7 +14,7 @@ class CreatePersonaTable extends Migration
     public function up()
     {
         Schema::create('persona', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->Increments('id');
             $table->string('documento',10);
             $table->unique('documento');
             $table->string('nombre',45);
