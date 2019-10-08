@@ -82,7 +82,10 @@
             <div class="content">
                 <div class="title m-b-md">
                     Gimnasio DRAGON BALL
+                    
                 </div>
+
+                <h2>por siempre</h2>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
