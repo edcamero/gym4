@@ -18,7 +18,7 @@ class TipoCliente extends Model
      * @var string
      */
     protected $table = 'tipo_cliente';
-
+   
     /**
      * The primary key for the model.
      * 

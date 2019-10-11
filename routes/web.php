@@ -22,6 +22,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/TipoCliente', 'TipoClienteController@index')->name('TipoCliente.index');
+
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('TipoCliente', 'TipoClienteController@index')->name('TipoCliente.index');
+});
+
+
+
+
+
+
 
 Route::middleware(['Auth'])->group(function(){
 
@@ -53,8 +65,9 @@ Route::middleware(['Auth'])->group(function(){
             ->middleware('permission:users.edit');
 
         //Tipo Cliente
-        Route::get('tipo_cliente', 'TipoClienteController@index')->name('tipo_cliente.index')
-            ->middleware('permission:tipo_cliente.index');
+
+       // Route::get('TipoCliente', 'TipoClienteController@index')->name('TipoCliente.index');
+           // ->middleware('permission:TipoCliente.index');
         Route::put('tipo_cliente/{tipo_c}', 'TipoClienteController@update')->name('tipo_cliente.update')
             ->middleware('permission:tipo_cliente.edit');
         Route::get('tipo_cliente/{tipo_c}', 'TipoClienteController@show')->name('tipo_cliente.show')

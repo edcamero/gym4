@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 class PermisosSeeder extends Seeder
 {
     /**
@@ -12,20 +13,23 @@ class PermisosSeeder extends Seeder
     public function run()
     {
         Permission::create([
-            'name'=>'listar clientes',
-            'guard_name'=>'clientes.index',
+            'name'=>'TipCliente.index',
+            'guard_name'=>'web',
             ]);
+
+        $role = Role::create(['name' => 'admin']);
+        $role->save();
         Permission::create([
             'name'=>'detalle del  cliente',
-            'guard_name'=>'clientes.show',
+            'guard_name'=>'web',
             ]);
         Permission::create([
             'name'=>'Edicion  de cliente',
-            'guard_name'=>'clientes.edit',
+            'guard_name'=>'web',
             ]);
         Permission::create([
             'name'=>'Eliminar clientes',
-            'guard_name'=>'clientes.destroy',
+            'guard_name'=>'web',
             ]);
 
 }

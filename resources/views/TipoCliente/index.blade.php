@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    ud ha ingresado!!!
+
+                    @foreach($tipoCli as $tc)
+                    <h5>{{$tc->id}}</h5>
+                    
+                    @endforeach
                 </div>
             </div>
         </div>
