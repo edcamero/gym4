@@ -27,6 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::get('TipoCliente', 'TipoClienteController@index')->name('TipoCliente.index');
+    Route::post('TipoCliente', 'TipoClienteController@store')->name('TipoCliente.store');
 });
 
 

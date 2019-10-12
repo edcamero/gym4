@@ -5,8 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
-
+                <div class="card-header">
+                         <tipo-cliente></tipo-cliente>
+                </div>
+                    
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -15,10 +17,7 @@
                     @endif
 
 
-                    @foreach($tipoCli as $tc)
-                    <h5>{{$tc->id}}</h5>
                     
-                    @endforeach
                 </div>
             </div>
         </div>

@@ -19,14 +19,18 @@ class TipoClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //return DB::table('tipo_cliente')->get();
         //return TipoCliente::all();
+ 
 
-        $tipoCli = TipoCliente::paginate();
-        return view('TipoCliente.index', compact('tipoCli'));
-       // return 'hola';
+            if($request->ajax()){
+                return TipoCliente::all();
+            }else{
+                $tipoCli = TipoCliente::paginate();
+                return view('TipoCliente.index', compact('tipoCli'));
+            }
     }
 
     /**
@@ -47,7 +51,11 @@ class TipoClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tc=new TipoCliente();
+        $tc->nombre=$request->nombre;
+        $tc->descuento=$request->descuento;
+        $tc->save();
+        return $tc;
     }
 
     /**
@@ -81,7 +89,11 @@ class TipoClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tc=TipoCliente::find($id);
+        $tc->nombre=$request->nombre;
+        $tc->descuento=$request->descuento;
+        $tc->save();
+        return $tc;
     }
 
     /**
@@ -92,6 +104,9 @@ class TipoClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tc=TipoCliente::find($id);
+        ;
+        $tc->delete();
+       // return $tc;
     }
 }
