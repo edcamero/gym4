@@ -25,9 +25,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('/TipoCliente', 'TipoClienteController@index')->name('TipoCliente.index');
 
 
+
 Route::group(['middleware' => ['role:admin']], function () {
     Route::get('TipoCliente', 'TipoClienteController@index')->name('TipoCliente.index');
     Route::post('TipoCliente', 'TipoClienteController@store')->name('TipoCliente.store');
+    Route::delete('/TipoCliente/{id}', 'TipoClienteController@destroy')->name('TipoCliente.destroy');
+    Route::put('/TipoCliente/{id}', 'TipoClienteController@update')->name('TipoCliente.update');
 });
 
 
@@ -73,8 +76,8 @@ Route::middleware(['Auth'])->group(function(){
             ->middleware('permission:tipo_cliente.edit');
         Route::get('tipo_cliente/{tipo_c}', 'TipoClienteController@show')->name('tipo_cliente.show')
             ->middleware('permission:tipo_cliente.show');
-        Route::delete('tipo_cliente/{tipo_c}', 'TipoClienteController@destroy')->name('tipo_cliente.destroy')
-            ->middleware('permission:tipo_cliente.destroy');
+        //Route::delete('tipo_cliente/{tipo_c}', 'TipoClienteController@destroy')->name('tipo_cliente.destroy')
+           // ->middleware('permission:tipo_cliente.destroy');
         Route::get('tipo_cliente/{tipo_c}/edit', 'TipoClienteController@edit')->name('tipo_cliente.edit')
             ->middleware('permission:tipo_cliente.edit');
 

@@ -1912,6 +1912,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1919,7 +1942,8 @@ __webpack_require__.r(__webpack_exports__);
       tipocliente: {
         nombre: '',
         descuento: ''
-      }
+      },
+      editarActivo: false
     };
   },
   created: function created() {
@@ -1933,7 +1957,12 @@ __webpack_require__.r(__webpack_exports__);
     agregar: function agregar() {
       var _this2 = this;
 
-      // console.log(this.tipocliente.nombre,this.tipocliente.descuento);
+      if (this.tipocliente.nombre.trim() === '' || this.tipocliente.descuento.trim() === '') {
+        alert('Debes completar todos los campos antes de guardar');
+        return;
+      } // console.log(this.tipocliente.nombre,this.tipocliente.descuento);
+
+
       var params = {
         nombre: this.tipocliente.nombre,
         descuento: this.tipocliente.descuento
@@ -1942,6 +1971,44 @@ __webpack_require__.r(__webpack_exports__);
       this.tipocliente.descuento = '';
       axios.post('/TipoCliente', params).then(function (res) {
         _this2.tipoClientes.push(res.data);
+      });
+    },
+    eliminar: function eliminar(tipocliente, index) {
+      var _this3 = this;
+
+      var confirmacion = confirm("Confirma Eliminar Tipo Cliente: ".concat(tipocliente.nombre));
+
+      if (confirmacion) {
+        axios["delete"]('/TipoCliente/' + tipocliente.id).then(function () {
+          _this3.tipoClientes.splice(index, 1);
+        });
+      }
+    },
+    editarForm: function editarForm(tipocliente) {
+      this.editarActivo = true;
+      this.tipocliente.nombre = tipocliente.nombre;
+      this.tipocliente.descuento = tipocliente.descuento;
+      this.tipocliente.id = tipocliente.id;
+    },
+    editar: function editar(tc) {
+      var _this4 = this;
+
+      var params = {
+        nombre: tc.nombre,
+        descuento: tc.descuento
+      };
+      console.log(tc);
+      axios.put('/TipoCliente/' + tc.id, tc).then(function (res) {
+        var index = _this4.tipoClientes.findIndex(function (buscar) {
+          return buscar.id == tc.id;
+        });
+
+        console.log(res.data.status);
+        _this4.tipoClientes[index].nombre = tc.nombre;
+        _this4.tipoClientes[index].descuento = tc.descuento;
+        _this4.tipocliente.nombre = '';
+        _this4.tipocliente.descuento = '';
+        _this4.editarActivo = false;
       });
     }
   }
@@ -37293,74 +37360,147 @@ var render = function() {
   return _c("div", [
     _c("h5", { staticClass: "text-center" }, [_vm._v("Agregar Tipo Cliente")]),
     _vm._v(" "),
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.agregar($event)
-          }
-        }
-      },
-      [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-5" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.tipocliente.nombre,
-                  expression: "tipocliente.nombre"
-                }
-              ],
-              staticClass: "form-control mb-2",
-              attrs: { type: "text", placeholder: "Nombre" },
-              domProps: { value: _vm.tipocliente.nombre },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.tipocliente, "nombre", $event.target.value)
-                }
+    _vm.editarActivo
+      ? _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.editar(_vm.tipocliente)
               }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-5" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.tipocliente.descuento,
-                  expression: "tipocliente.descuento"
-                }
-              ],
-              staticClass: "form-control mb-2",
-              attrs: { type: "text", placeholder: "Descuento" },
-              domProps: { value: _vm.tipocliente.descuento },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+            }
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-5" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tipocliente.nombre,
+                      expression: "tipocliente.nombre"
+                    }
+                  ],
+                  staticClass: "form-control mb-2",
+                  attrs: { type: "text", placeholder: "Nombre" },
+                  domProps: { value: _vm.tipocliente.nombre },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.tipocliente, "nombre", $event.target.value)
+                    }
                   }
-                  _vm.$set(_vm.tipocliente, "descuento", $event.target.value)
-                }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-5" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tipocliente.descuento,
+                      expression: "tipocliente.descuento"
+                    }
+                  ],
+                  staticClass: "form-control mb-2",
+                  attrs: { type: "text", placeholder: "Descuento" },
+                  domProps: { value: _vm.tipocliente.descuento },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.tipocliente,
+                        "descuento",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ]
+        )
+      : _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.agregar($event)
               }
-            })
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
-        ])
-      ]
-    ),
+            }
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-5" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tipocliente.nombre,
+                      expression: "tipocliente.nombre"
+                    }
+                  ],
+                  staticClass: "form-control mb-2",
+                  attrs: { type: "text", placeholder: "Nombre" },
+                  domProps: { value: _vm.tipocliente.nombre },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.tipocliente, "nombre", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-5" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tipocliente.descuento,
+                      expression: "tipocliente.descuento"
+                    }
+                  ],
+                  staticClass: "form-control mb-2",
+                  attrs: { type: "text", placeholder: "Descuento" },
+                  domProps: { value: _vm.tipocliente.descuento },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.tipocliente,
+                        "descuento",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ]
+        ),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("table", { staticClass: "table text-center" }, [
-        _vm._m(1),
+        _vm._m(2),
         _vm._v(" "),
         _c(
           "tbody",
@@ -37372,7 +37512,35 @@ var render = function() {
               _vm._v(" "),
               _c("td", {
                 domProps: { textContent: _vm._s(tipocliente.descuento) }
-              })
+              }),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-sm",
+                    on: {
+                      click: function($event) {
+                        return _vm.editarForm(tipocliente, index)
+                      }
+                    }
+                  },
+                  [_vm._v("Editar")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-sm",
+                    on: {
+                      click: function($event) {
+                        return _vm.eliminar(tipocliente, index)
+                      }
+                    }
+                  },
+                  [_vm._v("Eliminar")]
+                )
+              ])
             ])
           }),
           0
@@ -37382,6 +37550,18 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-2" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success mr-2", attrs: { type: "submit" } },
+        [_vm._v("Editar")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -37404,7 +37584,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Descuento")])
+        _c("th", [_vm._v("Descuento")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Opciones")])
       ])
     ])
   }

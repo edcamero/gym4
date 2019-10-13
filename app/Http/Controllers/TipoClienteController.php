@@ -103,10 +103,10 @@ class TipoClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {  
         $tc=TipoCliente::find($id);
-        ;
+        
         $tc->delete();
-       // return $tc;
+        return $tc;
     }
 }
