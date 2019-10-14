@@ -22,6 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//ruta para comprobar permisos desde vue.js
+Route::get('/permission/{permissionName}', 'PermissionController@check');
 //Route::get('/TipoCliente', 'TipoClienteController@index')->name('TipoCliente.index');
 
 
