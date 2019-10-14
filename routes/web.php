@@ -24,16 +24,33 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //ruta para comprobar permisos desde vue.js
-Route::get('/permission/{permissionName}', 'PermissionController@check');
-//Route::get('/TipoCliente', 'TipoClienteController@index')->name('TipoCliente.index');
+Route::get('/permission', 'PermissionController@check');
+
+//Permisos definidos para Tipo-Cliente
+Route::group(['middleware' => ['permission:listar-tipo-cliente']], function () {
+    Route::get('TipoCliente', 'TipoClienteController@index')->name('listar-tipo-cliente');
+});
+
+Route::group(['middleware' => ['permission:guardar-tipo-cliente']], function () {
+    Route::post('TipoCliente', 'TipoClienteController@store')->name('guardar-tipo-cliente');
+});
+
+Route::group(['middleware' => ['permission:eliminar-tipo-cliente']],function(){
+    Route::delete('/TipoCliente/{id}', 'TipoClienteController@destroy')->name('eliminar-tipo-cliente');
+});
+
+Route::group(['middleware' => ['permission:editar-tipo-cliente']],function(){
+    Route::put('/TipoCliente/{id}', 'TipoClienteController@update')->name('editar-tipo-cliente');
+});
 
 
 
-Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('TipoCliente', 'TipoClienteController@index')->name('TipoCliente.index');
-    Route::post('TipoCliente', 'TipoClienteController@store')->name('TipoCliente.store');
-    Route::delete('/TipoCliente/{id}', 'TipoClienteController@destroy')->name('TipoCliente.destroy');
-    Route::put('/TipoCliente/{id}', 'TipoClienteController@update')->name('TipoCliente.update');
+//Route::post('TipoCliente', 'TipoClienteController@store')->middleware('permission:guardar-tipo-cliente');
+    Route::group(['middleware' => ['role:admin']], function () {
+    //Route::get('TipoCliente', 'TipoClienteController@index')->name('listar-tipo-cliente');
+   // Route::post('TipoCliente', 'TipoClienteController@store')->name('guardar-tipo-cliente');
+   // Route::delete('/TipoCliente/{id}', 'TipoClienteController@destroy')->name('eliminar-tipo-cliente');
+   // Route::put('/TipoCliente/{id}', 'TipoClienteController@update')->name('editar-tipo-cliente');
 });
 
 

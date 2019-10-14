@@ -1,7 +1,11 @@
 <template>
-    <div>
-        <h5 class="text-center">Agregar Tipo Cliente</h5>
-             <form @submit.prevent="editar(tipocliente)" v-if="editarActivo">
+    <div  class="card">
+        <div class="card-header">
+                <h4 class="text-center mb-2 card-title">Tipo Cliente</h4>
+        </div>
+        
+        <div class="card-body" v-can="'guardar-tipo-cliente'">
+            <form @submit.prevent="editar(tipocliente)" v-if="editarActivo" >
                     <div class="row">
                             <div class="col-5">
                                 <input type="text" placeholder="Nombre" class="form-control mb-2" v-model="tipocliente.nombre">
@@ -35,37 +39,35 @@
                     
                    
              </form>
-             <div class="container">
-                    <table class="table text-center">
-                        <thead>
-                            <tr>
-                                <th>id</th>
-                                <th>Nombre</th>
-                                <th>Descuento</th>
-                                <th>Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(tipocliente,index) in tipoClientes" :key="index"> <!-- Recorremos nuestro array -->
-                                <td >{{tipocliente.id}}</td> 
-                                <td >{{tipocliente.nombre}}</td> <!--En la primera columna mostramos el nombre-->
-                                <td v-text="tipocliente.descuento"></td> <!--En la segunda mostramos el apellido-->
-                                <td> 
-                                    <button class="btn btn-success btn-sm" @click="editarForm(tipocliente,index)">Editar</button>
-                                    <button class="btn btn-danger btn-sm" @click="eliminar(tipocliente,index)">Eliminar</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+        </div>
+             
 
-                     <div v-if="can('Edicion  de cliente')">
-                            <h1>puede ver el index</h1>
-                    </div>
+        
+        <div class="card-body">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Nombre</th>
+                            <th>Descuento</th>
+                            <th v-can="'editar-tipo-cliente'||'eliminar-tipo-cliente'">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(tipocliente,index) in tipoClientes" :key="index"> <!-- Recorremos nuestro array -->
+                            <td >{{tipocliente.id}}</td> 
+                            <td >{{tipocliente.nombre}}</td> <!--En la primera columna mostramos el nombre-->
+                            <td v-text="tipocliente.descuento"></td> <!--En la segunda mostramos el apellido-->
+                            <td v-can="'editar-tipo-cliente'"> 
+                                <button v-can="'editar-tipo-cliente'" class="btn btn-success btn-sm" @click="editarForm(tipocliente,index)">Editar</button>
+                                <button v-can="'eliminar-tipo-cliente'" class="btn btn-danger btn-sm" @click="eliminar(tipocliente,index)">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                    <div>
-                        <h1> holaaaa</h1>
-                    </div>
-             </div>
+                
+        </div>
     </div>
 </template>
 

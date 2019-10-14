@@ -18,12 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script type="text/javascript">
-        window.Laravel = {
-            csrfToken: "{{ csrf_token() }}",
-            jsPermissions: {!! auth()->check()?auth()->user()->jsPermissions():null !!}
-        }
-    </script>
+    
 </head>
 <body>
     <div id="app">
@@ -42,7 +37,7 @@
                     
                     @role('admin')
                     <ul class="navbar-nav mr-auto">
-                        <a class="navbar-brand" href="{{ route('TipoCliente.index') }}">
+                        <a class="navbar-brand" href="{{ route('listar-tipo-cliente') }}">
                             TipoCliente
                         </a> 
                     </ul>

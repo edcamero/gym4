@@ -12,7 +12,9 @@ class TipoClienteController extends Controller
 
     public function __construct()
 {
-    $this->middleware(['role:admin']);
+
+    
+    //$this->middleware(['role:admin']);
 }
     /**
      * Display a listing of the resource.
@@ -50,7 +52,7 @@ class TipoClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $tc=new TipoCliente();
         $tc->nombre=$request->nombre;
         $tc->descuento=$request->descuento;

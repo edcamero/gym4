@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -42,11 +43,5 @@ class User extends Authenticatable
 
 
 
-    public function jsPermissions()
-    {
-        return json_encode([
-                'roles' => $this->getRoleNames(),
-                'permissions' => $this->getAllPermissions()->pluck('name'),
-            ]);
-    }
+    
 }

@@ -7,6 +7,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+Vue.prototype.$permisos=[];
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -18,14 +20,23 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-Vue.prototype.can = function(value){
-    return window.Laravel.jsPermissions.permissions.includes(value);
-}
-Vue.prototype.is = function(value){
-    return window.Laravel.jsPermissions.roles.includes(value);
-}
+
+
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('tipo-cliente', require('./components/TipoClienteComponent').default);
+
+
+
+
+
+Vue.directive('can', function (el, binding, vnode) {
+
+    if(Vue.prototype.$permisos.indexOf(binding.value) !== -1){
+       return vnode.elm.hidden = false;
+    }else{
+       return vnode.elm.hidden = true;
+    }
+})
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -34,4 +45,27 @@ Vue.component('tipo-cliente', require('./components/TipoClienteComponent').defau
 
 const app = new Vue({
     el: '#app',
-});
+    data:{
+        permisos:[],
+    },
+    methods: {
+        getPermisos:function(){
+            
+            axios.get('/permission')
+            .then(res=>{
+               //this.permisos=res.data;
+               Vue.prototype.$permisos =res.data;
+            })
+        },
+       
+    },
+    created: function(){
+        //this.getSession()
+    
+       
+        this.getPermisos();
+       
+        
+       },
+},
+);

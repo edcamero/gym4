@@ -13,24 +13,30 @@ class PermisosSeeder extends Seeder
     public function run()
     {
         Permission::create([
-            'name'=>'TipCliente.index',
+            'name'=>'listar-tipo-cliente',
+            'guard_name'=>'web',
+            ]);
+        Permission::create([
+            'name'=>'guardar-tipo-cliente',
             'guard_name'=>'web',
             ]);
 
+        Permission::create([
+            'name'=>'editar-tipo-cliente',
+            'guard_name'=>'web',
+            ]);
+
+        Permission::create([
+            'name'=>'eliminar-tipo-cliente',
+            'guard_name'=>'web',
+            ]);
+
+
+
+        
         $role = Role::create(['name' => 'admin']);
         $role->save();
-        Permission::create([
-            'name'=>'detalle del  cliente',
-            'guard_name'=>'web',
-            ]);
-        Permission::create([
-            'name'=>'Edicion  de cliente',
-            'guard_name'=>'web',
-            ]);
-        Permission::create([
-            'name'=>'Eliminar clientes',
-            'guard_name'=>'web',
-            ]);
+        
 
 }
 }

@@ -1943,6 +1943,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37365,150 +37367,197 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h5", { staticClass: "text-center" }, [_vm._v("Agregar Tipo Cliente")]),
+  return _c("div", { staticClass: "card" }, [
+    _vm._m(0),
     _vm._v(" "),
-    _vm.editarActivo
-      ? _c(
-          "form",
+    _c(
+      "div",
+      {
+        directives: [
           {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.editar(_vm.tipocliente)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-5" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.tipocliente.nombre,
-                      expression: "tipocliente.nombre"
-                    }
-                  ],
-                  staticClass: "form-control mb-2",
-                  attrs: { type: "text", placeholder: "Nombre" },
-                  domProps: { value: _vm.tipocliente.nombre },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.tipocliente, "nombre", $event.target.value)
-                    }
+            name: "can",
+            rawName: "v-can",
+            value: "guardar-tipo-cliente",
+            expression: "'guardar-tipo-cliente'"
+          }
+        ],
+        staticClass: "card-body"
+      },
+      [
+        _vm.editarActivo
+          ? _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.editar(_vm.tipocliente)
                   }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-5" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.tipocliente.descuento,
-                      expression: "tipocliente.descuento"
-                    }
-                  ],
-                  staticClass: "form-control mb-2",
-                  attrs: { type: "text", placeholder: "Descuento" },
-                  domProps: { value: _vm.tipocliente.descuento },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-5" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.tipocliente.nombre,
+                          expression: "tipocliente.nombre"
+                        }
+                      ],
+                      staticClass: "form-control mb-2",
+                      attrs: { type: "text", placeholder: "Nombre" },
+                      domProps: { value: _vm.tipocliente.nombre },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.tipocliente,
+                            "nombre",
+                            $event.target.value
+                          )
+                        }
                       }
-                      _vm.$set(
-                        _vm.tipocliente,
-                        "descuento",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _vm._m(0)
-            ])
-          ]
-        )
-      : _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.agregar($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-5" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.tipocliente.nombre,
-                      expression: "tipocliente.nombre"
-                    }
-                  ],
-                  staticClass: "form-control mb-2",
-                  attrs: { type: "text", placeholder: "Nombre" },
-                  domProps: { value: _vm.tipocliente.nombre },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-5" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.tipocliente.descuento,
+                          expression: "tipocliente.descuento"
+                        }
+                      ],
+                      staticClass: "form-control mb-2",
+                      attrs: { type: "text", placeholder: "Descuento" },
+                      domProps: { value: _vm.tipocliente.descuento },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.tipocliente,
+                            "descuento",
+                            $event.target.value
+                          )
+                        }
                       }
-                      _vm.$set(_vm.tipocliente, "nombre", $event.target.value)
-                    }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
+              ]
+            )
+          : _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.agregar($event)
                   }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-5" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.tipocliente.descuento,
-                      expression: "tipocliente.descuento"
-                    }
-                  ],
-                  staticClass: "form-control mb-2",
-                  attrs: { type: "text", placeholder: "Descuento" },
-                  domProps: { value: _vm.tipocliente.descuento },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-5" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.tipocliente.nombre,
+                          expression: "tipocliente.nombre"
+                        }
+                      ],
+                      staticClass: "form-control mb-2",
+                      attrs: { type: "text", placeholder: "Nombre" },
+                      domProps: { value: _vm.tipocliente.nombre },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.tipocliente,
+                            "nombre",
+                            $event.target.value
+                          )
+                        }
                       }
-                      _vm.$set(
-                        _vm.tipocliente,
-                        "descuento",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _vm._m(1)
-            ])
-          ]
-        ),
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-5" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.tipocliente.descuento,
+                          expression: "tipocliente.descuento"
+                        }
+                      ],
+                      staticClass: "form-control mb-2",
+                      attrs: { type: "text", placeholder: "Descuento" },
+                      domProps: { value: _vm.tipocliente.descuento },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.tipocliente,
+                            "descuento",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ])
+              ]
+            )
+      ]
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "card-body" }, [
       _c("table", { staticClass: "table text-center" }, [
-        _vm._m(2),
+        _c("thead", [
+          _c("tr", [
+            _c("th", [_vm._v("id")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Nombre")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Descuento")]),
+            _vm._v(" "),
+            _c(
+              "th",
+              {
+                directives: [
+                  {
+                    name: "can",
+                    rawName: "v-can",
+                    value: "editar-tipo-cliente" || false,
+                    expression: "'editar-tipo-cliente'||'eliminar-tipo-cliente'"
+                  }
+                ]
+              },
+              [_vm._v("Opciones")]
+            )
+          ])
+        ]),
         _vm._v(" "),
         _c(
           "tbody",
@@ -37522,48 +37571,81 @@ var render = function() {
                 domProps: { textContent: _vm._s(tipocliente.descuento) }
               }),
               _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success btn-sm",
-                    on: {
-                      click: function($event) {
-                        return _vm.editarForm(tipocliente, index)
-                      }
+              _c(
+                "td",
+                {
+                  directives: [
+                    {
+                      name: "can",
+                      rawName: "v-can",
+                      value: "editar-tipo-cliente",
+                      expression: "'editar-tipo-cliente'"
                     }
-                  },
-                  [_vm._v("Editar")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger btn-sm",
-                    on: {
-                      click: function($event) {
-                        return _vm.eliminar(tipocliente, index)
+                  ]
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "can",
+                          rawName: "v-can",
+                          value: "editar-tipo-cliente",
+                          expression: "'editar-tipo-cliente'"
+                        }
+                      ],
+                      staticClass: "btn btn-success btn-sm",
+                      on: {
+                        click: function($event) {
+                          return _vm.editarForm(tipocliente, index)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("Eliminar")]
-                )
-              ])
+                    },
+                    [_vm._v("Editar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "can",
+                          rawName: "v-can",
+                          value: "eliminar-tipo-cliente",
+                          expression: "'eliminar-tipo-cliente'"
+                        }
+                      ],
+                      staticClass: "btn btn-danger btn-sm",
+                      on: {
+                        click: function($event) {
+                          return _vm.eliminar(tipocliente, index)
+                        }
+                      }
+                    },
+                    [_vm._v("Eliminar")]
+                  )
+                ]
+              )
             ])
           }),
           0
         )
-      ]),
-      _vm._v(" "),
-      _vm.can("Edicion  de cliente")
-        ? _c("div", [_c("h1", [_vm._v("puede ver el index")])])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm._m(3)
+      ])
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h4", { staticClass: "text-center mb-2 card-title" }, [
+        _vm._v("Tipo Cliente")
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -37587,28 +37669,6 @@ var staticRenderFns = [
         [_vm._v("Agregar")]
       )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("id")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Nombre")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Descuento")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Opciones")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v(" holaaaa")])])
   }
 ]
 render._withStripped = true
@@ -49768,6 +49828,7 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+Vue.prototype.$permisos = [];
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -49778,16 +49839,15 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.prototype.can = function (value) {
-  return window.Laravel.jsPermissions.permissions.includes(value);
-};
-
-Vue.prototype.is = function (value) {
-  return window.Laravel.jsPermissions.roles.includes(value);
-};
-
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('tipo-cliente', __webpack_require__(/*! ./components/TipoClienteComponent */ "./resources/js/components/TipoClienteComponent.vue")["default"]);
+Vue.directive('can', function (el, binding, vnode) {
+  if (Vue.prototype.$permisos.indexOf(binding.value) !== -1) {
+    return vnode.elm.hidden = false;
+  } else {
+    return vnode.elm.hidden = true;
+  }
+});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49795,7 +49855,22 @@ Vue.component('tipo-cliente', __webpack_require__(/*! ./components/TipoClienteCo
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    permisos: []
+  },
+  methods: {
+    getPermisos: function getPermisos() {
+      axios.get('/permission').then(function (res) {
+        //this.permisos=res.data;
+        Vue.prototype.$permisos = res.data;
+      });
+    }
+  },
+  created: function created() {
+    //this.getSession()
+    this.getPermisos();
+  }
 });
 
 /***/ }),

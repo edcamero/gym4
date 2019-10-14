@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use \Auth;
+
 
 class PermissionController extends Controller
 {
@@ -12,8 +13,14 @@ class PermissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
-    {
-        //
+   function check() {
+    $permissions = [];
+    foreach (Auth::user()->getAllPermissions() as $permission) {
+      $permissions[] = $permission->name;
+    }
+
+    return $permissions;
+     //return Auth::user()->getAllPermissions();
+     
     }
 }
