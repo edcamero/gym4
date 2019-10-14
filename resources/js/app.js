@@ -24,7 +24,7 @@ Vue.prototype.$permisos=[];
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('tipo-cliente', require('./components/TipoClienteComponent').default);
-
+Vue.component('tipo-empleado', require('./components/TipoEmpleadoComponent').default);
 
 
 

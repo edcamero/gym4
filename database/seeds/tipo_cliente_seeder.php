@@ -23,5 +23,6 @@ class tipo_cliente_seeder extends Seeder
         $tc->descuento=10;
         $tc->save();
         
+        
     }
 }

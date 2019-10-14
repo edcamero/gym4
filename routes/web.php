@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //ruta para comprobar permisos desde vue.js
 Route::get('/permission', 'PermissionController@check');
 
-//Permisos definidos para Tipo-Cliente
+//Permisos y rutas definidos para Tipo-Cliente
 Route::group(['middleware' => ['permission:listar-tipo-cliente']], function () {
     Route::get('TipoCliente', 'TipoClienteController@index')->name('listar-tipo-cliente');
 });
@@ -43,7 +43,12 @@ Route::group(['middleware' => ['permission:editar-tipo-cliente']],function(){
     Route::put('/TipoCliente/{id}', 'TipoClienteController@update')->name('editar-tipo-cliente');
 });
 
+//Permisos y rutas definidos para Tipo-Empleado
 
+
+Route::group(['middleware' => ['permission:listar-tipo-empleado']], function () {
+    Route::get('TipoEmpleado', 'TipoEmpleadoController@index')->name('listar-tipo-empleado');
+});
 
 //Route::post('TipoCliente', 'TipoClienteController@store')->middleware('permission:guardar-tipo-cliente');
     Route::group(['middleware' => ['role:admin']], function () {

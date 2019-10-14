@@ -35,13 +35,26 @@
                     <!-- Left Side Of Navbar -->
 
                     
-                    @role('admin')
-                    <ul class="navbar-nav mr-auto">
+                    
+                    
+                    <ul  class="navbar-nav mr-auto">
+                    @can('listar-tipo-cliente')
                         <a class="navbar-brand" href="{{ route('listar-tipo-cliente') }}">
-                            TipoCliente
+                            Tipo Cliente
                         </a> 
+                    @endcan
+                    
+                    @can('listar-tipo-empleado')
+                        <a class="navbar-brand" href="{{ route('listar-tipo-empleado') }}">
+                            Tipo Empleado
+                        </a> 
+                    @endcan
+                    
                     </ul>
-                    @endrole
+                    
+
+                    
+                    
 
 
                     
