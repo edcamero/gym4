@@ -18,7 +18,12 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
+Vue.prototype.can = function(value){
+    return window.Laravel.jsPermissions.permissions.includes(value);
+}
+Vue.prototype.is = function(value){
+    return window.Laravel.jsPermissions.roles.includes(value);
+}
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('tipo-cliente', require('./components/TipoClienteComponent').default);
 /**

@@ -1935,6 +1935,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37545,7 +37553,13 @@ var render = function() {
           }),
           0
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _vm.can("Edicion  de cliente")
+        ? _c("div", [_c("h1", [_vm._v("puede ver el index")])])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._m(3)
     ])
   ])
 }
@@ -37589,6 +37603,12 @@ var staticRenderFns = [
         _c("th", [_vm._v("Opciones")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v(" holaaaa")])])
   }
 ]
 render._withStripped = true
@@ -49757,6 +49777,14 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+Vue.prototype.can = function (value) {
+  return window.Laravel.jsPermissions.permissions.includes(value);
+};
+
+Vue.prototype.is = function (value) {
+  return window.Laravel.jsPermissions.roles.includes(value);
+};
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('tipo-cliente', __webpack_require__(/*! ./components/TipoClienteComponent */ "./resources/js/components/TipoClienteComponent.vue")["default"]);

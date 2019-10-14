@@ -57,6 +57,14 @@
                             </tr>
                         </tbody>
                     </table>
+
+                     <div v-if="can('Edicion  de cliente')">
+                            <h1>puede ver el index</h1>
+                    </div>
+
+                    <div>
+                        <h1> holaaaa</h1>
+                    </div>
              </div>
     </div>
 </template>

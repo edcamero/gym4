@@ -39,4 +39,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    public function jsPermissions()
+    {
+        return json_encode([
+                'roles' => $this->getRoleNames(),
+                'permissions' => $this->getAllPermissions()->pluck('name'),
+            ]);
+    }
 }
