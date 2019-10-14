@@ -133,7 +133,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-
+  
     'providers' => [
 
         /*
@@ -188,6 +188,14 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
+    'permisos'=>[
+        'listar','guardar','editar','eliminar'
+    ],
+
+    'modulos'=>['tipo-cliente'],
+
+
+
 
     'aliases' => [
 

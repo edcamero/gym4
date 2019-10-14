@@ -12,30 +12,26 @@ class PermisosSeeder extends Seeder
      */
     public function run()
     {
-        Permission::create([
-            'name'=>'listar-tipo-cliente',
-            'guard_name'=>'web',
-            ]);
-        Permission::create([
-            'name'=>'guardar-tipo-cliente',
-            'guard_name'=>'web',
-            ]);
+        $role = Role::create(['name' => 'admin']);
+        $role->save();
 
-        Permission::create([
-            'name'=>'editar-tipo-cliente',
-            'guard_name'=>'web',
-            ]);
-
-        Permission::create([
-            'name'=>'eliminar-tipo-cliente',
-            'guard_name'=>'web',
-            ]);
-
+        foreach(config('app.modulos') as $modulo){
+            foreach(config('app.permisos') as $permiso){
+                $modulo_permiso=$permiso.'-'.$modulo;
+                Permission::create([
+                    'name'=>$modulo_permiso,
+                    'guard_name'=>'web',
+                    ]);
+                $role->givePermissionTo($modulo_permiso);
+            }
+        }
+        
+       
 
 
         
-        $role = Role::create(['name' => 'admin']);
-        $role->save();
+        
+
         
 
 }
