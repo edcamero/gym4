@@ -2125,18 +2125,19 @@ __webpack_require__.r(__webpack_exports__);
     agregar: function agregar() {
       var _this2 = this;
 
-      if (this.tipoEmpleado.nombre.trim() === '' || this.tipoEmpleado.descuento.trim() === '') {
+      if (this.tipoEmpleado.nombre.trim() === '') {
         alert('Debes completar todos los campos antes de guardar');
         return;
       } // console.log(this.tipoEmpleado.nombre,this.tipoEmpleado.descuento);
 
 
       var params = {
-        nombre: this.tipoEmpleado.nombre,
-        descuento: this.tipoEmpleado.descuento
+        nombre: this.tipoEmpleado.nombre
       };
       this.tipoEmpleado.nombre = '';
-      axios.post('/tipoEmpleado', params).then(function (res) {
+      axios.post('/TipoEmpleado', params).then(function (res) {
+        console.log(res.data);
+
         _this2.tipoEmpleados.push(res.data);
       });
     },
@@ -2146,7 +2147,7 @@ __webpack_require__.r(__webpack_exports__);
       var confirmacion = confirm("Confirma Eliminar Tipo Cliente: ".concat(tipoEmpleado.nombre));
 
       if (confirmacion) {
-        axios["delete"]('/tipoEmpleado/' + tipoEmpleado.id).then(function () {
+        axios["delete"]('/TipoEmpleado/' + tipoEmpleado.id).then(function () {
           _this3.tipoEmpleados.splice(index, 1);
         });
       }
@@ -2165,7 +2166,7 @@ __webpack_require__.r(__webpack_exports__);
         descuento: tc.descuento
       };
       console.log(tc);
-      axios.put('/tipoEmpleado/' + tc.id, tc).then(function (res) {
+      axios.put('/TipoEmpleado/' + tc.id, tc).then(function (res) {
         var index = _this4.tipoEmpleados.findIndex(function (buscar) {
           return buscar.id == tc.id;
         });
@@ -37859,8 +37860,8 @@ var render = function() {
           {
             name: "can",
             rawName: "v-can",
-            value: "guardar-tipo-cliente",
-            expression: "'guardar-tipo-cliente'"
+            value: "guardar-tipo-cliente" || false,
+            expression: "'guardar-tipo-cliente'||'editar-tipo-empleado'"
           }
         ],
         staticClass: "card-body justify-content-center"
@@ -37870,7 +37871,6 @@ var render = function() {
           ? _c(
               "form",
               {
-                staticClass: "row",
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
@@ -37915,10 +37915,18 @@ var render = function() {
           : _c(
               "form",
               {
+                directives: [
+                  {
+                    name: "can",
+                    rawName: "v-can",
+                    value: "guardar-tipo-cliente",
+                    expression: "'guardar-tipo-cliente'"
+                  }
+                ],
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.agregar($event)
+                    return _vm.agregar()
                   }
                 }
               },

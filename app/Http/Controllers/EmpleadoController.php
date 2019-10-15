@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TipoEmpleado;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 
-class TipoEmpleadoController extends Controller
+class EmpleadoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->ajax()){
-            return TipoEmpleado::all();
-        }else{
-            $tipoEmpl = TipoEmpleado::paginate();
-            return view('TipoEmpleado.index', compact('tipoEmpl'));
-        }
+        //
     }
 
     /**
@@ -40,19 +35,16 @@ class TipoEmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        $te=new TipoEmpleado();
-        $te->nombre=$request->nombre;
-        $te->save();
-        return $te;
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TipoEmpleado  $tipoEmpleado
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function show(TipoEmpleado $tipoEmpleado)
+    public function show(Empleado $empleado)
     {
         //
     }
@@ -60,10 +52,10 @@ class TipoEmpleadoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TipoEmpleado  $tipoEmpleado
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoEmpleado $tipoEmpleado)
+    public function edit(Empleado $empleado)
     {
         //
     }
@@ -72,28 +64,22 @@ class TipoEmpleadoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TipoEmpleado  $tipoEmpleado
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Empleado $empleado)
     {
-        $te=TipoEmpleado::find($id);
-        $te->nombre=$request->nombre;
-        $te->save();
-        return $te;
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TipoEmpleado  $tipoEmpleado
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {  
-        $te=TipoEmpleado::find($id);
-        
-        $te->delete();
-        return $te;
+    public function destroy(Empleado $empleado)
+    {
+        //
     }
 }

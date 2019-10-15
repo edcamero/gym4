@@ -6,8 +6,8 @@
         
         
 
-         <div class="card-body justify-content-center" v-can="'guardar-tipo-cliente'">
-            <form class="row" @submit.prevent="editar(tipoEmpleado)" v-if="editarActivo" >
+         <div class="card-body justify-content-center" v-can="'guardar-tipo-cliente'||'editar-tipo-empleado'">
+            <form  @submit.prevent="editar(tipoEmpleado)" v-if="editarActivo" >
                     <div class="col  center-block">
                             <div class="col-5">
                                 <input type="text" placeholder="Nombre" class="form-control mb-2" v-model="tipoEmpleado.nombre">
@@ -22,7 +22,7 @@
              </form>
 
 
-             <form @submit.prevent="agregar" v-else>
+             <form @submit.prevent="agregar()" v-else v-can="'guardar-tipo-cliente'">
                     <div class="row center-block">
                             <div class="col-5">
                                 <input type="text" placeholder="Nombre" class="form-control mb-2" v-model="tipoEmpleado.nombre">
@@ -87,15 +87,16 @@ created(){
     methods: {
         agregar(){
 
-            if(this.tipoEmpleado.nombre.trim() === '' || this.tipoEmpleado.descuento.trim() === ''){
+            if(this.tipoEmpleado.nombre.trim() === '' ){
                 alert('Debes completar todos los campos antes de guardar');
                 return;
             }
            // console.log(this.tipoEmpleado.nombre,this.tipoEmpleado.descuento);
-            const params={nombre:this.tipoEmpleado.nombre,descuento:this.tipoEmpleado.descuento}
+            const params={nombre:this.tipoEmpleado.nombre}
             this.tipoEmpleado.nombre='';
-            axios.post('/tipoEmpleado',params)
+            axios.post('/TipoEmpleado',params)
                 .then(res=>{
+                    console.log(res.data)
                     this.tipoEmpleados.push(res.data)
                 });
         },
@@ -104,7 +105,7 @@ created(){
             const confirmacion = confirm(`Confirma Eliminar Tipo Cliente: ${tipoEmpleado.nombre}`);
                 if(confirmacion){
                         
-                        axios.delete('/tipoEmpleado/'+tipoEmpleado.id)
+                        axios.delete('/TipoEmpleado/'+tipoEmpleado.id)
                         .then(()=>{
                                 this.tipoEmpleados.splice(index,1);
                         });
@@ -128,7 +129,7 @@ created(){
                 
             }
             console.log(tc);
-                axios.put('/tipoEmpleado/'+tc.id,tc)
+                axios.put('/TipoEmpleado/'+tc.id,tc)
                 .then(res=>{
                      const index=this.tipoEmpleados.findIndex(buscar=>buscar.id==tc.id);
                      console.log(res.data.status);

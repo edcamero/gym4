@@ -26,7 +26,7 @@ class CreatePersonaTable extends Migration
             $table->integer('altura');
             $table->string('foto',200);
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();
         });
     }
