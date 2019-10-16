@@ -50,7 +50,7 @@
                             <th>id</th>
                             <th>Nombre</th>
                             <th>Descuento</th>
-                            <th v-can="'editar-tipo-cliente'||'eliminar-tipo-cliente'">Opciones</th>
+                            <th v-can="'editar-tipo-cliente'||'eliminar-tipo-cliente'" >Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,7 +58,7 @@
                             <td >{{tipocliente.id}}</td> 
                             <td >{{tipocliente.nombre}}</td> <!--En la primera columna mostramos el nombre-->
                             <td v-text="tipocliente.descuento"></td> <!--En la segunda mostramos el apellido-->
-                            <td v-can="'editar-tipo-cliente'"> 
+                            <td v-can="'editar-tipo-cliente'||'eliminar-tipo-cliente'"> 
                                 <button v-can="'editar-tipo-cliente'" class="btn btn-success btn-sm" @click="editarForm(tipocliente,index)">Editar</button>
                                 <button v-can="'eliminar-tipo-cliente'" class="btn btn-danger btn-sm" @click="eliminar(tipocliente,index)">Eliminar</button>
                             </td>

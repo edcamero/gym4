@@ -37736,8 +37736,9 @@ var render = function() {
                     {
                       name: "can",
                       rawName: "v-can",
-                      value: "editar-tipo-cliente",
-                      expression: "'editar-tipo-cliente'"
+                      value: "editar-tipo-cliente" || false,
+                      expression:
+                        "'editar-tipo-cliente'||'eliminar-tipo-cliente'"
                     }
                   ]
                 },
@@ -50274,11 +50275,17 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 Vue.component('tipo-cliente', __webpack_require__(/*! ./components/TipoClienteComponent */ "./resources/js/components/TipoClienteComponent.vue")["default"]);
 Vue.component('tipo-empleado', __webpack_require__(/*! ./components/TipoEmpleadoComponent */ "./resources/js/components/TipoEmpleadoComponent.vue")["default"]);
 Vue.directive('can', function (el, binding, vnode) {
-  if (Vue.prototype.$permisos.indexOf(binding.value) !== -1) {
-    return vnode.elm.hidden = false;
-  } else {
-    return vnode.elm.hidden = true;
-  }
+  vector = binding.expression.split(['||']);
+  vector.forEach(function (element) {
+    elemento = element.replace("'", "");
+    elemento = elemento.replace("'", "");
+
+    if (Vue.prototype.$permisos.indexOf(elemento) !== -1) {
+      return vnode.elm.hidden = false;
+    } else {
+      return vnode.elm.hidden = true;
+    }
+  });
 });
 /**
  * Next, we will create a fresh Vue application instance and attach it to

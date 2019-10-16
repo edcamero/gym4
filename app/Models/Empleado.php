@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $users_id
  * @property int $idEmpleado
  * @property string $fecha_ingreso
- * @property int $Pers_id
+ * @property int $Pers_idphp
  * @property Persona $persona
  * @property TipoEmpleado $tipoEmpleado
  * @property User $user

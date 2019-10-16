@@ -30,12 +30,21 @@ Vue.component('tipo-empleado', require('./components/TipoEmpleadoComponent').def
 
 
 Vue.directive('can', function (el, binding, vnode) {
-
-    if(Vue.prototype.$permisos.indexOf(binding.value) !== -1){
-       return vnode.elm.hidden = false;
-    }else{
-       return vnode.elm.hidden = true;
-    }
+   
+    vector=binding.expression.split(['||']);
+    
+    vector.forEach(function(element) {
+        elemento=element.replace("'","");
+        elemento=elemento.replace("'","");
+        
+        if(Vue.prototype.$permisos.indexOf(elemento) !== -1){
+            return vnode.elm.hidden = false;
+         }else{
+            return vnode.elm.hidden = true;
+         }
+        
+    });
+    
 })
 /**
  * Next, we will create a fresh Vue application instance and attach it to
