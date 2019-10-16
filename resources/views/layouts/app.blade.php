@@ -49,6 +49,12 @@
                             Tipo Empleado
                         </a> 
                     @endcan
+
+                    @can('listar-horario')
+                        <a class="navbar-brand" href="{{ route('listar-horario') }}">
+                            Horario
+                        </a> 
+                    @endcan
                     
                     </ul>
                     

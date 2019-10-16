@@ -18,10 +18,12 @@ class PermisosSeeder extends Seeder
         foreach(config('app.modulos') as $modulo){
             foreach(config('app.permisos') as $permiso){
                 $modulo_permiso=$permiso.'-'.$modulo;
+
                 Permission::create([
                     'name'=>$modulo_permiso,
                     'guard_name'=>'web',
                     ]);
+                    
                 $role->givePermissionTo($modulo_permiso);
             }
         }

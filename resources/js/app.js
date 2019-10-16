@@ -25,6 +25,7 @@ Vue.prototype.$permisos=[];
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('tipo-cliente', require('./components/TipoClienteComponent').default);
 Vue.component('tipo-empleado', require('./components/TipoEmpleadoComponent').default);
+Vue.component('horario', require('./components/HorarioComponent').default);
 
 
 
@@ -34,6 +35,8 @@ Vue.directive('can', function (el, binding, vnode) {
     vector=binding.expression.split(['||']);
     
     vector.forEach(function(element) {
+
+        
         elemento=element.replace("'","");
         elemento=elemento.replace("'","");
         

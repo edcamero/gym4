@@ -192,7 +192,7 @@ return [
         'listar','guardar','editar','eliminar'
     ],
 
-    'modulos'=>['tipo-cliente','tipo-empleado','empleado'],
+    'modulos'=>['tipo-cliente','tipo-empleado','horario'],
 
 
 
