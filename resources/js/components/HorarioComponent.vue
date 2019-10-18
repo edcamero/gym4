@@ -28,15 +28,29 @@
 
              <form @submit.prevent="agregar" v-else>
                     <div class="row">
-                            <div class="col-5">
+                            <div class="col-4">
                                 <input type="text" placeholder="Nombre" class="form-control mb-2" v-model="horario.nombre">
                             </div>
-                            <div class="col-5">
-                                <input type="text" placeholder="Ingreso" class="form-control mb-2" v-model="horario.ingreso">
+
+                           
+                            <div class=" col-3 form-group">
+                                
+                                  <select id="hora" v-model="item" class="form-control" placeholder="hora de entrada">
+                                 <option v-for="item in horas" v-bind:key = "item" >{{ item }}</option>
+                           </select>
                             </div>
-                            <div class="col-5">
-                                <input type="text" placeholder="Salida" class="form-control mb-2" v-model="horario.salida">
+
+                            <div class="col-3 form-group">
+                                
+                                  <select id="hora_salida" v-model="item" class="form-control" aria-placeholder="hola" placeholder=" hora salida">
+                                 <option v-for="item in horas" v-bind:key = "item" >{{ item }}</option>
+                           </select>
                             </div>
+                           
+
+                           
+
+                            
 
                             <div class="col-2">
                                  <button  class="btn btn-primary mr-2" type="submit">Agregarrrrr</button>
@@ -82,6 +96,7 @@
 
 <script>
 export default {
+   
     data(){
         return {
             horarios:[],
@@ -89,16 +104,23 @@ export default {
                 nombre:'',
                 ingreso:'',
                 salida:'',
-            },
-            editarActivo:false
-        }
-    },
-created(){
-    axios.get('/Horario')
-    .then(res=>{
-        this.horarios = res.data;
-    })
-},
+                },
+            horas:['0:00','1:00','2:00','3:00','4:00','5:00','6:00','7:00','8:00','9:00',
+                    '10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00',
+                     '19:00','20:00','21:00','22:00','23:00'],
+             editarActivo:false,
+             item:'1'
+            };
+                      
+                
+        },
+   
+        created(){
+            axios.get('/Horario')
+            .then(res=>{
+                this.horarios = res.data;
+            })
+        },
     methods: {
         agregar(){
 
