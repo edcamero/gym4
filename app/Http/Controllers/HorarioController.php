@@ -40,7 +40,13 @@ class HorarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $hora=new Horario();
+        $hora->nombre=$request->nombre;
+        $hora->ingreso=$request->ingreso;
+        $hora->salida=$request->salida;
+        $hora->save();
+        return $hora;
+        
     }
 
     /**
@@ -62,7 +68,7 @@ class HorarioController extends Controller
      */
     public function edit(Horario $horario)
     {
-        //
+        
     }
 
     /**
@@ -72,9 +78,14 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Horario $horario)
+    public function update(Request $request,$id)
     {
-        //
+        $hora=Horario::find($id);
+        $hora->nombre=$request->nombre;
+        $hora->ingreso=$request->ingreso;
+        $hora->salida=$request->salida;
+        $hora->save();
+        return $hora;
     }
 
     /**
@@ -83,8 +94,10 @@ class HorarioController extends Controller
      * @param  \App\Models\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Horario $horario)
+    public function destroy($id)
     {
-        //
+        $hora=Horario::find($id);
+        $hora->delete();
+        return $hora;
     }
 }

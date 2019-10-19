@@ -64,6 +64,15 @@ Route::group(['middleware' => ['permission:eliminar-tipo-empleado']],function(){
 Route::group(['middleware' => ['permission:listar-horario']], function () {
     Route::get('Horario', 'HorarioController@index')->name('listar-horario');
 });
+Route::group(['middleware' => ['permission:guardar-horario']], function () {
+    Route::post('Horario', 'HorarioController@store')->name('guardar-horario');
+});
+Route::group(['middleware' => ['permission:editar-horario']], function () {
+    Route::put('/Horario/{id}', 'HorarioController@update')->name('editar-horario');
+});
+Route::group(['middleware' => ['permission:eliminar-horario']], function () {
+    Route::delete('/Horario/{id}', 'HorarioController@destroy')->name('eliminar-horario');
+});
 
 //Route::post('TipoCliente', 'TipoClienteController@store')->middleware('permission:guardar-tipo-cliente');
     Route::group(['middleware' => ['role:admin']], function () {
