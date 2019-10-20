@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $tipo_emple_id
- * @property int $users_id
- * @property int $idEmpleado
- * @property string $fecha_ingreso
- * @property int $Pers_idphp
+ * @property int $user_id
+ * @property int $id
+ * @property int $pers_id
  * @property Persona $persona
  * @property TipoEmpleado $tipoEmpleado
  * @property User $user
@@ -29,19 +28,19 @@ class Empleado extends Model
      * 
      * @var string
      */
-    protected $primaryKey = 'idEmpleado';
+    protected $primaryKey = 'id';
 
     /**
      * @var array
      */
-    protected $fillable = ['tipo_emple_id', 'users_id', 'fecha_ingreso', 'Pers_id'];
+    protected $fillable = ['tipo_emple_id', 'user_id', 'pers_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function persona()
     {
-        return $this->belongsTo('App\Persona', 'Pers_id');
+        return $this->belongsTo('App\Persona', 'pers_id');
     }
 
     /**
@@ -49,7 +48,7 @@ class Empleado extends Model
      */
     public function tipoEmpleado()
     {
-        return $this->belongsTo('App\TipoEmpleado', 'tipo_emple_id', 'tipo_emple_id');
+        return $this->belongsTo('App\TipoEmpleado', 'tipo_emple_id');
     }
 
     /**
@@ -57,7 +56,7 @@ class Empleado extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User', 'users_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     /**
@@ -65,7 +64,7 @@ class Empleado extends Model
      */
     public function evaluacionEmples()
     {
-        return $this->hasMany('App\EvaluacionEmple', 'empl_id', 'idEmpleado');
+        return $this->hasMany('App\EvaluacionEmple', 'id');
     }
 
     /**

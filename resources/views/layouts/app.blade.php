@@ -50,6 +50,13 @@
                         </a> 
                     @endcan
 
+
+                    @can('listar-empleado')
+                        <a class="navbar-brand" href="{{ route('listar-empleado') }}">
+                            Empleado
+                        </a> 
+                    @endcan
+
                     @can('listar-horario')
                         <a class="navbar-brand" href="{{ route('listar-horario') }}">
                             Horario

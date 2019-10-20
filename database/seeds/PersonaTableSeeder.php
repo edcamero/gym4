@@ -35,5 +35,18 @@ class PersonaTableSeeder extends Seeder
         $persona->user_id=1;
         $persona->save();
 
+        $persona=new Persona();
+        $persona->documento='12345';
+        $persona->nombre='Carlos';
+        $persona->apellido='Fuentes';
+        $persona->fecha_nac='2016-05-02';
+        $persona->sexo='Masculino';
+        $persona->telefono='3213198063';
+        $persona->direccion='calle 20 #6-12';
+        $persona->altura=172;
+        $persona->foto='iiiiiiiiiii';
+        $persona->user_id=1;
+        $persona->save();
+
     }
 }

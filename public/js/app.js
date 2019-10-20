@@ -1963,22 +1963,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       horarios: [],
       horario: {
         nombre: '',
-        ingreso: '',
-        salida: ''
+        ingreso: 'Seleccione',
+        salida: 'Seleccione'
       },
-      horas: ['0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-      editarActivo: false,
-      item: '1'
+      horas: ['Seleccione', '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+      editarActivo: false
     };
   },
   created: function created() {
@@ -1992,7 +1987,7 @@ __webpack_require__.r(__webpack_exports__);
     agregar: function agregar() {
       var _this2 = this;
 
-      if (this.horario.nombre.trim() === '' || this.horario.ingreso.trim() === '' || this.horario.salida.trim()) {
+      if (this.horario.nombre.trim() === '' || this.horario.ingreso.trim() === '' || this.horario.salida.trim() === '') {
         alert('Debes completar todos los campos antes de guardar');
         return;
       } // console.log(this.tipocliente.nombre,this.tipocliente.descuento);
@@ -2021,12 +2016,13 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    editarForm: function editarForm(horario) {
+    editarForm: function editarForm(a) {
       this.editarActivo = true;
-      this.horario.nombre = horario.nombre;
-      this.horario.ingreso = horario.ingreso;
-      this.horario.salida = horario.salida;
-      this.horario.id = horario.id;
+      this.horario.nombre = a.nombre;
+      this.horario.ingreso = a.ingreso.substring(0, 5);
+      this.horario.salida = a.salida.substring(0, 5);
+      this.horario.id = a.id;
+      console.log(a);
     },
     editar: function editar(tc) {
       var _this4 = this;
@@ -37730,8 +37726,8 @@ var render = function() {
           {
             name: "can",
             rawName: "v-can",
-            value: "guardar-tipo-cliente",
-            expression: "'guardar-tipo-cliente'"
+            value: "guardar-horario",
+            expression: "'guardar-horario'"
           }
         ],
         staticClass: "card-body"
@@ -37750,7 +37746,7 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-5" }, [
+                  _c("div", { staticClass: "col-4" }, [
                     _c("input", {
                       directives: [
                         {
@@ -37774,52 +37770,88 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-5" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.horario.ingreso,
-                          expression: "horario.ingreso"
-                        }
-                      ],
-                      staticClass: "form-control mb-2",
-                      attrs: { type: "text", placeholder: "ingreso" },
-                      domProps: { value: _vm.horario.ingreso },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _c("div", { staticClass: "col-4  form-group" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.horario.ingreso,
+                            expression: "horario.ingreso"
                           }
-                          _vm.$set(_vm.horario, "ingreso", $event.target.value)
+                        ],
+                        staticClass: " form-control",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.horario,
+                              "ingreso",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      }
-                    })
+                      },
+                      _vm._l(_vm.horas, function(item) {
+                        return _c("option", { key: item }, [
+                          _vm._v(_vm._s(item))
+                        ])
+                      }),
+                      0
+                    )
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-5" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.horario.salida,
-                          expression: "horario.salida"
-                        }
-                      ],
-                      staticClass: "form-control mb-2",
-                      attrs: { type: "text", placeholder: "salida" },
-                      domProps: { value: _vm.horario.salida },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _c("div", { staticClass: "col-4 form-gruop" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.horario.salida,
+                            expression: "horario.salida"
                           }
-                          _vm.$set(_vm.horario, "salida", $event.target.value)
+                        ],
+                        staticClass: "form-control",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.horario,
+                              "salida",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      }
-                    })
+                      },
+                      _vm._l(_vm.horas, function(item) {
+                        return _c("option", { key: item }, [
+                          _vm._v(_vm._s(item))
+                        ])
+                      }),
+                      0
+                    )
                   ]),
                   _vm._v(" "),
                   _vm._m(1)
@@ -37862,7 +37894,7 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: " col-3 form-group" }, [
+                  _c("div", { staticClass: "col-4  form-group" }, [
                     _c(
                       "select",
                       {
@@ -37870,12 +37902,11 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.item,
-                            expression: "item"
+                            value: _vm.horario.ingreso,
+                            expression: "horario.ingreso"
                           }
                         ],
-                        staticClass: "form-control",
-                        attrs: { id: "hora", placeholder: "hora de entrada" },
+                        staticClass: " form-control",
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -37886,9 +37917,13 @@ var render = function() {
                                 var val = "_value" in o ? o._value : o.value
                                 return val
                               })
-                            _vm.item = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
+                            _vm.$set(
+                              _vm.horario,
+                              "ingreso",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
                           }
                         }
                       },
@@ -37901,7 +37936,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-3 form-group" }, [
+                  _c("div", { staticClass: "col-4 form-gruop" }, [
                     _c(
                       "select",
                       {
@@ -37909,16 +37944,11 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.item,
-                            expression: "item"
+                            value: _vm.horario.salida,
+                            expression: "horario.salida"
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: {
-                          id: "hora_salida",
-                          "aria-placeholder": "hola",
-                          placeholder: " hora salida"
-                        },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -37929,9 +37959,13 @@ var render = function() {
                                 var val = "_value" in o ? o._value : o.value
                                 return val
                               })
-                            _vm.item = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
+                            _vm.$set(
+                              _vm.horario,
+                              "salida",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
                           }
                         }
                       },
@@ -37970,8 +38004,8 @@ var render = function() {
                   {
                     name: "can",
                     rawName: "v-can",
-                    value: "editar-tipo-cliente" || false,
-                    expression: "'editar-tipo-cliente'||'eliminar-tipo-cliente'"
+                    value: "editar-horario" || false,
+                    expression: "'editar-horario'||'eliminar-horario'"
                   }
                 ]
               },
@@ -37999,9 +38033,8 @@ var render = function() {
                     {
                       name: "can",
                       rawName: "v-can",
-                      value: "editar-tipo-cliente" || false,
-                      expression:
-                        "'editar-tipo-cliente'||'eliminar-tipo-cliente'"
+                      value: "editar-horario" || false,
+                      expression: "'editar-horario'||'eliminar-horario'"
                     }
                   ]
                 },
@@ -38013,14 +38046,14 @@ var render = function() {
                         {
                           name: "can",
                           rawName: "v-can",
-                          value: "editar-tipo-cliente",
-                          expression: "'editar-tipo-cliente'"
+                          value: "editar-horario",
+                          expression: "'editar-horario'"
                         }
                       ],
                       staticClass: "btn btn-success btn-sm",
                       on: {
                         click: function($event) {
-                          return _vm.editarForm(_vm.tipocliente, index)
+                          return _vm.editarForm(horario, index)
                         }
                       }
                     },
@@ -38034,14 +38067,14 @@ var render = function() {
                         {
                           name: "can",
                           rawName: "v-can",
-                          value: "eliminar-tipo-cliente",
-                          expression: "'eliminar-tipo-cliente'"
+                          value: "eliminar-horario",
+                          expression: "'eliminar-horario'"
                         }
                       ],
                       staticClass: "btn btn-danger btn-sm",
                       on: {
                         click: function($event) {
-                          return _vm.eliminar(_vm.tipocliente, index)
+                          return _vm.eliminar(horario, index)
                         }
                       }
                     },
@@ -38076,7 +38109,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-success mr-2", attrs: { type: "submit" } },
-        [_vm._v("Editarrrrrr")]
+        [_vm._v("Editar")]
       )
     ])
   },
@@ -38088,7 +38121,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary mr-2", attrs: { type: "submit" } },
-        [_vm._v("Agregarrrrr")]
+        [_vm._v("Agregar")]
       )
     ])
   }
