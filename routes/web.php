@@ -81,7 +81,9 @@ Route::group(['middleware' => ['permission:eliminar-horario']], function () {
 Route::group(['middleware' => ['permission:listar-empleado']], function () {
     Route::get('Empleado', 'EmpleadoController@index')->name('listar-empleado');
 });
-
+Route::group(['middleware' => ['permission:listar-empleado']], function () {
+    Route::get('/Persona/{id}', 'PersonaController@buscar');
+});
 //Route::post('TipoCliente', 'TipoClienteController@store')->middleware('permission:guardar-tipo-cliente');
     Route::group(['middleware' => ['role:admin']], function () {
     //Route::get('TipoCliente', 'TipoClienteController@index')->name('listar-tipo-cliente');

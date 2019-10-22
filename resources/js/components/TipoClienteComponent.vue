@@ -74,6 +74,7 @@
 
 <script>
 export default {
+    
     data(){
         return {
             tipoClientes:[],

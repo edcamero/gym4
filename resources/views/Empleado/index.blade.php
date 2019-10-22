@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div>
                 
-                       Estas en  gestion Empleado
+                       <crear-empleado/>
                 
                     
                 
