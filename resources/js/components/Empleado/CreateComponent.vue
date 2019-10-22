@@ -175,6 +175,9 @@ export default {
                 direccion:'',
                 altura:'',
                 user_id:'',
+                
+                
+                },
                 user:{
                     id:'',
                     nickaname:'',
@@ -183,8 +186,6 @@ export default {
                     password_confirmation:'',
                     
                 }
-                
-                },
                 
 
 
@@ -202,7 +203,7 @@ export default {
             then(res=>{
                 let person=res.data[0];
                 this.empleado.persona=person;
-                this.user
+                console.log(person)
                // console.log(res.data);
                 //console.log(res.data['0']['nombre'])
             }

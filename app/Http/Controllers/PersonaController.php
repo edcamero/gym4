@@ -9,7 +9,7 @@ class PersonaController extends Controller
 {
     public function buscar($id){
         $p=Persona::where('documento',$id)->get();
-        $p->user();
+        
         return $p;
     }
 
