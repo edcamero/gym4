@@ -2013,14 +2013,14 @@ __webpack_require__.r(__webpack_exports__);
           telefono: '',
           direccion: '',
           altura: '',
-          user_id: ''
-        },
-        user: {
-          id: '',
-          nickaname: '',
-          email: '',
-          password: '',
-          password_confirmation: ''
+          user_id: '',
+          user: {
+            id: '',
+            nickaname: '',
+            email: '',
+            password: '',
+            password_confirmation: ''
+          }
         }
       },
       empleados: []
@@ -2031,10 +2031,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //console.log(this.empleado.persona.documento);
-      console.log('hola');
+      //console.log('hola');
       axios.get('/Persona/' + this.empleado.persona.documento).then(function (res) {
         var person = res.data[0];
-        _this.empleado.persona = person; // console.log(res.data);
+        _this.empleado.persona = person;
+        _this.user; // console.log(res.data);
         //console.log(res.data['0']['nombre'])
       });
     }

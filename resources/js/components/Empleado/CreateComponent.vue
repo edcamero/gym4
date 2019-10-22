@@ -175,8 +175,6 @@ export default {
                 direccion:'',
                 altura:'',
                 user_id:'',
-                
-                },
                 user:{
                     id:'',
                     nickaname:'',
@@ -185,6 +183,9 @@ export default {
                     password_confirmation:'',
                     
                 }
+                
+                },
+                
 
 
             },
