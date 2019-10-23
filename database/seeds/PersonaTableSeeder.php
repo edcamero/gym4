@@ -21,12 +21,7 @@ class PersonaTableSeeder extends Seeder
         $user->save();
         $user->assignRole('admin');
 
-        $user=new User();
-        $user->nickname='Carlos';
-        $user->email='Carlos@hotmail.com';
-        $user->password='$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';// password
-
-
+       
         $persona=new Persona();
         $persona->documento='192';
         $persona->nombre='enyerson';
@@ -39,6 +34,12 @@ class PersonaTableSeeder extends Seeder
         $persona->foto='iiiiiiiiiii';
         $persona->user_id=1;
         $persona->save();
+
+        $user=new User();
+        $user->nickname='Carlos';
+        $user->email='Carlos@hotmail.com';
+        $user->password='$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';// password
+
 
         $persona=new Persona();
         $persona->documento='12345';

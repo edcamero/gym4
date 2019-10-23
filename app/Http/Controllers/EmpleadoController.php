@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empleado;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
@@ -35,7 +36,23 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user=new User();
+        $user->nickname=$data['nickname'];
+        $user->email=$data['email'];
+        $user->password=Hash::make($data['password']);
+        $user->save();
+        $empleado=new Empleado();
+        $empleado->documento=$data['documento'];
+        $empleado->nombre=$data['firstname'];
+        $empleado->apellido=$data['lastname'];
+        $empleado->fecha_nac="2009-10-01";
+        $empleado->sexo=$data['sexo'];
+        $empleado->telefono=$data['telefono'];
+        $empleado->direccion=$data['direccion'];
+        $empleado->altura=$data['altura'];
+        $empleado->foto="fotos";
+        $empleado->user_id=$user->id;
+        $empleado->save();
     }
 
     /**
