@@ -2432,6 +2432,160 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      tipoDocumentos: [],
+      tipoDocumento: {
+        nombre: ''
+      },
+      editarActivo: false
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/TipoDocumento').then(function (res) {
+      _this.tipoDocumento = res.data;
+    });
+  },
+  methods: {
+    agregar: function agregar() {
+      var _this2 = this;
+
+      if (this.tipoDocumento.nombre.trim() === '') {
+        alert('Debes completar todos los campos antes de guardar');
+        return;
+      } // console.log(this.tipoEmpleado.nombre,this.tipoEmpleado.descuento);
+
+
+      var params = {
+        nombre: this.tipoDocumento.nombre
+      };
+      this.tipoDocumento.nombre = '';
+      axios.post('/TipoDocumento', params).then(function (res) {
+        console.log(res.data);
+
+        _this2.tipoDocumentos.push(res.data);
+      });
+    },
+    eliminar: function eliminar(tipoDocumento, index) {
+      var _this3 = this;
+
+      var confirmacion = confirm("Confirma Eliminar Tipo Documento: ".concat(tipoDocumento.nombre));
+
+      if (confirmacion) {
+        axios["delete"]('/TipoDocumento/' + tipoDocumento.id).then(function () {
+          _this3.tipoDocumentos.splice(index, 1);
+        });
+      }
+    },
+    editarForm: function editarForm(tipoDocumento) {
+      this.editarActivo = true;
+      this.tipoDocumento.nombre = tipoDocumento.nombre;
+      this.tipoDocumento.id = tipoDocumento.id;
+    },
+    editar: function editar(tc) {
+      var _this4 = this;
+
+      var params = {
+        nombre: tc.nombre
+      };
+      console.log(tc);
+      axios.put('/TipoDocumento/' + tc.id, tc).then(function (res) {
+        var index = _this4.tipoDocumentos.findIndex(function (buscar) {
+          return buscar.id == tc.id;
+        });
+
+        console.log(res.data.status);
+        _this4.tipoDocumentos[index].nombre = tc.nombre;
+        _this4.tipoDocumento.nombre = '';
+        _this4.editarActivo = false;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TipoEmpleadoComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TipoEmpleadoComponent.vue?vue&type=script&lang=js& ***!
@@ -39103,6 +39257,280 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=template&id=61ab8d17&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=template&id=61ab8d17& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: " card" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "can",
+            rawName: "v-can",
+            value: "guardar-tipo-documento" || false,
+            expression: "'guardar-tipo-documento'||'editar-tipo-documento'"
+          }
+        ],
+        staticClass: "card-body justify-content-center"
+      },
+      [
+        _vm.editarActivo
+          ? _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.editar(_vm.tipoDocumento)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "col  center-block" }, [
+                  _c("div", { staticClass: "col-5" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.tipoDocumento.nombre,
+                          expression: "tipoDocumento.nombre"
+                        }
+                      ],
+                      staticClass: "form-control mb-2",
+                      attrs: { type: "text", placeholder: "Nombre" },
+                      domProps: { value: _vm.tipoDocumento.nombre },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.tipoDocumento,
+                            "nombre",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
+              ]
+            )
+          : _c(
+              "form",
+              {
+                directives: [
+                  {
+                    name: "can",
+                    rawName: "v-can",
+                    value: "guardar-tipo-documento",
+                    expression: "'guardar-tipo-documento'"
+                  }
+                ],
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.agregar()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "row center-block" }, [
+                  _c("div", { staticClass: "col-5" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.tipoDocumento.nombre,
+                          expression: "tipoDocumento.nombre"
+                        }
+                      ],
+                      staticClass: "form-control mb-2",
+                      attrs: { type: "text", placeholder: "Nombre" },
+                      domProps: { value: _vm.tipoDocumento.nombre },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.tipoDocumento,
+                            "nombre",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ])
+              ]
+            )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("table", { staticClass: "table text-center" }, [
+        _c("thead", [
+          _c("tr", [
+            _c("th", [_vm._v("id")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("Nombre")]),
+            _vm._v(" "),
+            _c(
+              "th",
+              {
+                directives: [
+                  {
+                    name: "can",
+                    rawName: "v-can",
+                    value: "editar-tipo-documento" || false,
+                    expression:
+                      "'editar-tipo-documento'||'eliminar-tipo-documento'"
+                  }
+                ]
+              },
+              [_vm._v("Opciones")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.tipoDocumentos, function(tipoDocumento, index) {
+            return _c("tr", { key: index }, [
+              _c("td", [_vm._v(_vm._s(tipoDocumento.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(tipoDocumento.nombre))]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  directives: [
+                    {
+                      name: "can",
+                      rawName: "v-can",
+                      value:
+                        "editar-tipo-documento" || false,
+                      expression:
+                        "'editar-tipo-documento'||'eliminar-tipo-documento'"
+                    }
+                  ]
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "can",
+                          rawName: "v-can",
+                          value: "editar-tipo-documento",
+                          expression: "'editar-tipo-documento'"
+                        }
+                      ],
+                      staticClass: "btn btn-success btn-sm",
+                      on: {
+                        click: function($event) {
+                          return _vm.editarForm(tipoDocumento, index)
+                        }
+                      }
+                    },
+                    [_vm._v("Editar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "can",
+                          rawName: "v-can",
+                          value: "eliminar-tipo-documento",
+                          expression: "'eliminar-tipo-documento'"
+                        }
+                      ],
+                      staticClass: "btn btn-danger btn-sm",
+                      on: {
+                        click: function($event) {
+                          return _vm.eliminar(tipoDocumento, index)
+                        }
+                      }
+                    },
+                    [_vm._v("Eliminar")]
+                  )
+                ]
+              )
+            ])
+          }),
+          0
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h4", { staticClass: "text-center mb-2 card-title" }, [
+        _vm._v("Tipo Documento")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-5" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-success mr-2", attrs: { type: "submit" } },
+        [_vm._v("Editar")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-2" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary mr-2", attrs: { type: "submit" } },
+        [_vm._v("Agregar")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TipoEmpleadoComponent.vue?vue&type=template&id=fcd0297a&":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TipoEmpleadoComponent.vue?vue&type=template&id=fcd0297a& ***!
@@ -51543,6 +51971,7 @@ Vue.component('tipo-cliente', __webpack_require__(/*! ./components/TipoClienteCo
 Vue.component('tipo-empleado', __webpack_require__(/*! ./components/TipoEmpleadoComponent */ "./resources/js/components/TipoEmpleadoComponent.vue")["default"]);
 Vue.component('horario', __webpack_require__(/*! ./components/HorarioComponent */ "./resources/js/components/HorarioComponent.vue")["default"]);
 Vue.component('crear-empleado', __webpack_require__(/*! ./components/Empleado/CreateComponent */ "./resources/js/components/Empleado/CreateComponent.vue")["default"]);
+Vue.component('tipo-documento', __webpack_require__(/*! ./components/TipoDocumento/TipoDocumentoComponent */ "./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue")["default"]);
 Vue.directive('can', function (el, binding, vnode) {
   vector = binding.expression.split(['||']);
   vector.forEach(function (element) {
@@ -51917,6 +52346,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TipoDocumentoComponent_vue_vue_type_template_id_61ab8d17___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TipoDocumentoComponent.vue?vue&type=template&id=61ab8d17& */ "./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=template&id=61ab8d17&");
+/* harmony import */ var _TipoDocumentoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TipoDocumentoComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TipoDocumentoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TipoDocumentoComponent_vue_vue_type_template_id_61ab8d17___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TipoDocumentoComponent_vue_vue_type_template_id_61ab8d17___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TipoDocumento/TipoDocumentoComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoDocumentoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./TipoDocumentoComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoDocumentoComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=template&id=61ab8d17&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=template&id=61ab8d17& ***!
+  \*********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoDocumentoComponent_vue_vue_type_template_id_61ab8d17___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./TipoDocumentoComponent.vue?vue&type=template&id=61ab8d17& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TipoDocumento/TipoDocumentoComponent.vue?vue&type=template&id=61ab8d17&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoDocumentoComponent_vue_vue_type_template_id_61ab8d17___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TipoDocumentoComponent_vue_vue_type_template_id_61ab8d17___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/TipoEmpleadoComponent.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/TipoEmpleadoComponent.vue ***!
@@ -52004,8 +52502,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\gym4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

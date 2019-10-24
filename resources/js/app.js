@@ -27,6 +27,7 @@ Vue.component('tipo-cliente', require('./components/TipoClienteComponent').defau
 Vue.component('tipo-empleado', require('./components/TipoEmpleadoComponent').default);
 Vue.component('horario', require('./components/HorarioComponent').default);
 Vue.component('crear-empleado', require('./components/Empleado/CreateComponent').default);
+Vue.component('tipo-documento', require('./components/TipoDocumento/TipoDocumentoComponent').default);
 
 
 

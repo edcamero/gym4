@@ -62,6 +62,12 @@
                             Horario
                         </a> 
                     @endcan
+
+                    @can('listar-tipo-documento')
+                        <a class="navbar-brand" href="{{ route('listar-tipo-documento') }}">
+                            Tipo Documento
+                        </a> 
+                    @endcan
                     
                     </ul>
                     

@@ -93,6 +93,23 @@ Route::group(['middleware' => ['permission:listar-empleado']], function () {
 });
 
 
+//Permisos y rutas definidos para Tipo-Documento
+
+
+Route::group(['middleware' => ['permission:listar-tipo-documento']], function () {
+    Route::get('TipoDocumento', 'TipoDocumentoController@index')->name('listar-tipo-documento');
+});
+Route::group(['middleware' => ['permission:guardar-tipo-documento']], function () {
+    Route::post('TipoDocumento', 'TipoDocumentoController@store')->name('guardar-tipo-documento');
+});
+Route::group(['middleware' => ['permission:editar-tipo-documento']],function(){
+    Route::put('/TipoDocumento/{id}', 'TipoDocumentoController@update')->name('editar-tipo-documento');
+});
+Route::group(['middleware' => ['permission:eliminar-tipo-documento']],function(){
+    Route::delete('/TipoDocumento/{id}', 'TipoDocumentoController@destroy')->name('eliminar-tipo-documento');
+});
+
+
 
 
 
