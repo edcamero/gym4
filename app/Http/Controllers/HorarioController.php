@@ -29,7 +29,7 @@ class HorarioController extends Controller
      */
     public function create()
     {
-        //
+        //hi
     }
 
     /**
