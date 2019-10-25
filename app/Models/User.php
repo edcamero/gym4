@@ -42,6 +42,10 @@ class User extends Authenticatable
     ];
 
 
+    public function persona(){
+        return $this->belongsTo('App\Models\Persona');
+    }
+
 
     
 }

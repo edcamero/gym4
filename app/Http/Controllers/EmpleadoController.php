@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empleado;
+use App\Models\Persona;
 use App\Models\User;
 use Illuminate\Http\Request;
 
