@@ -12,13 +12,13 @@
             <!-- /.Div para el documento -->
 
                 <div class="col">
-                    <input type="text" v-model="empleado.persona.documento" class="form-control "   required  
+                    <input type="text" v-model="empleado.documento" class="form-control "   required  
                         placeholder="Documento" v-on:keyup.enter="buscar">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                         
                 </div>   
                 <div class="col-md-6">
-                    <input id="firstname" type="text" class="form-control " placeholder="Nombres" v-model="this.empleado.persona.nombre"   autofocus>
+                    <input id="firstname" type="text" class="form-control " placeholder="Nombres" v-model="this.empleado.nombre"   autofocus>
 
                     
                 </div>
@@ -33,13 +33,13 @@
 
             <div class="row form-group">
                 <div class="col-md-6">
-                    <input id="lastname" type="text" class="form-control " placeholder="Apellidos" v-model="empleado.persona.apellido"  required autofocus>
+                    <input id="lastname" type="text" class="form-control " placeholder="Apellidos" v-model="empleado.apellido"  required autofocus>
 
                                 
                 </div>
 
                 <div class="col ">
-                    <input type="date" v-model="empleado.persona.fecha_nac" class="form-control " autocomplete="off"
+                    <input type="date" v-model="empleado.fecha_nac" class="form-control " autocomplete="off"
                          placeholder="Fecha de Nacimiento">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                 
@@ -55,7 +55,7 @@
 
                 <div class="row form-group">
                     <div class="col ">
-                        <SELECT v-model="empleado.persona.sexo" class="form-control " autocomplete="off" >
+                        <SELECT v-model="empleado.sexo" class="form-control " autocomplete="off" >
                             <option>Sexo:</option>
                             <option>Hombre</option>
                             <option>Mujer</option>
@@ -66,7 +66,7 @@
 
 
                     <div class="col ">
-                        <input type="text" v-model="empleado.persona.altura" class="form-control"  autocomplete="off" 
+                        <input type="text" v-model="empleado.altura" class="form-control"  autocomplete="off" 
                             placeholder="Altura">
                             <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                
@@ -81,14 +81,14 @@
                 <!-- /.Row para telefono y direcion  -->  
                 <div class="row form-group">
                     <div class="col ">
-                        <input type="text" v-model="empleado.persona.telefono"  class="form-control " autocomplete="off" 
+                        <input type="text" v-model="empleado.telefono"  class="form-control " autocomplete="off" 
                             placeholder="Telefono">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                         
                     </div>
 
                     <div class="col ">
-                        <input type="text" v-model="empleado.persona.direccion" class="form-control " autocomplete="off" 
+                        <input type="text" v-model="empleado.direccion" class="form-control " autocomplete="off" 
                             placeholder="Direccion">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                         
@@ -209,6 +209,11 @@ export default {
             }
 
             )
+        },
+
+        crear(){
+            const params=
+            axios.post('/Empleado/')
         }
     },
 }
