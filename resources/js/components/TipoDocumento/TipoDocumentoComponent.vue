@@ -5,7 +5,7 @@
         </div>
         
         
-         <div class="card-body justify-content-center" v-can="'guardar-tipo-documento'||'editar-tipo-documento'">
+         <div class="card-body justify-content-center" v-can="'guardar-tipo-documento'">
             <form  @submit.prevent="editar(tipoDocumento)" v-if="editarActivo">
                     <div class="col  center-block">
                             <div class="col-5">
@@ -21,7 +21,7 @@
              </form>
 
 
-             <form @submit.prevent="agregar()" v-else v-can="'guardar-tipo-documento'">
+             <form @submit.prevent="agregar" v-else >
                     <div class="row center-block">
                             <div class="col-5">
                                 <input type="text" placeholder="Nombre" class="form-control mb-2" v-model="tipoDocumento.nombre">
@@ -81,7 +81,7 @@ export default {
 created(){
     axios.get('/TipoDocumento')
     .then(res=>{
-        this.tipoDocumento=res.data;
+        this.tipoDocumentos=res.data;
     })
 },
     methods: {

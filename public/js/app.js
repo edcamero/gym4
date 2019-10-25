@@ -2524,7 +2524,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get('/TipoDocumento').then(function (res) {
-      _this.tipoDocumento = res.data;
+      _this.tipoDocumentos = res.data;
     });
   },
   methods: {
@@ -39282,8 +39282,8 @@ var render = function() {
           {
             name: "can",
             rawName: "v-can",
-            value: "guardar-tipo-documento" || false,
-            expression: "'guardar-tipo-documento'||'editar-tipo-documento'"
+            value: "guardar-tipo-documento",
+            expression: "'guardar-tipo-documento'"
           }
         ],
         staticClass: "card-body justify-content-center"
@@ -39337,18 +39337,10 @@ var render = function() {
           : _c(
               "form",
               {
-                directives: [
-                  {
-                    name: "can",
-                    rawName: "v-can",
-                    value: "guardar-tipo-documento",
-                    expression: "'guardar-tipo-documento'"
-                  }
-                ],
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.agregar()
+                    return _vm.agregar($event)
                   }
                 }
               },
