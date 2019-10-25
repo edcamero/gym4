@@ -2038,6 +2038,9 @@ __webpack_require__.r(__webpack_exports__);
         console.log(person); // console.log(res.data);
         //console.log(res.data['0']['nombre'])
       });
+    },
+    crear: function crear() {
+      var params = axios.post('/Empleado/');
     }
   }
 });
@@ -38047,13 +38050,13 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.persona.documento,
-                expression: "empleado.persona.documento"
+                value: _vm.empleado.documento,
+                expression: "empleado.documento"
               }
             ],
             staticClass: "form-control ",
             attrs: { type: "text", required: "", placeholder: "Documento" },
-            domProps: { value: _vm.empleado.persona.documento },
+            domProps: { value: _vm.empleado.documento },
             on: {
               keyup: function($event) {
                 if (
@@ -38068,7 +38071,7 @@ var render = function() {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado.persona, "documento", $event.target.value)
+                _vm.$set(_vm.empleado, "documento", $event.target.value)
               }
             }
           }),
@@ -38084,8 +38087,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: this.empleado.persona.nombre,
-                expression: "this.empleado.persona.nombre"
+                value: this.empleado.nombre,
+                expression: "this.empleado.nombre"
               }
             ],
             staticClass: "form-control ",
@@ -38095,13 +38098,13 @@ var render = function() {
               placeholder: "Nombres",
               autofocus: ""
             },
-            domProps: { value: this.empleado.persona.nombre },
+            domProps: { value: this.empleado.nombre },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(this.empleado.persona, "nombre", $event.target.value)
+                _vm.$set(this.empleado, "nombre", $event.target.value)
               }
             }
           })
@@ -38115,8 +38118,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.persona.apellido,
-                expression: "empleado.persona.apellido"
+                value: _vm.empleado.apellido,
+                expression: "empleado.apellido"
               }
             ],
             staticClass: "form-control ",
@@ -38127,13 +38130,13 @@ var render = function() {
               required: "",
               autofocus: ""
             },
-            domProps: { value: _vm.empleado.persona.apellido },
+            domProps: { value: _vm.empleado.apellido },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado.persona, "apellido", $event.target.value)
+                _vm.$set(_vm.empleado, "apellido", $event.target.value)
               }
             }
           })
@@ -38145,8 +38148,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.persona.fecha_nac,
-                expression: "empleado.persona.fecha_nac"
+                value: _vm.empleado.fecha_nac,
+                expression: "empleado.fecha_nac"
               }
             ],
             staticClass: "form-control ",
@@ -38155,13 +38158,13 @@ var render = function() {
               autocomplete: "off",
               placeholder: "Fecha de Nacimiento"
             },
-            domProps: { value: _vm.empleado.persona.fecha_nac },
+            domProps: { value: _vm.empleado.fecha_nac },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado.persona, "fecha_nac", $event.target.value)
+                _vm.$set(_vm.empleado, "fecha_nac", $event.target.value)
               }
             }
           }),
@@ -38183,11 +38186,11 @@ var render = function() {
                 staticClass: "form-control ",
                 attrs: { autocomplete: "off" },
                 model: {
-                  value: _vm.empleado.persona.sexo,
+                  value: _vm.empleado.sexo,
                   callback: function($$v) {
-                    _vm.$set(_vm.empleado.persona, "sexo", $$v)
+                    _vm.$set(_vm.empleado, "sexo", $$v)
                   },
-                  expression: "empleado.persona.sexo"
+                  expression: "empleado.sexo"
                 }
               },
               [
@@ -38208,19 +38211,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.persona.altura,
-                expression: "empleado.persona.altura"
+                value: _vm.empleado.altura,
+                expression: "empleado.altura"
               }
             ],
             staticClass: "form-control",
             attrs: { type: "text", autocomplete: "off", placeholder: "Altura" },
-            domProps: { value: _vm.empleado.persona.altura },
+            domProps: { value: _vm.empleado.altura },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado.persona, "altura", $event.target.value)
+                _vm.$set(_vm.empleado, "altura", $event.target.value)
               }
             }
           }),
@@ -38238,8 +38241,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.persona.telefono,
-                expression: "empleado.persona.telefono"
+                value: _vm.empleado.telefono,
+                expression: "empleado.telefono"
               }
             ],
             staticClass: "form-control ",
@@ -38248,13 +38251,13 @@ var render = function() {
               autocomplete: "off",
               placeholder: "Telefono"
             },
-            domProps: { value: _vm.empleado.persona.telefono },
+            domProps: { value: _vm.empleado.telefono },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado.persona, "telefono", $event.target.value)
+                _vm.$set(_vm.empleado, "telefono", $event.target.value)
               }
             }
           }),
@@ -38270,8 +38273,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.persona.direccion,
-                expression: "empleado.persona.direccion"
+                value: _vm.empleado.direccion,
+                expression: "empleado.direccion"
               }
             ],
             staticClass: "form-control ",
@@ -38280,13 +38283,13 @@ var render = function() {
               autocomplete: "off",
               placeholder: "Direccion"
             },
-            domProps: { value: _vm.empleado.persona.direccion },
+            domProps: { value: _vm.empleado.direccion },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado.persona, "direccion", $event.target.value)
+                _vm.$set(_vm.empleado, "direccion", $event.target.value)
               }
             }
           }),
@@ -52494,8 +52497,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\gym4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

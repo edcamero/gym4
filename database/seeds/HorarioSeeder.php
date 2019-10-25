@@ -14,14 +14,14 @@ class HorarioSeeder extends Seeder
     {
         $horario=new Horario();
         $horario->nombre='mornign';
-        $horario->ingreso=6;
-        $horario->salida=10;
+        $horario->ingreso='6:00';
+        $horario->salida='12:00';
         $horario->save();
 
         $horario=new Horario();
         $horario->nombre='tarde';
-        $horario->ingreso=2;
-        $horario->salida=10;
+        $horario->ingreso='14:00';
+        $horario->salida='16:00';
         $horario->save();
     }
 }

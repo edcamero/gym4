@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $nombre
- * @property int $ingreso
- * @property int $salida
+ * @property string $ingreso
+ * @property string $salida
  */
 class Horario extends Model
 {
