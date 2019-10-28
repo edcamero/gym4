@@ -37,24 +37,24 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        $user=new User();
-        $user->nickname=$data['nickname'];
-        $user->email=$data['email'];
-        $user->password=Hash::make($data['password']);
+        $user           = new User();
+        $user->nickname = $data['nickname'];
+        $user->email    = $data['email'];
+        $user->password = Hash::make($data['password']);
         $user->save();
         
-        $persona=new Persona();
-        $persona->tip_doc=$data['tipo_doc'];
-        $persona->documento=$data['documento'];
-        $persona->nombre=$data['nombre'];
-        $persona->apellido=$data['apellido'];
-        $persona->fecha_nac=$data['fecha_nac'];
-        $persona->sexo=$data['sexo'];
-        $persona->telefono=$data['telefono'];
-        $persona->direccion=$data['direccion'];
-        $persona->altura=$data['altura'];
-        $persona->foto="fotos";
-        $persona->user_id=$user->id;
+        $persona            = new Persona();
+        $persona->tip_doc   = $data['tipo_doc'];
+        $persona->documento = $data['documento'];
+        $persona->nombre    = $data['nombre'];
+        $persona->apellido  = $data['apellido'];
+        $persona->fecha_nac = $data['fecha_nac'];
+        $persona->sexo      = $data['sexo'];
+        $persona->telefono  = $data['telefono'];
+        $persona->direccion = $data['direccion'];
+        $persona->altura    = $data['altura'];
+        $persona->foto      = "fotos";
+        $persona->user_id   = $user->id;
         $persona->save();
 
         $empleado=new Empleado();

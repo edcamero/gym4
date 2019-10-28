@@ -19,7 +19,7 @@ class Empleado extends Model
      * 
      * @var string
      */
-    protected $table = 'empleado';
+    protected $table = 'empleados';
 
     /**
      * The primary key for the model.

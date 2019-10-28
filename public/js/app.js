@@ -1965,56 +1965,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("se monto el componente agregar empleado");
@@ -2023,6 +1973,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       tipoEmpleados: [],
       tipoDocumentos: [],
+      empleados: [],
       tipo_emple: {
         id: '',
         nombre: ''
@@ -2043,13 +1994,12 @@ __webpack_require__.r(__webpack_exports__);
           altura: ''
         },
         user: {
-          nickaname: '',
+          nickname: '',
           email: '',
           password: '',
           password_confirmation: ''
         }
-      },
-      empleados: []
+      }
     };
   },
   created: function created() {
@@ -2059,6 +2009,8 @@ __webpack_require__.r(__webpack_exports__);
       _this.tipoEmpleados = res.data;
     }), axios.get('/TipoDocumento').then(function (res) {
       _this.tipoDocumentos = res.data;
+    }), axios.get('/Empleado').then(function (res) {
+      _this.empleados = res.data;
     });
   },
   methods: {
@@ -38246,7 +38198,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row form-group" }, [
-        _c("div", { staticClass: "col " }, [
+        _c("div", { staticClass: "col" }, [
           _c("input", {
             directives: [
               {
@@ -38256,7 +38208,7 @@ var render = function() {
                 expression: "empleado.persona.fecha_nac"
               }
             ],
-            staticClass: "form-control ",
+            staticClass: "form-control",
             attrs: {
               type: "date",
               autocomplete: "off",
@@ -38342,7 +38294,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row form-group" }, [
-        _c("div", { staticClass: "col " }, [
+        _c("div", { staticClass: "col" }, [
           _c("input", {
             directives: [
               {
@@ -38374,7 +38326,7 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col " }, [
+        _c("div", { staticClass: "col" }, [
           _c("input", {
             directives: [
               {
@@ -38414,8 +38366,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.nickname,
-                expression: "empleado.nickname"
+                value: _vm.empleado.persona.direccion,
+                expression: "empleado.persona.direccion"
               }
             ],
             staticClass: "form-control ",
@@ -38426,13 +38378,13 @@ var render = function() {
               required: "",
               autofocus: ""
             },
-            domProps: { value: _vm.empleado.nickname },
+            domProps: { value: _vm.empleado.persona.direccion },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado, "nickname", $event.target.value)
+                _vm.$set(_vm.empleado.persona, "direccion", $event.target.value)
               }
             }
           })
@@ -38584,11 +38536,7 @@ var render = function() {
           _c(
             "button",
             { staticClass: "btn btn-primary", on: { click: _vm.ver } },
-            [
-              _vm._v(
-                "\n                                    Registrar\n                                "
-              )
-            ]
+            [_vm._v("Registrar\n                    ")]
           )
         ])
       ])
@@ -52643,8 +52591,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\gym4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
