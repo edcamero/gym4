@@ -28,6 +28,7 @@ class PersonaTableSeeder extends Seeder
         $user->save();
 
         $persona=new Persona();
+        $persona->tipo_doc=1;
         $persona->documento='192';
         $persona->nombre='enyerson';
         $persona->apellido='camero';
@@ -41,6 +42,7 @@ class PersonaTableSeeder extends Seeder
         $persona->save();
 
         $persona=new Persona();
+        $persona->tipo_doc=1;
         $persona->documento = '12345';
         $persona->nombre    = 'Carlos';
         $persona->apellido  = 'Fuentes';
@@ -52,6 +54,8 @@ class PersonaTableSeeder extends Seeder
         $persona->foto      = 'iiiiiiiiiii';
         $persona->user_id   =  2;
         $persona->save();
+
+        
 
     }
 }

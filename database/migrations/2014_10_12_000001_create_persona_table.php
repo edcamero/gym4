@@ -15,6 +15,8 @@ class CreatePersonaTable extends Migration
     {
         Schema::create('persona', function (Blueprint $table) {
             $table->Increments('id');
+            $table->unsignedInteger('tipo_doc');
+            $table->index(['tipo_doc', 'documento']);
             $table->string('documento',10);
             $table->unique('documento');
             $table->string('nombre',45);
@@ -25,8 +27,9 @@ class CreatePersonaTable extends Migration
             $table->string('direccion',100);
             $table->integer('altura');
             $table->string('foto',200);
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('tipo_doc')->references('id')->on('tipo_documento')->onDelete('restrict');
             $table->timestamps();
         });
     }

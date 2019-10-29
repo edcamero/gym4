@@ -42,18 +42,27 @@ class EmpleadoController extends Controller
         $user->email=$data['email'];
         $user->password=Hash::make($data['password']);
         $user->save();
+        
+        $persona=new Persona();
+        $persona->tip_doc=$data['tipo_doc'];
+        $persona->documento=$data['documento'];
+        $persona->nombre=$data['nombre'];
+        $persona->apellido=$data['apellido'];
+        $persona->fecha_nac=$data['fecha_nac'];
+        $persona->sexo=$data['sexo'];
+        $persona->telefono=$data['telefono'];
+        $persona->direccion=$data['direccion'];
+        $persona->altura=$data['altura'];
+        $persona->foto="fotos";
+        $persona->user_id=$user->id;
+        $persona->save();
+
         $empleado=new Empleado();
-        $empleado->documento=$data['documento'];
-        $empleado->nombre=$data['firstname'];
-        $empleado->apellido=$data['lastname'];
-        $empleado->fecha_nac="2009-10-01";
-        $empleado->sexo=$data['sexo'];
-        $empleado->telefono=$data['telefono'];
-        $empleado->direccion=$data['direccion'];
-        $empleado->altura=$data['altura'];
-        $empleado->foto="fotos";
-        $empleado->user_id=$user->id;
+        $empleado->tip_emp_id=$data['tip_emp_id'];
+        $empleado->per_id=$persona->id;
         $empleado->save();
+
+
     }
 
     /**

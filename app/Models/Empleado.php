@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 /**
- * @property int $tipo_emple_id
- * @property int $user_id
  * @property int $id
- * @property int $pers_id
+ * @property int $tip_emp_id
+ * @property int $per_id
  * @property Persona $persona
  * @property TipoEmpleado $tipoEmpleado
- * @property User $user
  * @property EvaluacionEmple[] $evaluacionEmples
  * @property Horarioasignado[] $horarioasignados
  */
@@ -33,14 +31,14 @@ class Empleado extends Model
     /**
      * @var array
      */
-    protected $fillable = ['tipo_emple_id', 'user_id', 'pers_id'];
+    protected $fillable = ['tip_emp_id', 'per_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function persona()
     {
-        return $this->belongsTo('App\Persona', 'pers_id');
+        return $this->belongsTo('App\Persona', 'per_id');
     }
 
     /**
@@ -51,14 +49,7 @@ class Empleado extends Model
         return $this->belongsTo('App\TipoEmpleado', 'tipo_emple_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'user_id');
-    }
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -72,6 +63,6 @@ class Empleado extends Model
      */
     public function horarioasignados()
     {
-        return $this->hasMany('App\Horarioasignado', 'empleado_empleid', 'idEmpleado');
+        return $this->hasMany('App\Horarioasignado', 'emp_id', 'id');
     }
 }

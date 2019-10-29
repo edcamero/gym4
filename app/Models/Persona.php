@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
+ * @property int $tipo_doc
  * @property string $documento
  * @property string $nombre
  * @property string $apellido
@@ -31,7 +32,7 @@ class Persona extends Model
     /**
      * @var array
      */
-    protected $fillable = ['documento', 'nombre', 'apellido', 'fecha_nac', 'sexo', 'telefono', 'direccion', 'altura', 'foto', 'user_id'];
+    protected $fillable = ['tipo_doc','documento', 'nombre', 'apellido', 'fecha_nac', 'sexo', 'telefono', 'direccion', 'altura', 'foto', 'user_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -15,6 +15,8 @@ class CreateEmpleadosTable extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('tip_emp_id');
+            $table->integer('per_id');
             $table->timestamps();
         });
     }

@@ -1996,15 +1996,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("se monto el componente agregar empleado");
   },
   data: function data() {
     return {
+      tipoEmpleados: [],
+      tipoDocumentos: [],
+      tipo_emple: {
+        id: '',
+        nombre: ''
+      },
+      tipo_doc: {
+        id: '',
+        nombre: ''
+      },
       empleado: {
         persona: {
-          id: '',
           documento: '',
           nombre: '',
           apellido: '',
@@ -2012,11 +2040,9 @@ __webpack_require__.r(__webpack_exports__);
           sexo: '',
           telefono: '',
           direccion: '',
-          altura: '',
-          user_id: ''
+          altura: ''
         },
         user: {
-          id: '',
           nickaname: '',
           email: '',
           password: '',
@@ -2026,21 +2052,51 @@ __webpack_require__.r(__webpack_exports__);
       empleados: []
     };
   },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/TipoEmpleado').then(function (res) {
+      _this.tipoEmpleados = res.data;
+    }), axios.get('/TipoDocumento').then(function (res) {
+      _this.tipoDocumentos = res.data;
+    });
+  },
   methods: {
     buscar: function buscar() {
-      var _this = this;
+      var _this2 = this;
 
       //console.log(this.empleado.persona.documento);
       //console.log('hola');
       axios.get('/Persona/' + this.empleado.persona.documento).then(function (res) {
         var person = res.data[0];
-        _this.empleado.persona = person;
+        _this2.empleado.persona = person;
         console.log(person); // console.log(res.data);
         //console.log(res.data['0']['nombre'])
       });
     },
     crear: function crear() {
-      var params = axios.post('/Empleado/');
+      var params = {
+        documento: this.empleado.persona.documento,
+        nombre: this.empleado.personoa.nombre,
+        apellido: this.empleado.persona.apellido,
+        fecha_nac: this.empleado.persona.fecha_nac,
+        sexo: this.empleado.persona.sexo,
+        telefono: this.empleado.persona.telefono,
+        direccion: this.empleado.persona.direccion,
+        altura: this.empleado.persona.altura,
+        foto: this.empleado.persona.foto,
+        nickname: this.empleado.user.nickname,
+        email: this.empleado.user.email,
+        password: this.empleado.user.password,
+        password_confirmation: this.empleado.user.password_confirmation,
+        tip_emp_id: this.tipo_emple.id
+      };
+      axios.post('/Empleado/', params).then(function (res) {
+        console.log('se agrego un nuevo empleado');
+      });
+    },
+    ver: function ver() {
+      console.log('entro al evento');
     }
   }
 });
@@ -38044,19 +38100,65 @@ var render = function() {
   return _c("div", { staticClass: "card-body" }, [
     _c("div", [
       _c("div", { staticClass: "form-group row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.tipo_doc.id,
+                  expression: "tipo_doc.id"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.tipo_doc,
+                    "id",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("Selecione un tipo de documento")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.tipoDocumentos, function(item) {
+                return _c("option", { key: item.id }, [
+                  _vm._v(_vm._s(item.nombre))
+                ])
+              })
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "col" }, [
           _c("input", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.documento,
-                expression: "empleado.documento"
+                value: _vm.empleado.persona.documento,
+                expression: "empleado.persona.documento"
               }
             ],
             staticClass: "form-control ",
             attrs: { type: "text", required: "", placeholder: "Documento" },
-            domProps: { value: _vm.empleado.documento },
+            domProps: { value: _vm.empleado.persona.documento },
             on: {
               keyup: function($event) {
                 if (
@@ -38071,42 +38173,13 @@ var render = function() {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado, "documento", $event.target.value)
+                _vm.$set(_vm.empleado.persona, "documento", $event.target.value)
               }
             }
           }),
           _vm._v(" "),
           _c("span", {
             staticClass: "glyphicon glyphicon-user form-control-feedback"
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: this.empleado.nombre,
-                expression: "this.empleado.nombre"
-              }
-            ],
-            staticClass: "form-control ",
-            attrs: {
-              id: "firstname",
-              type: "text",
-              placeholder: "Nombres",
-              autofocus: ""
-            },
-            domProps: { value: this.empleado.nombre },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(this.empleado, "nombre", $event.target.value)
-              }
-            }
           })
         ])
       ]),
@@ -38118,8 +38191,37 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.apellido,
-                expression: "empleado.apellido"
+                value: _vm.empleado.persona.nombre,
+                expression: "empleado.persona.nombre"
+              }
+            ],
+            staticClass: "form-control ",
+            attrs: {
+              id: "firstname",
+              type: "text",
+              placeholder: "Nombres",
+              autofocus: ""
+            },
+            domProps: { value: _vm.empleado.persona.nombre },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.empleado.persona, "nombre", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.empleado.persona.apellido,
+                expression: "empleado.persona.apellido"
               }
             ],
             staticClass: "form-control ",
@@ -38130,26 +38232,28 @@ var render = function() {
               required: "",
               autofocus: ""
             },
-            domProps: { value: _vm.empleado.apellido },
+            domProps: { value: _vm.empleado.persona.apellido },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado, "apellido", $event.target.value)
+                _vm.$set(_vm.empleado.persona, "apellido", $event.target.value)
               }
             }
           })
-        ]),
-        _vm._v(" "),
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row form-group" }, [
         _c("div", { staticClass: "col " }, [
           _c("input", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.fecha_nac,
-                expression: "empleado.fecha_nac"
+                value: _vm.empleado.persona.fecha_nac,
+                expression: "empleado.persona.fecha_nac"
               }
             ],
             staticClass: "form-control ",
@@ -38158,13 +38262,13 @@ var render = function() {
               autocomplete: "off",
               placeholder: "Fecha de Nacimiento"
             },
-            domProps: { value: _vm.empleado.fecha_nac },
+            domProps: { value: _vm.empleado.persona.fecha_nac },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado, "fecha_nac", $event.target.value)
+                _vm.$set(_vm.empleado.persona, "fecha_nac", $event.target.value)
               }
             }
           }),
@@ -38172,10 +38276,8 @@ var render = function() {
           _c("span", {
             staticClass: "glyphicon glyphicon-user form-control-feedback"
           })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row form-group" }, [
+        ]),
+        _vm._v(" "),
         _c(
           "div",
           { staticClass: "col " },
@@ -38186,20 +38288,25 @@ var render = function() {
                 staticClass: "form-control ",
                 attrs: { autocomplete: "off" },
                 model: {
-                  value: _vm.empleado.sexo,
+                  value: _vm.empleado.persona.sexo,
                   callback: function($$v) {
-                    _vm.$set(_vm.empleado, "sexo", $$v)
+                    _vm.$set(_vm.empleado.persona, "sexo", $$v)
                   },
-                  expression: "empleado.sexo"
+                  expression: "empleado.persona.sexo"
                 }
               },
               [
-                _c("option", [_vm._v("Sexo:")]),
+                _c(
+                  "option",
+                  { attrs: { selected: "", disabled: "", value: "" } },
+                  [_vm._v("Sexo:")]
+                ),
                 _vm._v(" "),
-                _c("option", [_vm._v("Hombre")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("Mujer")])
-              ]
+                _vm._l(["Hombre", "Mujer"], function(item) {
+                  return _c("option", { key: item }, [_vm._v(_vm._s(item))])
+                })
+              ],
+              2
             )
           ],
           1
@@ -38211,19 +38318,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.altura,
-                expression: "empleado.altura"
+                value: _vm.empleado.persona.altura,
+                expression: "empleado.persona.altura"
               }
             ],
             staticClass: "form-control",
             attrs: { type: "text", autocomplete: "off", placeholder: "Altura" },
-            domProps: { value: _vm.empleado.altura },
+            domProps: { value: _vm.empleado.persona.altura },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado, "altura", $event.target.value)
+                _vm.$set(_vm.empleado.persona, "altura", $event.target.value)
               }
             }
           }),
@@ -38241,8 +38348,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.telefono,
-                expression: "empleado.telefono"
+                value: _vm.empleado.persona.telefono,
+                expression: "empleado.persona.telefono"
               }
             ],
             staticClass: "form-control ",
@@ -38251,13 +38358,13 @@ var render = function() {
               autocomplete: "off",
               placeholder: "Telefono"
             },
-            domProps: { value: _vm.empleado.telefono },
+            domProps: { value: _vm.empleado.persona.telefono },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado, "telefono", $event.target.value)
+                _vm.$set(_vm.empleado.persona, "telefono", $event.target.value)
               }
             }
           }),
@@ -38273,8 +38380,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.direccion,
-                expression: "empleado.direccion"
+                value: _vm.empleado.persona.direccion,
+                expression: "empleado.persona.direccion"
               }
             ],
             staticClass: "form-control ",
@@ -38283,13 +38390,13 @@ var render = function() {
               autocomplete: "off",
               placeholder: "Direccion"
             },
-            domProps: { value: _vm.empleado.direccion },
+            domProps: { value: _vm.empleado.persona.direccion },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado, "direccion", $event.target.value)
+                _vm.$set(_vm.empleado.persona, "direccion", $event.target.value)
               }
             }
           }),
@@ -38307,8 +38414,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.user.nickname,
-                expression: "empleado.user.nickname"
+                value: _vm.empleado.nickname,
+                expression: "empleado.nickname"
               }
             ],
             staticClass: "form-control ",
@@ -38319,13 +38426,13 @@ var render = function() {
               required: "",
               autofocus: ""
             },
-            domProps: { value: _vm.empleado.user.nickname },
+            domProps: { value: _vm.empleado.nickname },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado.user, "nickname", $event.target.value)
+                _vm.$set(_vm.empleado, "nickname", $event.target.value)
               }
             }
           })
@@ -38337,8 +38444,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.user.email,
-                expression: "empleado.user.email"
+                value: _vm.empleado.email,
+                expression: "empleado.email"
               }
             ],
             staticClass: "form-control ",
@@ -38348,13 +38455,13 @@ var render = function() {
               required: "",
               placeholder: "E-mail"
             },
-            domProps: { value: _vm.empleado.user.email },
+            domProps: { value: _vm.empleado.email },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado.user, "email", $event.target.value)
+                _vm.$set(_vm.empleado, "email", $event.target.value)
               }
             }
           })
@@ -38368,8 +38475,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.user.password,
-                expression: "empleado.user.password"
+                value: _vm.empleado.password,
+                expression: "empleado.password"
               }
             ],
             staticClass: "form-control ",
@@ -38380,13 +38487,13 @@ var render = function() {
               autocomplete: "new-password",
               placeholder: "Contraseña"
             },
-            domProps: { value: _vm.empleado.user.password },
+            domProps: { value: _vm.empleado.password },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.empleado.user, "password", $event.target.value)
+                _vm.$set(_vm.empleado, "password", $event.target.value)
               }
             }
           })
@@ -38398,8 +38505,8 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.empleado.user.password_confirmation,
-                expression: "empleado.user.password_confirmation"
+                value: _vm.empleado.password_confirmation,
+                expression: "empleado.password_confirmation"
               }
             ],
             staticClass: "form-control",
@@ -38409,14 +38516,14 @@ var render = function() {
               placeholder: "Confirmar contraseña",
               required: ""
             },
-            domProps: { value: _vm.empleado.user.password_confirmation },
+            domProps: { value: _vm.empleado.password_confirmation },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
                 _vm.$set(
-                  _vm.empleado.user,
+                  _vm.empleado,
                   "password_confirmation",
                   $event.target.value
                 )
@@ -38426,30 +38533,69 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(0)
+      _c("div", { staticClass: "form-group row mb-0" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.tipo_emple.id,
+                  expression: "tipo_emple.id"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.tipo_emple,
+                    "id",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("Selecione un tipo de empleado")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.tipoEmpleados, function(item) {
+                return _c("option", { key: item.id }, [
+                  _vm._v(_vm._s(item.nombre))
+                ])
+              })
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6 text-center" }, [
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", on: { click: _vm.ver } },
+            [
+              _vm._v(
+                "\n                                    Registrar\n                                "
+              )
+            ]
+          )
+        ])
+      ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row mb-0" }, [
-      _c("div", { staticClass: "col-md-6 offset-md-4" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-          [
-            _vm._v(
-              "\n                                    Registrar\n                                "
-            )
-          ]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
