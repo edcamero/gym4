@@ -92,14 +92,19 @@ created(){
                 return;
             }
            // console.log(this.tipoEmpleado.nombre,this.tipoEmpleado.descuento);
-            const params={nombre:this.tipoEmpleado.nombre}
-            this.tipoEmpleado.nombre='';
+            const params={
+                nombre:this.tipoEmpleado.nombre
+            }
+            this.tipoEmpleado.nombre = '';
+
             axios.post('/TipoEmpleado',params)
                 .then(res=>{
                     console.log(res.data)
                     this.tipoEmpleados.push(res.data)
-                });
-        },
+        });
+    },
+
+
         eliminar(tipoEmpleado,index){
             
             const confirmacion = confirm(`Confirma Eliminar Tipo Cliente: ${tipoEmpleado.nombre}`);

@@ -111,6 +111,11 @@ Route::group(['middleware' => ['permission:eliminar-tipo-documento']],function()
 
 
 
+//Permisos y rutas definidos para Tipo-Documento
+
+
+
+
 
 
 

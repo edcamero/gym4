@@ -14,9 +14,14 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Empleado.index');
+        if($request->ajax()){
+            return Empleado::all();
+        }else{
+            $tipoCli = Empleado::paginate();
+            return view('Empleado.index', compact('tipoCli'));
+        }
     }
 
     /**
@@ -57,12 +62,10 @@ class EmpleadoController extends Controller
         $persona->user_id   = $user->id;
         $persona->save();
 
-        $empleado=new Empleado();
-        $empleado->tip_emp_id=$data['tip_emp_id'];
-        $empleado->per_id=$persona->id;
+        $empleado             = new Empleado();
+        $empleado->tip_emp_id = $data['tip_emp_id'];
+        $empleado->per_id     = $persona->id;
         $empleado->save();
-
-
     }
 
     /**

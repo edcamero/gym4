@@ -1,13 +1,18 @@
 <template>
     <div class="card-body">
-        <div>
-        
+        <div class="card-header">
+                <h4 class="text-center mb-2 card-title">Registrar Empleado</h4>
+        </div>
+        <br>
+       
+    
             <div class="form-group row">
+
             <!-- /.Div para el tipo de documento -->
                 <div class="col-md-6">
-                    <select class="form-control" v-model="tipo_doc.id">
+                    <select class="form-control" v-model="tipo_doc.id ">
                         <option disabled value="">Selecione un tipo de documento</option>
-                        <option v-for="item in tipoDocumentos" v-bind:key = "item.id" >{{ item.nombre }}</option>
+                        <option v-for="item in tipoDocumentos" v-bind:key = "item.id" value="item.id">{{ item.nombre }}</option>
                     </select>
                 </div>
                 
@@ -80,7 +85,7 @@
                  <div class="form-group row">
 
                     <div class="col-md-6">
-                        <input id="nickname" type="text" class="form-control " v-model="empleado.persona.direccion" placeholder="Nombre de usuario" required  autofocus>        
+                        <input id="nickname" type="text" class="form-control " v-model="empleado.persona.nickname" placeholder="Nombre de usuario" required  autofocus>        
                     </div>
                             <!-- /.fin de div para el nickname -->
 
@@ -108,19 +113,18 @@
                         <select class="form-control" v-model="tipo_emple.id" >
                             <option disabled value="">Selecione un tipo de empleado</option>
 
-                            <option v-for="item in tipoEmpleados" v-bind:key = "item.id" >{{ item.nombre }}</option>
+                            <option v-for="item in tipoEmpleados" v-bind:key = "item.id" value = "item.id">{{ item.nombre }}</option>
 
                         </select>
                     </div>
 
                     <div class="col-md-6 text-center">
-                        <button  v-on:click="ver" class="btn btn-primary">Registrar
+                        <button  v-on:click="crear" class="btn btn-primary">Registrar
                         </button>
                     </div>
 
                 </div>
 
-        </div>
     </div>
 </template>
 
@@ -185,46 +189,45 @@ created(){
 
 methods: {
 
-        buscar(){
-            //console.log(this.empleado.persona.documento);
-            //console.log('hola');
-             axios.get('/Persona/'+this.empleado.persona.documento).
-            then(res=>{
-                let person=res.data[0];
-                this.empleado.persona=person;
-                console.log(person)
+    buscar(){
+    //console.log(this.empleado.persona.documento);
+    //console.log('hola');
+        axios.get('/Persona/'+this.empleado.persona.documento).
+        then(res=>{
+        let person=res.data[0];
+        this.empleado.persona=person;
+        console.log(person)
                // console.log(res.data);
                 //console.log(res.data['0']['nombre'])
-            }
+        })
+    },
 
-            )
-        },
+    crear(){
+        const params={
+            documento:this.empleado.persona.documento,
+            nombre:this.empleado.personoa.nombre,
+            apellido:this.empleado.persona.apellido,
+            fecha_nac:this.empleado.persona.fecha_nac,
+            sexo:this.empleado.persona.sexo,
+            telefono:this.empleado.persona.telefono,
+            direccion:this.empleado.persona.direccion,
+            altura:this.empleado.persona.altura,
+            foto:this.empleado.persona.foto,
+            nickname:this.empleado.persona.user.nickname,
+            email:this.empleado.persona.user.email,
+            password:this.empleado.persona.user.password,
+            password_confirmation:this.empleado.persona.user.password_confirmation,
+            tip_emp_id:this.tipo_emple.id
+        };
 
-        crear(){
-            const params={
-                documento:this.empleado.persona.documento,
-                nombre:this.empleado.personoa.nombre,
-                apellido:this.empleado.persona.apellido,
-                fecha_nac:this.empleado.persona.fecha_nac,
-                sexo:this.empleado.persona.sexo,
-                telefono:this.empleado.persona.telefono,
-                direccion:this.empleado.persona.direccion,
-                altura:this.empleado.persona.altura,
-                foto:this.empleado.persona.foto,
-                nickname:this.empleado.user.nickname,
-                email:this.empleado.user.email,
-                password:this.empleado.user.password,
-                password_confirmation:this.empleado.user.password_confirmation,
-                tip_emp_id:this.tipo_emple.id
-                };
-            axios.post('/Empleado/',params).then(
+        axios.post('/Empleado',params).then(
                 res=>{
                     console.log('se agrego un nuevo empleado')
                 }
             )
         },
 
-        ver(){
+    ver(){
             console.log('entro al evento');
         }
     },
