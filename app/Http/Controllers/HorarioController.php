@@ -40,10 +40,10 @@ class HorarioController extends Controller
      */
     public function store(Request $request)
     {
-        $hora=new Horario();
-        $hora->nombre=$request->nombre;
-        $hora->ingreso=$request->ingreso;
-        $hora->salida=$request->salida;
+        $hora          = new Horario();
+        $hora->nombre  = $request->nombre;
+        $hora->ingreso = $request->ingreso;
+        $hora->salida  = $request->salida;
         $hora->save();
         return $hora;
         

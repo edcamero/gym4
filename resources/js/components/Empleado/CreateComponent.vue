@@ -10,9 +10,9 @@
 
             <!-- /.Div para el tipo de documento -->
                 <div class="col-md-6">
-                    <select class="form-control" v-model="tipo_doc.id ">
+                    <select class="form-control" v-model="empleado.persona.tipo_doc">
                         <option disabled value="">Selecione un tipo de documento</option>
-                        <option v-for="item in tipoDocumentos" v-bind:key = "item.id" value="item.id">{{ item.nombre }}</option>
+                        <option v-for="item in tipoDocumentos" v-bind:value="item.id">{{ item.nombre }}</option>
                     </select>
                 </div>
                 
@@ -47,10 +47,10 @@
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>          
                 </div>
 
-                    <div class="col ">
-                        <SELECT v-model="empleado.persona.sexo" class="form-control " autocomplete="off" >
-                            <option selected disabled value="" >Sexo:</option>
-                            <option v-for="item in ['Hombre','Mujer']" v-bind:key = "item" >{{ item }}</option>
+                    <div class="col">
+                        <SELECT v-model="empleado.persona.sexo" class="form-control " autocomplete="off">
+                            <option selected disabled>Sexo:</option>
+                            <option v-for = "item in genero" v-bind:value="item.text">{{ item.text }}</option>
                         </SELECT>
                     </div>
 
@@ -85,24 +85,24 @@
                  <div class="form-group row">
 
                     <div class="col-md-6">
-                        <input id="nickname" type="text" class="form-control " v-model="empleado.persona.nickname" placeholder="Nombre de usuario" required  autofocus>        
+                        <input id="nickname" type="text" class="form-control " v-model="empleado.persona.user.nickname" placeholder="Nombre de usuario" required  autofocus>        
                     </div>
                             <!-- /.fin de div para el nickname -->
 
                             <!-- /.inicio de correo electronico -->
                     <div class="col-md-6">
-                        <input id="email" type="email" class="form-control " v-model="empleado.email"  required  placeholder="E-mail">          
+                        <input id="email" type="email" class="form-control " v-model="empleado.persona.user.email"  required  placeholder="E-mail">          
                     </div>
                 </div>
                         
                 <div class="form-group row  ">
 
                     <div class="col-md-6">
-                        <input id="password" type="password" class="form-control " v-model="empleado.password" required autocomplete="new-password" placeholder="Contraseña">      
+                        <input id="password" type="password" class="form-control " v-model="empleado.persona.user.password" required autocomplete="new-password" placeholder="Contraseña">      
                     </div>
   
                     <div class="col-md-6">
-                        <input id="password-confirm" type="password" class="form-control" v-model="empleado.password_confirmation" placeholder="Confirmar contraseña" required >
+                        <input id="password-confirm" type="password" class="form-control" v-model="empleado.persona.user.password_confirmation" placeholder="Confirmar contraseña" required >
                     </div>
 
                 </div>
@@ -110,16 +110,15 @@
                             <!-- /.col -->
                 <div class="form-group row mb-0">
                     <div class="col-md-6">
-                        <select class="form-control" v-model="tipo_emple.id" >
+                        <select class="form-control" v-model="empleado.persona.tipo_emple">
                             <option disabled value="">Selecione un tipo de empleado</option>
 
-                            <option v-for="item in tipoEmpleados" v-bind:key = "item.id" value = "item.id">{{ item.nombre }}</option>
-
+                            <option v-for="item in tipoEmpleados" v-bind:value = "item.id">{{ item.nombre }}</option>
                         </select>
                     </div>
 
                     <div class="col-md-6 text-center">
-                        <button  v-on:click="crear" class="btn btn-primary">Registrar
+                        <button  v-on:click="crear()" class="btn btn-primary">Registrar
                         </button>
                     </div>
 
@@ -139,18 +138,14 @@ export default {
             tipoEmpleados:[],
             tipoDocumentos:[],
             empleados:[],
-
-            tipo_emple:{
-                id:'',
-                nombre:''},
-
-            tipo_doc:{
-                id:'',
-                nombre:'',
-            },
+            genero:[
+                {id:1,text:'Hombre'},
+                {id:2,text:'Mujer'}
+            ],
 
             empleado:{
                 persona:{
+                    tipo_doc:'',
                     documento:'',
                     nombre:'',
                     apellido:'',
@@ -158,17 +153,17 @@ export default {
                     sexo:'',
                     telefono:'',
                     direccion:'',
-                    altura:'',},
+                    altura:'',
+                    tipo_emple:'',
                     user:{
                         nickname:'',
                         email:'',
                         password:'',
                         password_confirmation:'',
+                    },
                 },
-
             },
         }
-        
     },
 
 created(){
@@ -203,29 +198,28 @@ methods: {
     },
 
     crear(){
-        const params={
+        const params = {
+            tipo_doc:this.empleado.persona.tipo_doc,
             documento:this.empleado.persona.documento,
-            nombre:this.empleado.personoa.nombre,
+            nombre:this.empleado.persona.nombre,
             apellido:this.empleado.persona.apellido,
             fecha_nac:this.empleado.persona.fecha_nac,
             sexo:this.empleado.persona.sexo,
             telefono:this.empleado.persona.telefono,
             direccion:this.empleado.persona.direccion,
             altura:this.empleado.persona.altura,
-            foto:this.empleado.persona.foto,
             nickname:this.empleado.persona.user.nickname,
             email:this.empleado.persona.user.email,
             password:this.empleado.persona.user.password,
             password_confirmation:this.empleado.persona.user.password_confirmation,
-            tip_emp_id:this.tipo_emple.id
+            tip_emp_id:this.empleado.persona.tipo_emple,
         };
+        console.log(params),
 
-        axios.post('/Empleado',params).then(
-                res=>{
-                    console.log('se agrego un nuevo empleado')
-                }
-            )
-        },
+        axios.post('/Empleado',params).then(res=>{
+                    console.log(res.data)
+        });
+    },
 
     ver(){
             console.log('entro al evento');

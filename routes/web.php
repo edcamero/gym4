@@ -84,6 +84,16 @@ Route::group(['middleware' => ['permission:listar-empleado']], function () {
 Route::group(['middleware' => ['permission:listar-empleado']], function () {
     Route::get('/Persona/{id}', 'PersonaController@buscar');
 });
+Route::group(['middleware' => ['permission:guardar-empleado']], function () {
+    Route::post('Empleado', 'EmpleadoController@store')->name('guardar-empleado');
+});
+Route::group(['middleware' => ['permission:editar-empleado']], function () {
+    Route::put('/Empleado/{id}', 'EmpleadoController@update')->name('editar-empleado');
+});
+Route::group(['middleware' => ['permission:eliminar-empleado']], function () {
+    Route::delete('/Empleado/{id}', 'EmpleadoController@destroy')->name('eliminar-empleado');
+});
+
 //Route::post('TipoCliente', 'TipoClienteController@store')->middleware('permission:guardar-tipo-cliente');
     Route::group(['middleware' => ['role:admin']], function () {
     //Route::get('TipoCliente', 'TipoClienteController@index')->name('listar-tipo-cliente');

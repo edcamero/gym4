@@ -42,6 +42,37 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $user               = new User();
+        $user->nickname     = $request->nickname;
+        $user->email        = $request->email;
+        $user->password = password_hash($request->password, PASSWORD_BCRYPT);
+        $user->save();
+        
+        $persona            = new Persona();
+        $persona->tipo_doc   = $request->tipo_doc;
+        $persona->documento = $request->documento;
+        $persona->nombre    = $request->nombre;
+        $persona->apellido  = $request->apellido;
+        $persona->fecha_nac = $request->fecha_nac;
+        $persona->sexo      = "hombre";
+        $persona->telefono  = $request->telefono;
+        $persona->direccion = $request->direccion;
+        $persona->altura    = (int)$request->altura;
+        $persona->foto      = "fotos";
+        $persona->user_id   = $user->id;
+        $persona->save();
+
+        $empleado             = new Empleado();
+        $empleado->tip_emp_id = $request->tip_emp_id;
+        $empleado->per_id     = $persona->id;
+        $empleado->save();
+
+
+        return $empleado;
+        
+
+        /*
         $user           = new User();
         $user->nickname = $data['nickname'];
         $user->email    = $data['email'];
@@ -54,7 +85,7 @@ class EmpleadoController extends Controller
         $persona->nombre    = $data['nombre'];
         $persona->apellido  = $data['apellido'];
         $persona->fecha_nac = $data['fecha_nac'];
-        $persona->sexo      = $data['sexo'];
+        $persona->sexo      = "hombre";
         $persona->telefono  = $data['telefono'];
         $persona->direccion = $data['direccion'];
         $persona->altura    = $data['altura'];
@@ -66,7 +97,11 @@ class EmpleadoController extends Controller
         $empleado->tip_emp_id = $data['tip_emp_id'];
         $empleado->per_id     = $persona->id;
         $empleado->save();
+        */
+        
     }
+    
+
 
     /**
      * Display the specified resource.
