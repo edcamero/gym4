@@ -31,5 +31,11 @@ class Horario extends Model
      */
     protected $fillable = ['nombre', 'ingreso', 'salida'];
 
-   
+    public function empleados()
+    {
+        //return $this->hasMany('App\Horarioasignado', 'emp_id', 'id');
+        return $this->belongsToMany('App\Models\Empleado','empleado_id')
+        ->withPivot('id_hor');
+    }
+
 }

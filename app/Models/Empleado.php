@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 /**
  * @property int $id
  * @property int $tip_emp_id
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Persona $persona
  * @property TipoEmpleado $tipoEmpleado
  * @property EvaluacionEmple[] $evaluacionEmples
- * @property Horarioasignado[] $horarioasignados
+ * @property Horarios[] $horarios
  */
 class Empleado extends Model
 {
@@ -61,8 +62,19 @@ class Empleado extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function horarioasignados()
+    public function horarios()
     {
-        return $this->hasMany('App\Horarioasignado', 'emp_id', 'id');
+        //return $this->hasMany('App\Horarioasignado', 'emp_id', 'id');
+        return $this->belongsToMany('App\Models\Horario','empleado_horarios','id_emp','id_hor')
+        ->withPivot('id_emp');
+    }
+
+
+    public function AgregarHorario($id_horario,$dia){
+       // $date = new \DateTime();   
+       
+        //$horario=App\Models\Horario::find($id_horario);
+        $this->horarios()->attach($id_horario,['dia'=>$dia,'created_at'=>Carbon::now()->format('Y-m-d'),'updated_at'=>Carbon::now()->format('Y-m-d')]);
     }
 }
+

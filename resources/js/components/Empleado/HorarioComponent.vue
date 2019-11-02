@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Agregar un empleado</div>
+                    <div class="card-header">Horario Empleado</div>
 
                     <div class="card-body">
                         
