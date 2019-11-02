@@ -98,44 +98,46 @@
                         < input  id = " password "  type = " password "  class = " form-control "  v-model = " empleado . persona . user . password "  required  autocomplete = " new-password "  placeholder = " Contraseña " >      
                     </ div >
   
-                    < div  class = " col-md-6 " >
-                        < input  id = " password-confirm "  type = " password "  class = " form-control "  v-model = " empleado . persona . user . password_confirmation "  placeholder = " Confirmar contraseña "  requerido >
-                    </ div >
 
-                </ div >
+                    <div class="col-md-6">
+                        <input id="password-confirm" type="password" class="form-control" v-model="empleado.persona.user.password_confirmation" placeholder="Confirmar contraseña" required >
+                    </div>
 
-                            <! - /.col ->
-                < div  class = " form-group row mb-0 " >
-                    < div  class = " col-md-6 " >
-                        < select  class = " form-control "  v-model = " empleado . persona . tipo_emple " >
-                            < option  disabled  value = " " > Seleccionar un tipo de empleado </ option >
+                </div>
 
-                            < opción  v-for = " item in tipoEmpleados "  v-bind : key = " item . id "  v-bind : value = " item . id " > {{ item . nombre }} </ opción >
-                        </ select >
-                    </ div >
+                            <!-- /.col -->
+                <div class="form-group row mb-0">
+                    <div class="col-md-6">
+                        <select class="form-control" v-model="empleado.persona.tipo_emple">
+                            <option disabled value="">Selecione un tipo de empleado</option>
 
-
-                    < div  class = " col-md-6 text-center " >
-                        < button   v-on : click = " crear () "  class = " btn btn-primary " > Registrador
-                        </ button >
-                    </ div >
-
-                </ div >
-        </ div >
+                            <option v-for="item in tipoEmpleados" v-bind:key="item.id" v-bind:value="item.id">{{ item.nombre }}</option>
+                        </select>
+                    </div>
 
 
-        < div  class = " card-body " >
-                < table  class = " table text-center " >
-                    < thead >
-                        < tr >
-                            < th > id </ th >
-                            < th > id tip emp </ th >
-                            < th > id persona </ th >
-                            < th  v-can = " ' editar-empleado ' || ' eliminar-empleado ' " > Opciones </ th >
-                        </ tr >
-                    </ thead >
-                    < tbody >
-                        < tr  v-for = " (empleado, index) en empleados " : key = " index " > <! - Recorremos nuestro array ->
+                    <div class="col-md-6 text-center">
+                        <button  v-on:click="crear()" class="btn btn-primary">Registrar
+                        </button>
+                    </div>
+
+                </div>
+        </div>
+
+
+        <div class="card-body">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>id tip emp</th>
+                            <th>id persona</th>
+                            <th v-can="'editar-empleado'||'eliminar-empleado'">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for = "(empleado,index) in empleados" :key="index"> <!-- Recorremos nuestro array -->
+
                             
                             
                                 < td > {{ empleado . id }} </ td >
