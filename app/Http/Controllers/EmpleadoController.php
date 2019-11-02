@@ -15,9 +15,14 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {  
+        $empleados=Empleado::all();
+        
         if($request->ajax()){
-            return Empleado::all();
+            foreach ($empleados as $em){
+                $em->persona;
+            }
+            return $empleados;
         }else{
             $tipoCli = Empleado::paginate();
             return view('Empleado.index', compact('tipoCli'));
@@ -33,18 +38,6 @@ class EmpleadoController extends Controller
             $tipoCli = Empleado::paginate();
             return view('Empleado.horario', compact('tipoCli'));
         }
-    }
-
-
-    public function buscar($empleados){
-        $personas = new Persona();
-        $personas = Empleado::find($empleados->per_id);
-        /*
-        foreach ($empleados as $empleado) {
-            $persona = $empleado->per_id;
-        }
-        */
-        return $personas;
     }
 
 
