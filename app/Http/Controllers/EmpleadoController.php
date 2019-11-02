@@ -22,10 +22,11 @@ class EmpleadoController extends Controller
             $tipoCli = Empleado::paginate();
             return view('Empleado.index', compact('tipoCli'));
         }
-    }
+    } 
 
     public function horarios(Request $request){
         if($request->ajax()){
+            
             return 'hola';
             //return Empleado::all();
         }else{
@@ -33,6 +34,19 @@ class EmpleadoController extends Controller
             return view('Empleado.horario', compact('tipoCli'));
         }
     }
+
+
+    public function buscar($empleados){
+        $personas = new Persona();
+        $personas = Empleado::find($empleados->per_id);
+        /*
+        foreach ($empleados as $empleado) {
+            $persona = $empleado->per_id;
+        }
+        */
+        return $personas;
+    }
+
 
     /**
      * Show the form for creating a new resource.

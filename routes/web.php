@@ -91,6 +91,10 @@ Route::group(['middleware' => ['permission:listar-empleado']], function () {
 });
 
 Route::group(['middleware' => ['permission:listar-empleado']], function () {
+    Route::get('/Empleado/buscar/{empleados[]}', 'EmpleadoController@buscar')->name('buscar-persona');
+});
+
+Route::group(['middleware' => ['permission:listar-empleado']], function () {
     Route::get('/Persona/buscar/{id}', 'PersonaController@buscarId')->name('personaid');
 });
 Route::group(['middleware' => ['permission:guardar-empleado']], function () {

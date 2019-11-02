@@ -192,7 +192,8 @@ export default {
                         email:'',
                         password:'',
                         password_confirmation:'',
-                    },  
+                    }, 
+            }, 
 
             empleado:{
                 persona:{
@@ -214,7 +215,9 @@ export default {
                     },
                 },
             },
-        },
+        }
+    },
+
     
 
 created(){
@@ -230,27 +233,18 @@ created(){
 
     axios.get('/Empleado').then(res=>{
         this.empleados = res.data;
-        console.log(this.empleados);
-
-       for(var i=0;i<this.empleados.length;i++){
-           console.log(this.empleados[i].per_id);
-           console.log(this.buscar2(this.empleados[i].per_id));
-           //this.empleado.persona=this.buscar2(this.empleados[i].per_id);
-           //console.log(this.empleado.persona);
-           //console.log(this.buscar2(this.empleados[i]));
-           //console.log(this.empleados[i].persona);
-       }
-       
-        //this.empleados.persona=this.buscar2(this.empleado.per_id);
-        
+        console.log(this.empleados.per_id);
+    }),
+    axios.get('/Empleado/buscar/'+this.empleados).then(res=>{
+        this.personas = res.data;
+        console.log(this.personas);
     })
-
     
 
-    
 },
 
 methods: {
+
 
         buscar(){
         //console.log(this.empleado.persona.documento);
@@ -268,17 +262,14 @@ methods: {
         buscar2(id_persona){
         //console.log(this.empleado.persona.documento);
         //console.log('hola');
-            var persona;
             //console.log('hola '+id_persona)
             axios.get('/Persona/buscar/'+id_persona).
             then(res=>{
-            persona = res.data;
-            console.log(res.data);
-            return persona;
-                    //console.log(res.data['0']['nombre'])
+            let person = res.data;
+            this.personas[0] = person;
+            //console.log(this.personas[0]);
+            //console.log(this.persona.nombre);
             })
-            //console.log(persona)
-            return persona;
         },
 
         crear(){
@@ -382,4 +373,4 @@ methods: {
     },
 }
 
-}
+</script>
