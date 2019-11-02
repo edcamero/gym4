@@ -68,36 +68,7 @@ class EmpleadoController extends Controller
         $empleado->per_id     = $persona->id;
         $empleado->save();
 
-
         return $empleado;
-        
-
-        /*
-        $user           = new User();
-        $user->nickname = $data['nickname'];
-        $user->email    = $data['email'];
-        $user->password = Hash::make($data['password']);
-        $user->save();
-        
-        $persona            = new Persona();
-        $persona->tip_doc   = $data['tipo_doc'];
-        $persona->documento = $data['documento'];
-        $persona->nombre    = $data['nombre'];
-        $persona->apellido  = $data['apellido'];
-        $persona->fecha_nac = $data['fecha_nac'];
-        $persona->sexo      = "hombre";
-        $persona->telefono  = $data['telefono'];
-        $persona->direccion = $data['direccion'];
-        $persona->altura    = $data['altura'];
-        $persona->foto      = "fotos";
-        $persona->user_id   = $user->id;
-        $persona->save();
-
-        $empleado             = new Empleado();
-        $empleado->tip_emp_id = $data['tip_emp_id'];
-        $empleado->per_id     = $persona->id;
-        $empleado->save();
-        */
         
     }
     
@@ -143,8 +114,13 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleado $empleado)
+    public function destroy($id)
     {
-        //
+
+        $e = Empleado::find($id);
+        $e->delete();
+        return $e;
     }
+
+    
 }

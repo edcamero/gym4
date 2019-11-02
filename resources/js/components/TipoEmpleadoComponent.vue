@@ -7,7 +7,8 @@
         
 
          <div class="card-body justify-content-center" v-can="'guardar-tipo-cliente'||'editar-tipo-empleado'">
-            <form  @submit.prevent="editar(tipoEmpleado)" v-if="editarActivo" >
+
+            <form  @submit.prevent = "editar(tipoEmpleado)" v-if="editarActivo" >
                     <div class="col  center-block">
                             <div class="col-5">
                                 <input type="text" placeholder="Nombre" class="form-control mb-2" v-model="tipoEmpleado.nombre">
@@ -17,12 +18,9 @@
                                  <button  class="btn btn-success mr-2" type="submit">Editar</button>
                             </div>
                     </div>
-                    
-                   
              </form>
 
-
-             <form @submit.prevent="agregar()" v-else v-can="'guardar-tipo-cliente'">
+             <form @submit.prevent = "agregar()" v-else v-can="'guardar-tipo-cliente'">
                     <div class="row center-block">
                             <div class="col-5">
                                 <input type="text" placeholder="Nombre" class="form-control mb-2" v-model="tipoEmpleado.nombre">
@@ -32,9 +30,7 @@
                             <div class="col-2">
                                  <button  class="btn btn-primary mr-2" type="submit">Agregar</button>
                             </div>
-                    </div>
-                    
-                   
+                    </div> 
              </form>
         </div>
 
@@ -60,9 +56,9 @@
                         </tr>
                     </tbody>
                 </table>
-
-                
         </div>
+
+
     </div>
 </template>
 
@@ -123,7 +119,6 @@ created(){
             this.tipoEmpleado.nombre=tipoEmpleado.nombre;
             this.tipoEmpleado.descuento=tipoEmpleado.descuento;
             this.tipoEmpleado.id=tipoEmpleado.id;
-
         },
 
 
@@ -145,6 +140,7 @@ created(){
                      this.editarActivo=false;
                 })
         }
+
     },
 }
 </script>
