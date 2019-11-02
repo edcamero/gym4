@@ -174,6 +174,7 @@ exportación  predeterminada {
                 {id : 1 , texto : ' Hombre ' },
                 {id : 2 , texto : ' Mujer ' }
             ],
+<<<<<<< HEAD
             
             empleado : {
                 persona : {
@@ -203,19 +204,87 @@ exportación  predeterminada {
     axios . get ( ' / TipoEmpleado ' )
     . entonces ( res => {
         esta . tipoEmpleados  =  res . datos ;
+=======
+
+            persona:{
+                    tipo_doc:'',
+                    documento:'',
+                    nombre:'',
+                    apellido:'',
+                    fecha_nac:'',
+                    sexo:'',
+                    telefono:'',
+                    direccion:'',
+                    altura:'',
+                    tipo_emple:'',
+                    user:{
+                        nickname:'',
+                        email:'',
+                        password:'',
+                        password_confirmation:'',
+                    },  
+
+            empleado:{
+                persona:{
+                    tipo_doc:'',
+                    documento:'',
+                    nombre:'',
+                    apellido:'',
+                    fecha_nac:'',
+                    sexo:'',
+                    telefono:'',
+                    direccion:'',
+                    altura:'',
+                    tipo_emple:'',
+                    user:{
+                        nickname:'',
+                        email:'',
+                        password:'',
+                        password_confirmation:'',
+                    },
+                },
+            },
+        },
+    
+
+created(){
+    axios.get('/TipoEmpleado')
+    .then(res=>{
+        this.tipoEmpleados = res.data;
+>>>>>>> parent of 028dda2... aaaa
     }),
     axios . get ( ' / TipoDocumento ' )
     . entonces ( res => {
         esta . tipoDocumentos  =  res . datos ;
     }),
+<<<<<<< HEAD
     axios . get ( ' / Empleado ' ). entonces ( res => {
         esta . empleados  =  res . datos ;
         consola . log ( esto . empleados )
        
         // this.empleados.persona = this.buscar2 (this.empleado.per_id);
+=======
+
+    axios.get('/Empleado').then(res=>{
+        this.empleados = res.data;
+        console.log(this.empleados);
+
+       for(var i=0;i<this.empleados.length;i++){
+           console.log(this.empleados[i].per_id);
+           console.log(this.buscar2(this.empleados[i].per_id));
+           //this.empleado.persona=this.buscar2(this.empleados[i].per_id);
+           //console.log(this.empleado.persona);
+           //console.log(this.buscar2(this.empleados[i]));
+           //console.log(this.empleados[i].persona);
+       }
+       
+        //this.empleados.persona=this.buscar2(this.empleado.per_id);
+>>>>>>> parent of 028dda2... aaaa
         
     })
+
     
+<<<<<<< HEAD
     
 },
 métodos : {
@@ -243,6 +312,41 @@ métodos : {
             })
             // console.log (persona)
             volver persona;
+=======
+
+    
+},
+
+methods: {
+
+        buscar(){
+        //console.log(this.empleado.persona.documento);
+        //console.log('hola');
+            axios.get('/Persona/'+this.empleado.persona.documento).
+            then(res=>{
+            let person = res.data[0];
+            this.empleado.persona = person;
+           // console.log(person)
+                   // console.log(res.data);
+                    //console.log(res.data['0']['nombre'])
+            })
+        },
+
+        buscar2(id_persona){
+        //console.log(this.empleado.persona.documento);
+        //console.log('hola');
+            var persona;
+            //console.log('hola '+id_persona)
+            axios.get('/Persona/buscar/'+id_persona).
+            then(res=>{
+            persona = res.data;
+            console.log(res.data);
+            return persona;
+                    //console.log(res.data['0']['nombre'])
+            })
+            //console.log(persona)
+            return persona;
+>>>>>>> parent of 028dda2... aaaa
         },
         crear () {
             const  params  = {
@@ -331,4 +435,9 @@ métodos : {
         }
     },
 }
+<<<<<<< HEAD
 </ script >
+=======
+
+}
+>>>>>>> parent of 028dda2... aaaa

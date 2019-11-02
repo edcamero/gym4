@@ -27,11 +27,10 @@ class EmpleadoController extends Controller
             $tipoCli = Empleado::paginate();
             return view('Empleado.index', compact('tipoCli'));
         }
-    } 
+    }
 
     public function horarios(Request $request){
         if($request->ajax()){
-            
             return 'hola';
             //return Empleado::all();
         }else{
