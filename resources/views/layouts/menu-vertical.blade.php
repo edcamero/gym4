@@ -55,13 +55,11 @@
                                   </li>
                                 @endcan
 
-                                @can('guardar-empleado')
-                                <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-empleado') }}">
-                                      Agregar Empleado
-                                    </a> 
-                                  </li>
-                                @endcan
+                                
                               </ul>
+
+
+                              
                             </div>
 
                   </li>

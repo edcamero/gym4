@@ -38,11 +38,7 @@
                     
                     
                     <ul  class="navbar-nav mr-auto">
-                    @can('listar-tipo-cliente')
-                        <a class="navbar-brand" href="{{ route('listar-tipo-cliente') }}">
-                            Tipo Cliente
-                        </a> 
-                    @endcan
+                    
                     
                    
 
