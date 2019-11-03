@@ -123,12 +123,12 @@
 
                         @can('listar-empleado')
                         <li class="nav-item ">
-                          <a class="nav-link collapsed" data-toggle="collapse" data-target="#contentId" aria-expanded="false" aria-controls="contentId">
+                          <a class="nav-link collapsed" data-toggle="collapse" data-target="#empleado" aria-expanded="false" aria-controls="empleado">
                                 <i class="fas fa-user-tie"></i>
                               <span class="pl-1">Gestion Empleado</span>
                            </a>
                            
-                                <div class="collapse pb-2" id="contentId">
+                                <div class="collapse pb-2" id="empleado">
                                       <ul class="flex-column pl-2 nav">
                                         @can('listar-tipo-empleado')
                                         <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-tipo-empleado') }}">
@@ -152,12 +152,12 @@
 
                        @can('listar-cliente')
                         <li class="nav-item ">
-                          <a class="nav-link collapsed" data-toggle="collapse" data-target="#contentId" aria-expanded="false" aria-controls="contentId">
+                          <a class="nav-link collapsed" data-toggle="collapse" data-target="#cliente" aria-expanded="false" aria-controls="cliente">
                               <i class="fas fa-users"></i>
                               <span class="pl-1">Gestion Cliente</span>
                            </a>
                            
-                                <div class="collapse pb-2" id="contentId">
+                                <div class="collapse pb-2" id="cliente">
                                       <ul class="flex-column pl-2 nav">
                                         @can('listar-tipo-cliente')
                                         <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-tipo-cliente') }}">
