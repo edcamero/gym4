@@ -55,3 +55,14 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+
+$(document).ready(function(){
+    $(".nav-item").mouseover(function(event){
+        $(".nav-link", this).css('color', 'white');
+    });
+    $(".nav-item").mouseout(function(event){
+        $(".nav-link", this).css('color', '#333');
+        
+    });
+ });

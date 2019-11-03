@@ -82,11 +82,7 @@ html,body{
               }
 
 
-              .nav-item:hover{
-                color:white !important;
-                background:#321fdb ;
-                
-            }
+              
               
               
               
@@ -125,3 +121,11 @@ html,body{
                 border-color: transparent;
                 box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
               }
+
+
+              .nav-link[data-toggle].collapsed:after {
+                content: "▾";
+            }
+            .nav-link[data-toggle]:not(.collapsed):after {
+                content: "▴";
+            }

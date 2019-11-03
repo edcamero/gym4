@@ -44,18 +44,10 @@
                         </a> 
                     @endcan
                     
-                    @can('listar-tipo-empleado')
-                        <a class="navbar-brand" href="{{ route('listar-tipo-empleado') }}">
-                            Tipo Empleado
-                        </a> 
-                    @endcan
+                   
 
 
-                    @can('listar-empleado')
-                        <a class="navbar-brand" href="{{ route('listar-empleado') }}">
-                            Empleado
-                        </a> 
-                    @endcan
+                   
 
                     @can('listar-horario')
                         <a class="navbar-brand" href="{{ route('listar-horario') }}">
@@ -117,17 +109,76 @@
           
         
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                <div class="sidebar-sticky">
-                  <ul class="nav flex-column">
+            <nav class="col-md-3 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky ">
+                  <ul class="nav flex-column ">
                    
 
-                        <li class="nav-item">
+                        <li class="nav-item py-2">
                             <a class="nav-link" href="">
                             <i class="fas fa-chalkboard-teacher"> </i>
                             <span class="pl-1">Panel de Control</span>
                           </a>
                         </li>
+
+                        @can('listar-empleado')
+                        <li class="nav-item ">
+                          <a class="nav-link collapsed" data-toggle="collapse" data-target="#contentId" aria-expanded="false" aria-controls="contentId">
+                                <i class="fas fa-user-tie"></i>
+                              <span class="pl-1">Gestion Empleado</span>
+                           </a>
+                           
+                                <div class="collapse pb-2" id="contentId">
+                                      <ul class="flex-column pl-2 nav">
+                                        @can('listar-tipo-empleado')
+                                        <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-tipo-empleado') }}">
+                                              Gestion de Tipos
+                                            </a> 
+                                          </li>
+                                        @endcan
+
+                                        @can('guardar-empleado')
+                                        <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-empleado') }}">
+                                              Agregar Empleado
+                                            </a> 
+                                          </li>
+                                        @endcan
+                                      </ul>
+                                    </div>
+
+                          </li>
+                        
+                       @endcan
+
+                       @can('listar-cliente')
+                        <li class="nav-item ">
+                          <a class="nav-link collapsed" data-toggle="collapse" data-target="#contentId" aria-expanded="false" aria-controls="contentId">
+                              <i class="fas fa-users"></i>
+                              <span class="pl-1">Gestion Cliente</span>
+                           </a>
+                           
+                                <div class="collapse pb-2" id="contentId">
+                                      <ul class="flex-column pl-2 nav">
+                                        @can('listar-tipo-cliente')
+                                        <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-tipo-cliente') }}">
+                                              Gestion de Tipos
+                                            </a> 
+                                          </li>
+                                        @endcan
+
+                                        @can('guardar-empleado')
+                                        <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-empleado') }}">
+                                              Agregar Empleado
+                                            </a> 
+                                          </li>
+                                        @endcan
+                                      </ul>
+                                    </div>
+
+                          </li>
+                        
+                       @endcan
+                        
                     
                     
                     <li class="nav-item">
@@ -204,7 +255,7 @@
               </nav>
 
 
-            <main class="py-4 col-md-9 ml-sm-auto col-lg-10 px-4">
+            <main class="py-4 col-md-9 ml-sm-auto col-lg-9 px-4">
                 @yield('content')
             </main>
         </div>

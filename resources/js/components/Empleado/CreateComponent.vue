@@ -1,10 +1,12 @@
 <template>
-    <div class="card-body">
+    <div class="card">
         <div class="card-header">
                 <h4 class="text-center mb-2 card-title">Registrar Empleado</h4>
         </div>
         <br>
        
+
+       <div class="card-body">
     
             <div class="form-group row">
 
@@ -12,7 +14,7 @@
                 <div class="col-md-6">
                     <select class="form-control" v-model="empleado.persona.tipo_doc">
                         <option disabled value="">Selecione un tipo de documento</option>
-                        <option v-for="item in tipoDocumentos" v-bind:value="item.id">{{ item.nombre }}</option>
+                        <option v-for="item in tipoDocumentos" v-bind:key="item.id" v-bind:value="item.id">{{ item.nombre }}</option>
                     </select>
                 </div>
                 
@@ -50,7 +52,7 @@
                     <div class="col">
                         <SELECT v-model="empleado.persona.sexo" class="form-control " autocomplete="off">
                             <option selected disabled>Sexo:</option>
-                            <option v-for = "item in genero" v-bind:value="item.text">{{ item.text }}</option>
+                            <option v-for = "item in genero" v-bind:key="item.text">{{ item.text }}</option>
                         </SELECT>
                     </div>
 
@@ -113,7 +115,7 @@
                         <select class="form-control" v-model="empleado.persona.tipo_emple">
                             <option disabled value="">Selecione un tipo de empleado</option>
 
-                            <option v-for="item in tipoEmpleados" v-bind:value = "item.id">{{ item.nombre }}</option>
+                            <option v-for="item in tipoEmpleados" v-bind:key="item.id" v-bind:value="item.id">{{ item.nombre }}</option>
                         </select>
                     </div>
 
@@ -124,6 +126,10 @@
 
                 </div>
 
+    
+    
+    
+        </div>
     </div>
 </template>
 
@@ -214,7 +220,7 @@ methods: {
             password_confirmation:this.empleado.persona.user.password_confirmation,
             tip_emp_id:this.empleado.persona.tipo_emple,
         };
-        console.log(params),
+        //console.log(params),
 
         axios.post('/Empleado',params).then(res=>{
                     console.log(res.data)
