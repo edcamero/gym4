@@ -4,11 +4,22 @@
 // Variables
 @import 'variables';
 
+@import 'estilo';
+
 
 
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+// font awesonme
+
+$fa-font-path: "../webfonts";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+//@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+//@import '~@fortawesome/fontawesome-free/scss/regular.scss';
 
 html,body{
 
@@ -22,21 +33,9 @@ html,body{
     height: 100%;
     align-content: center;
     }
-    .cardl{
-        height: 370px;
-        margin-top: auto;
-        margin-bottom: auto;
-        width: 700px;
-        background-color: rgba(0,0,0,0.2) !important;
-        }
+   
     
-    .card{
-    height: 450px;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 700px;
-    background-color: rgba(0,0,0,0.2) !important;
-    }
+    
  
     .login_btn{
     color: black;
@@ -49,6 +48,10 @@ html,body{
     .links{
     color: white;
     }
+
+  
+
+    
     
    
     
