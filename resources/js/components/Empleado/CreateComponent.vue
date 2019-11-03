@@ -118,34 +118,6 @@
                 </div>
         </div>
 
-
-        <div class="card-body">
-                <table class="table text-center">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>id tip emp</th>
-                            <th>id persona</th>
-                            <th v-can="'editar-empleado'||'eliminar-empleado'">Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for = "(empleado,index) in empleados" :key="index"> <!-- Recorremos nuestro array -->
-                            
-                            
-                                <td>{{empleado.id}}</td>
-                                <td>{{empleado.persona.nombre}}</td>
-                            <!--En la primera columna mostramos el nombre-->
-                           
-                            <td v-can="'editar-empleado'||'eliminar-empleado'">
-                                <button v-can="'editar-empleado'" class="btn btn-success btn-sm" @click = "editarForm(empleado,index)">Editar</button>
-                                <button v-can="'eliminar-empleado'" class="btn btn-danger btn-sm" @click= "eliminar(empleado,index)">Eliminar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-        </div>
-
 </div>
 
 
@@ -184,7 +156,7 @@ export default {
                     telefono:'',
                     direccion:'',
                     altura:'',
-                    tipo_emple:'',
+
                     user:{
                         nickname:'',
                         email:'',
@@ -192,6 +164,10 @@ export default {
                         password_confirmation:'',
                     },
                 },
+                tipo_emple:{
+                        id:'',
+                        nombre:'',
+                    },
             },
         }
         
@@ -210,26 +186,6 @@ created(){
     axios.get('/TipoDocumento')
     .then(res=>{
         this.tipoDocumentos = res.data;
-    }),
-
-
-
-    axios.get('/Empleado').then(res=>{
-        this.empleados = res.data;
-        console.log(this.empleados);
-
-       for(var i=0;i<this.empleados.length;i++){
-           console.log(this.empleados[i].per_id);
-           console.log(this.buscar2(this.empleados[i].per_id));
-           //this.empleado.persona=this.buscar2(this.empleados[i].per_id);
-           //console.log(this.empleado.persona);
-           //console.log(this.buscar2(this.empleados[i]));
-           //console.log(this.empleados[i].persona);
-       }
-       
-        //this.empleados.persona=this.buscar2(this.empleado.per_id);
-
-        
     })
 
     

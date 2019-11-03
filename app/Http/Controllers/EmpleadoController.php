@@ -15,12 +15,13 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {  
-        $empleados=Empleado::all();
+    { 
+        $empleados = Empleado::all();
         
         if($request->ajax()){
             foreach ($empleados as $em){
                 $em->persona;
+                $em->tipoEmpleado;
             }
             return $empleados;
         }else{

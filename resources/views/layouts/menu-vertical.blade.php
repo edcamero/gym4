@@ -19,6 +19,7 @@
                    
                         <div class="collapse pb-2" id="empleado">
                               <ul class="flex-column pl-2 nav">
+                                
                                 @can('listar-tipo-empleado')
                                 <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-tipo-empleado') }}">
                                       Gestion de Tipos
@@ -27,7 +28,7 @@
                                 @endcan
 
                                 @can('guardar-empleado')
-                                <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-empleado') }}">
+                                <li class="nav-item"><a class="nav-link py-0" href="{{ route('guardar-empleado') }}">
                                       Agregar Empleado
                                     </a> 
                                   </li>
@@ -39,6 +40,14 @@
                                     </a> 
                                   </li>
                                 @endcan
+
+                                
+                                <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-empleado') }}">
+                                      Horarios Empleado
+                                    </a>
+                                  </li>
+                               
+
                               </ul>
                             </div>
 

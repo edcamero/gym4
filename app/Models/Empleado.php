@@ -42,13 +42,22 @@ class Empleado extends Model
         return $this->hasOne('App\Models\Persona','id','per_id');
     }
 
+    public function tipoEmpleado()
+    {
+        return $this->hasOne('App\Models\TipoEmpleado','id','tip_emp_id');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+
+
+    /*
     public function tipoEmpleado()
     {
         return $this->belongsTo('App\TipoEmpleado', 'tipo_emple_id');
     }
+    */
 
     
     /**

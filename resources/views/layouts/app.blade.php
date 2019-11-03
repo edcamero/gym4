@@ -40,11 +40,6 @@
                     <ul  class="navbar-nav mr-auto">
                     
                     
-                   
-
-
-                   
-
                     @can('listar-horario')
                         <a class="navbar-brand" href="{{ route('listar-horario') }}">
                             Horario
@@ -54,6 +49,12 @@
                     @can('listar-tipo-documento')
                         <a class="navbar-brand" href="{{ route('listar-tipo-documento') }}">
                             Tipo Documento
+                        </a> 
+                    @endcan
+
+                    @can('listar-empleado')
+                        <a class="navbar-brand" href="{{ route('listar-empleado') }}">
+                            empleados
                         </a> 
                     @endcan
                     

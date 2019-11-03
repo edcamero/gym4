@@ -9,7 +9,6 @@ require('./bootstrap');
 window.Vue = require('vue');
 Vue.prototype.$permisos=[];
 
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -26,11 +25,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('tipo-cliente', require('./components/TipoClienteComponent').default);
 Vue.component('tipo-empleado', require('./components/TipoEmpleadoComponent').default);
 Vue.component('horario', require('./components/HorarioComponent').default);
+Vue.component('listar-empleado', require('./components/Empleado/ListarComponent').default);
 Vue.component('crear-empleado', require('./components/Empleado/CreateComponent').default);
 Vue.component('horario-empleado', require('./components/Empleado/HorarioComponent').default);
 Vue.component('tipo-documento', require('./components/TipoDocumento/TipoDocumentoComponent').default);
-
-
 
 
 Vue.directive('can', function (el, binding, vnode) {

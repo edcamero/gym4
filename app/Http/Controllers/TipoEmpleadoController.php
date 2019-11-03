@@ -77,8 +77,8 @@ class TipoEmpleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $te=TipoEmpleado::find($id);
-        $te->nombre=$request->nombre;
+        $te = TipoEmpleado::find($id);
+        $te->nombre = $request->nombre;
         $te->save();
         return $te;
     }
