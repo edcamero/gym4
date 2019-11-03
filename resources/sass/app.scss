@@ -4,5 +4,52 @@
 // Variables
 @import 'variables';
 
+
+
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+html,body{
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    }
+    
+    .container{
+    height: 100%;
+    align-content: center;
+    }
+    .cardl{
+        height: 370px;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 700px;
+        background-color: rgba(0,0,0,0.2) !important;
+        }
+    
+    .card{
+    height: 450px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 700px;
+    background-color: rgba(0,0,0,0.2) !important;
+    }
+ 
+    .login_btn{
+    color: black;
+    background-color: grey;
+    width: 100px;
+    }
+    
+  
+    
+    .links{
+    color: white;
+    }
+    
+   
+    
+ 
