@@ -1974,6 +1974,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("se monto el componente agregar empleado");
@@ -1983,6 +2008,7 @@ __webpack_require__.r(__webpack_exports__);
       tipoEmpleados: [],
       tipoDocumentos: [],
       empleados: [],
+      personas: [],
       genero: [{
         id: 1,
         text: 'Hombre'
@@ -2036,6 +2062,18 @@ __webpack_require__.r(__webpack_exports__);
         //console.log(res.data['0']['nombre'])
       });
     },
+    buscar2: function buscar2() {
+      var _this3 = this;
+
+      //console.log(this.empleado.persona.documento);
+      //console.log('hola');
+      axios.get('/Persona/' + this.empleado.per_id).then(function (res) {
+        var person = res.data[0];
+        _this3.empleado.persona = person;
+        console.log(person); // console.log(res.data);
+        //console.log(res.data['0']['nombre'])
+      });
+    },
     crear: function crear() {
       var params = {
         tipo_doc: this.empleado.persona.tipo_doc,
@@ -2056,6 +2094,72 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/Empleado', params).then(function (res) {
         console.log(res.data);
+      });
+    },
+    eliminar: function eliminar(empleado, index) {
+      var _this4 = this;
+
+      var confirmacion = confirm("Confirma Eliminar empleado: ".concat(empleado.id));
+
+      if (confirmacion) {
+        axios["delete"]('/Empleado/' + empleado.id).then(function () {
+          _this4.empleados.splice(index, 1);
+        });
+      }
+    },
+    editarForm: function editarForm(empleado) {
+      this.editarActivo = true;
+      this.empleado.tip_emp_id = empleado.tipo_emple;
+    },
+    editar: function editar(empleado) {
+      var _this5 = this;
+
+      var params = {
+        tipo_doc: empleado.persona.tipo_doc,
+        documento: empleado.persona.documento,
+        nombre: empleado.persona.nombre,
+        apellido: empleado.persona.apellido,
+        fecha_nac: empleado.persona.fecha_nac,
+        sexo: empleado.persona.sexo,
+        telefono: empleado.persona.telefono,
+        direccion: empleado.persona.direccion,
+        altura: empleado.persona.altura,
+        nickname: empleado.persona.user.nickname,
+        email: empleado.persona.user.email,
+        tip_emp_id: empleado.persona.tipo_emple
+      };
+      console.log(empleado);
+      axios.put('/Empleado/' + empleado.id, empleado).then(function (res) {
+        var index = _this5.Empleados.findIndex(function (buscar) {
+          return buscar.id == empleado.id;
+        });
+
+        console.log(res.data.status);
+        _this5.empleados[index].persona.tipo_doc = empleado.persona.tipo_doc;
+        _this5.empleados[index].persona.documento = empleado.persona.documento;
+        _this5.empleados[index].persona.nombre = empleado.persona.nombre;
+        _this5.empleados[index].persona.apellido = empleado.persona.apellido;
+        _this5.empleados[index].persona.fecha_nac = empleado.persona.fecha_nac;
+        _this5.empleados[index].persona.sexo = empleado.persona.sexo;
+        _this5.empleados[index].persona.telefono = empleado.persona.telefono;
+        _this5.empleados[index].persona.direccion = empleado.persona.direccion;
+        _this5.empleados[index].persona.altura = empleado.persona.altura;
+        _this5.empleados[index].persona.user.nickname = empleado.persona.user.nickname;
+        _this5.empleados[index].persona.user.email = empleado.persona.user.email;
+        _this5.empleados[index].persona.tipo_emple = empleado.persona.tipo_emple;
+        _this5.empleado.persona.tipo_doc = '';
+        _this5.empleado.persona.documento = '';
+        _this5.empleado.persona.nombre = '';
+        _this5.empleado.persona.apellido = '';
+        _this5.empleado.persona.fecha_nac = '';
+        _this5.empleado.persona.sexo = '';
+        _this5.empleado.persona.telefono = '';
+        _this5.empleado.persona.direccion = '';
+        _this5.empleado.persona.altura = '';
+        _this5.empleado.persona.user.nickname = '';
+        _this5.empleado.persona.user.email = '';
+        _this5.empleado.persona.tipo_emple = '';
+        _this5.editarActivo = false;
       });
     },
     ver: function ver() {
@@ -2661,10 +2765,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -38624,6 +38724,102 @@ var render = function() {
           )
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("table", { staticClass: "table text-center" }, [
+        _c("thead", [
+          _c("tr", [
+            _c("th", [_vm._v("id")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("id tip emp")]),
+            _vm._v(" "),
+            _c("th", [_vm._v("id persona")]),
+            _vm._v(" "),
+            _c(
+              "th",
+              {
+                directives: [
+                  {
+                    name: "can",
+                    rawName: "v-can",
+                    value: "editar-empleado" || false,
+                    expression: "'editar-empleado'||'eliminar-empleado'"
+                  }
+                ]
+              },
+              [_vm._v("Opciones")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.empleados, function(empleado, index) {
+            return _c("tr", { key: index }, [
+              _c("td", [_vm._v(_vm._s(empleado.id))]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  directives: [
+                    {
+                      name: "can",
+                      rawName: "v-can",
+                      value: "editar-empleado" || false,
+                      expression: "'editar-empleado'||'eliminar-empleado'"
+                    }
+                  ]
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "can",
+                          rawName: "v-can",
+                          value: "editar-empleado",
+                          expression: "'editar-empleado'"
+                        }
+                      ],
+                      staticClass: "btn btn-success btn-sm",
+                      on: {
+                        click: function($event) {
+                          return _vm.editarForm(empleado, index)
+                        }
+                      }
+                    },
+                    [_vm._v("Editar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "can",
+                          rawName: "v-can",
+                          value: "eliminar-empleado",
+                          expression: "'eliminar-empleado'"
+                        }
+                      ],
+                      staticClass: "btn btn-danger btn-sm",
+                      on: {
+                        click: function($event) {
+                          return _vm.eliminar(empleado, index)
+                        }
+                      }
+                    },
+                    [_vm._v("Eliminar")]
+                  )
+                ]
+              )
+            ])
+          }),
+          0
+        )
+      ])
     ])
   ])
 }
@@ -52312,14 +52508,15 @@ $(document).ready(function () {
 /*!**************************************************************!*\
   !*** ./resources/js/components/Empleado/CreateComponent.vue ***!
   \**************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CreateComponent_vue_vue_type_template_id_3e663ee8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateComponent.vue?vue&type=template&id=3e663ee8& */ "./resources/js/components/Empleado/CreateComponent.vue?vue&type=template&id=3e663ee8&");
 /* harmony import */ var _CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/Empleado/CreateComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -52349,7 +52546,7 @@ component.options.__file = "resources/js/components/Empleado/CreateComponent.vue
 /*!***************************************************************************************!*\
   !*** ./resources/js/components/Empleado/CreateComponent.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52809,8 +53006,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\gym4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
