@@ -130,7 +130,7 @@
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>nombre</th>
+                            <th>id tip emp</th>
                             <th>id persona</th>
                             <th v-can="'editar-empleado'||'eliminar-empleado'">Opciones</th>
                         </tr>
