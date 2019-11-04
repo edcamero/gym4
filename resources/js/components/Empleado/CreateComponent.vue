@@ -176,23 +176,7 @@ export default {
                 {id:2,text:'Mujer'}
             ],
 
-            persona:{
-                    tipo_doc:'',
-                    documento:'',
-                    nombre:'',
-                    apellido:'',
-                    fecha_nac:'',
-                    sexo:'',
-                    telefono:'',
-                    direccion:'',
-                    altura:'',
-                    tipo_emple:'',
-                    user:{
-                        nickname:'',
-                        email:'',
-                        password:'',
-                        password_confirmation:'',
-                    },  
+            
 
             empleado:{
                 persona:{
@@ -214,10 +198,11 @@ export default {
                     },
                 },
             },
-        },
-    
-
-created(){
+        }
+        
+        
+    },
+    created(){
     axios.get('/TipoEmpleado')
     .then(res=>{
         this.tipoEmpleados = res.data;
@@ -230,16 +215,7 @@ created(){
 
     axios.get('/Empleado').then(res=>{
         this.empleados = res.data;
-        console.log(this.empleados);
-
-       for(var i=0;i<this.empleados.length;i++){
-           console.log(this.empleados[i].per_id);
-           console.log(this.buscar2(this.empleados[i].per_id));
-           //this.empleado.persona=this.buscar2(this.empleados[i].per_id);
-           //console.log(this.empleado.persona);
-           //console.log(this.buscar2(this.empleados[i]));
-           //console.log(this.empleados[i].persona);
-       }
+        console.log(this.empleados)
        
         //this.empleados.persona=this.buscar2(this.empleado.per_id);
         
@@ -266,8 +242,6 @@ methods: {
         },
 
         buscar2(id_persona){
-        //console.log(this.empleado.persona.documento);
-        //console.log('hola');
             var persona;
             //console.log('hola '+id_persona)
             axios.get('/Persona/buscar/'+id_persona).
@@ -380,6 +354,7 @@ methods: {
         }
 
     },
-}
 
 }
+
+</script>

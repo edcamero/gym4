@@ -15,9 +15,12 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {  $empleados=Empleado::all();
         if($request->ajax()){
-            return Empleado::all();
+            foreach ($empleados as $em){
+                $em->persona;
+            }
+            return $empleados;
         }else{
             $tipoCli = Empleado::paginate();
             return view('Empleado.index', compact('tipoCli'));
