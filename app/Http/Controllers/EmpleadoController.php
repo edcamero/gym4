@@ -15,7 +15,9 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {  $empleados=Empleado::all();
+    {  
+        $empleados=Empleado::all();
+        
         if($request->ajax()){
             foreach ($empleados as $em){
                 $em->persona;
@@ -25,10 +27,11 @@ class EmpleadoController extends Controller
             $tipoCli = Empleado::paginate();
             return view('Empleado.index', compact('tipoCli'));
         }
-    }
+    } 
 
     public function horarios(Request $request){
         if($request->ajax()){
+            
             return 'hola';
             //return Empleado::all();
         }else{
@@ -36,6 +39,7 @@ class EmpleadoController extends Controller
             return view('Empleado.horario', compact('tipoCli'));
         }
     }
+
 
     /**
      * Show the form for creating a new resource.
