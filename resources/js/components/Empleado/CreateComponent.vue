@@ -140,9 +140,15 @@
 
                             
                             
+<<<<<<< HEAD
                                 < td > {{ empleado . id }} </ td >
                                 < td > {{ empleado . persona . nombre }} </ td >
                             <! - En la primera columna mostramos el nombre ->
+=======
+                                <td>{{empleado.id}}</td>
+                            
+                            <!--En la primera columna mostramos el nombre-->
+>>>>>>> parent of def5455... mostrar nombres en tabla empleado
                            
                             < td  v-can = " ' editar-empleado ' || ' eliminar-empleado ' " >
                                 < button  v-can = " ' editar-empleado ' "  class = " btn btn-success btn-sm " @ click = " editarForm (empleado, index) " > Editar </ button >
