@@ -13,6 +13,13 @@ class PersonaController extends Controller
         return $p;
     }
 
+
+    public function buscarId($id){
+        $p=Persona::find($id);
+        
+        return $p;
+    }
+
      
 
 }

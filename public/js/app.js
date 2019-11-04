@@ -1833,11 +1833,9 @@ module.exports = {
 /*!***********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Empleado/CreateComponent.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -1999,174 +1997,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log("se monto el componente agregar empleado");
-  },
-  data: function data() {
-    return {
-      tipoEmpleados: [],
-      tipoDocumentos: [],
-      empleados: [],
-      personas: [],
-      genero: [{
-        id: 1,
-        text: 'Hombre'
-      }, {
-        id: 2,
-        text: 'Mujer'
-      }],
-      empleado: {
-        persona: {
-          tipo_doc: '',
-          documento: '',
-          nombre: '',
-          apellido: '',
-          fecha_nac: '',
-          sexo: '',
-          telefono: '',
-          direccion: '',
-          altura: '',
-          tipo_emple: '',
-          user: {
-            nickname: '',
-            email: '',
-            password: '',
-            password_confirmation: ''
-          }
-        }
-      }
-    };
-  },
-  created: function created() {
-    var _this = this;
-
-    axios.get('/TipoEmpleado').then(function (res) {
-      _this.tipoEmpleados = res.data;
-    }), axios.get('/TipoDocumento').then(function (res) {
-      _this.tipoDocumentos = res.data;
-    }), axios.get('/Empleado').then(function (res) {
-      _this.empleados = res.data;
-    });
-  },
-  methods: {
-    buscar: function buscar() {
-      var _this2 = this;
-
-      //console.log(this.empleado.persona.documento);
-      //console.log('hola');
-      axios.get('/Persona/' + this.empleado.persona.documento).then(function (res) {
-        var person = res.data[0];
-        _this2.empleado.persona = person;
-        console.log(person); // console.log(res.data);
-        //console.log(res.data['0']['nombre'])
-      });
-    },
-    buscar2: function buscar2() {
-      var _this3 = this;
-
-      //console.log(this.empleado.persona.documento);
-      //console.log('hola');
-      axios.get('/Persona/' + this.empleado.per_id).then(function (res) {
-        var person = res.data[0];
-        _this3.empleado.persona = person;
-        console.log(person); // console.log(res.data);
-        //console.log(res.data['0']['nombre'])
-      });
-    },
-    crear: function crear() {
-      var params = {
-        tipo_doc: this.empleado.persona.tipo_doc,
-        documento: this.empleado.persona.documento,
-        nombre: this.empleado.persona.nombre,
-        apellido: this.empleado.persona.apellido,
-        fecha_nac: this.empleado.persona.fecha_nac,
-        sexo: this.empleado.persona.sexo,
-        telefono: this.empleado.persona.telefono,
-        direccion: this.empleado.persona.direccion,
-        altura: this.empleado.persona.altura,
-        nickname: this.empleado.persona.user.nickname,
-        email: this.empleado.persona.user.email,
-        password: this.empleado.persona.user.password,
-        password_confirmation: this.empleado.persona.user.password_confirmation,
-        tip_emp_id: this.empleado.persona.tipo_emple
-      }; //console.log(params),
-
-      axios.post('/Empleado', params).then(function (res) {
-        console.log(res.data);
-      });
-    },
-    eliminar: function eliminar(empleado, index) {
-      var _this4 = this;
-
-      var confirmacion = confirm("Confirma Eliminar empleado: ".concat(empleado.id));
-
-      if (confirmacion) {
-        axios["delete"]('/Empleado/' + empleado.id).then(function () {
-          _this4.empleados.splice(index, 1);
-        });
-      }
-    },
-    editarForm: function editarForm(empleado) {
-      this.editarActivo = true;
-      this.empleado.tip_emp_id = empleado.tipo_emple;
-    },
-    editar: function editar(empleado) {
-      var _this5 = this;
-
-      var params = {
-        tipo_doc: empleado.persona.tipo_doc,
-        documento: empleado.persona.documento,
-        nombre: empleado.persona.nombre,
-        apellido: empleado.persona.apellido,
-        fecha_nac: empleado.persona.fecha_nac,
-        sexo: empleado.persona.sexo,
-        telefono: empleado.persona.telefono,
-        direccion: empleado.persona.direccion,
-        altura: empleado.persona.altura,
-        nickname: empleado.persona.user.nickname,
-        email: empleado.persona.user.email,
-        tip_emp_id: empleado.persona.tipo_emple
-      };
-      console.log(empleado);
-      axios.put('/Empleado/' + empleado.id, empleado).then(function (res) {
-        var index = _this5.Empleados.findIndex(function (buscar) {
-          return buscar.id == empleado.id;
-        });
-
-        console.log(res.data.status);
-        _this5.empleados[index].persona.tipo_doc = empleado.persona.tipo_doc;
-        _this5.empleados[index].persona.documento = empleado.persona.documento;
-        _this5.empleados[index].persona.nombre = empleado.persona.nombre;
-        _this5.empleados[index].persona.apellido = empleado.persona.apellido;
-        _this5.empleados[index].persona.fecha_nac = empleado.persona.fecha_nac;
-        _this5.empleados[index].persona.sexo = empleado.persona.sexo;
-        _this5.empleados[index].persona.telefono = empleado.persona.telefono;
-        _this5.empleados[index].persona.direccion = empleado.persona.direccion;
-        _this5.empleados[index].persona.altura = empleado.persona.altura;
-        _this5.empleados[index].persona.user.nickname = empleado.persona.user.nickname;
-        _this5.empleados[index].persona.user.email = empleado.persona.user.email;
-        _this5.empleados[index].persona.tipo_emple = empleado.persona.tipo_emple;
-        _this5.empleado.persona.tipo_doc = '';
-        _this5.empleado.persona.documento = '';
-        _this5.empleado.persona.nombre = '';
-        _this5.empleado.persona.apellido = '';
-        _this5.empleado.persona.fecha_nac = '';
-        _this5.empleado.persona.sexo = '';
-        _this5.empleado.persona.telefono = '';
-        _this5.empleado.persona.direccion = '';
-        _this5.empleado.persona.altura = '';
-        _this5.empleado.persona.user.nickname = '';
-        _this5.empleado.persona.user.email = '';
-        _this5.empleado.persona.tipo_emple = '';
-        _this5.editarActivo = false;
-      });
-    },
-    ver: function ver() {
-      console.log('entro al evento');
-    }
-  }
-});
 
 /***/ }),
 
@@ -52552,7 +52382,9 @@ component.options.__file = "resources/js/components/Empleado/CreateComponent.vue
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Empleado/CreateComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -53006,8 +52838,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\gym4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

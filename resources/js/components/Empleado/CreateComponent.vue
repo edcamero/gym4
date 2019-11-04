@@ -168,6 +168,7 @@ export default {
         return{
             tipoEmpleados:[],
             tipoDocumentos:[],
+
             empleados:[],
             personas:[],
             genero:[
@@ -175,7 +176,23 @@ export default {
                 {id:2,text:'Mujer'}
             ],
 
-                
+            persona:{
+                    tipo_doc:'',
+                    documento:'',
+                    nombre:'',
+                    apellido:'',
+                    fecha_nac:'',
+                    sexo:'',
+                    telefono:'',
+                    direccion:'',
+                    altura:'',
+                    tipo_emple:'',
+                    user:{
+                        nickname:'',
+                        email:'',
+                        password:'',
+                        password_confirmation:'',
+                    },  
 
             empleado:{
                 persona:{
@@ -197,8 +214,8 @@ export default {
                     },
                 },
             },
-        }
-    },
+        },
+    
 
 created(){
     axios.get('/TipoEmpleado')
@@ -213,6 +230,19 @@ created(){
 
     axios.get('/Empleado').then(res=>{
         this.empleados = res.data;
+        console.log(this.empleados);
+
+       for(var i=0;i<this.empleados.length;i++){
+           console.log(this.empleados[i].per_id);
+           console.log(this.buscar2(this.empleados[i].per_id));
+           //this.empleado.persona=this.buscar2(this.empleados[i].per_id);
+           //console.log(this.empleado.persona);
+           //console.log(this.buscar2(this.empleados[i]));
+           //console.log(this.empleados[i].persona);
+       }
+       
+        //this.empleados.persona=this.buscar2(this.empleado.per_id);
+        
     })
 
     
@@ -229,23 +259,26 @@ methods: {
             then(res=>{
             let person = res.data[0];
             this.empleado.persona = person;
-            console.log(person)
+           // console.log(person)
                    // console.log(res.data);
                     //console.log(res.data['0']['nombre'])
             })
         },
 
-        buscar2(){
+        buscar2(id_persona){
         //console.log(this.empleado.persona.documento);
         //console.log('hola');
-            axios.get('/Persona/'+this.empleado.per_id).
+            var persona;
+            //console.log('hola '+id_persona)
+            axios.get('/Persona/buscar/'+id_persona).
             then(res=>{
-            let person=res.data[0];
-            this.empleado.persona = person;
-            console.log(person)
-                   // console.log(res.data);
+            persona = res.data;
+            console.log(res.data);
+            return persona;
                     //console.log(res.data['0']['nombre'])
             })
+            //console.log(persona)
+            return persona;
         },
 
         crear(){
@@ -348,4 +381,5 @@ methods: {
 
     },
 }
-</script>
+
+}
