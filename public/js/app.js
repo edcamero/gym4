@@ -1834,9 +1834,342 @@ module.exports = {
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Empleado/CreateComponent.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\resources\\js\\components\\Empleado\\CreateComponent.vue: Unexpected token (297:0)\n\n\u001b[0m \u001b[90m 295 | \u001b[39m                        password\u001b[33m:\u001b[39m\u001b[32m''\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 296 | \u001b[39m                        password_confirmation\u001b[33m:\u001b[39m\u001b[32m''\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 297 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 298 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 299 | \u001b[39m                            \u001b[0m\n\u001b[0m \u001b[90m 300 | \u001b[39m                            \u001b[0m\n    at Parser.raise (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:6400:17)\n    at Parser.unexpected (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:7728:16)\n    at Parser.parseIdentifierName (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9624:18)\n    at Parser.parseIdentifier (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9598:23)\n    at Parser.parseMaybePrivateName (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8962:19)\n    at Parser.parsePropertyName (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9418:98)\n    at Parser.parseObjectMember (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9319:10)\n    at Parser.parseObj (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseObjectProperty (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9380:101)\n    at Parser.parseObjPropValue (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9405:101)\n    at Parser.parseObjectMember (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9329:10)\n    at Parser.parseObj (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseObjectProperty (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9380:101)\n    at Parser.parseObjPropValue (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9405:101)\n    at Parser.parseObjectMember (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9329:10)\n    at Parser.parseObj (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9253:25)\n    at Parser.parseExprAtom (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8883:28)\n    at Parser.parseExprSubscripts (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8507:23)\n    at Parser.parseMaybeUnary (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8487:21)\n    at Parser.parseExprOps (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8353:23)\n    at Parser.parseMaybeConditional (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8326:23)\n    at Parser.parseMaybeAssign (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:8273:21)\n    at Parser.parseObjectProperty (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9380:101)\n    at Parser.parseObjPropValue (C:\\Users\\blade\\OneDrive\\Desktop\\gym4\\node_modules\\@babel\\parser\\lib\\index.js:9405:101)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log("se monto el componente agregar empleado");
+  },
+  data: function data() {
+    return {
+      tipoEmpleados: [],
+      tipoDocumentos: [],
+      empleados: [],
+      personas: [],
+      genero: [{
+        id: 1,
+        text: 'Hombre'
+      }, {
+        id: 2,
+        text: 'Mujer'
+      }],
+      empleado: {
+        persona: {
+          tipo_doc: '',
+          documento: '',
+          nombre: '',
+          apellido: '',
+          fecha_nac: '',
+          sexo: '',
+          telefono: '',
+          direccion: '',
+          altura: '',
+          tipo_emple: '',
+          user: {
+            nickname: '',
+            email: '',
+            password: '',
+            password_confirmation: ''
+          }
+        }
+      }
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/TipoEmpleado').then(function (res) {
+      _this.tipoEmpleados = res.data;
+    }), axios.get('/TipoDocumento').then(function (res) {
+      _this.tipoDocumentos = res.data;
+    }), axios.get('/Empleado').then(function (res) {
+      _this.empleados = res.data;
+      console.log(_this.empleados);
+
+      for (var i = 0; i < _this.empleados.length; i++) {
+        console.log(_this.empleados[i].per_id);
+        console.log(_this.buscar2(_this.empleados[i].per_id)); //this.empleado.persona=this.buscar2(this.empleados[i].per_id);
+        //console.log(this.empleado.persona);
+        //console.log(this.buscar2(this.empleados[i]));
+        //console.log(this.empleados[i].persona);
+      } //this.empleados.persona=this.buscar2(this.empleado.per_id);
+
+    });
+  },
+  methods: {
+    buscar: function buscar() {
+      var _this2 = this;
+
+      //console.log(this.empleado.persona.documento);
+      //console.log('hola');
+      axios.get('/Persona/' + this.empleado.persona.documento).then(function (res) {
+        var person = res.data[0];
+        _this2.empleado.persona = person; // console.log(person)
+        // console.log(res.data);
+        //console.log(res.data['0']['nombre'])
+      });
+    },
+    buscar2: function buscar2(id_persona) {
+      var persona; //console.log('hola '+id_persona)
+
+      axios.get('/Persona/buscar/' + id_persona).then(function (res) {
+        persona = res.data;
+        console.log(res.data);
+        return persona; //console.log(res.data['0']['nombre'])
+      }); //console.log(persona)
+
+      return persona;
+    },
+    crear: function crear() {
+      var params = {
+        tipo_doc: this.empleado.persona.tipo_doc,
+        documento: this.empleado.persona.documento,
+        nombre: this.empleado.persona.nombre,
+        apellido: this.empleado.persona.apellido,
+        fecha_nac: this.empleado.persona.fecha_nac,
+        sexo: this.empleado.persona.sexo,
+        telefono: this.empleado.persona.telefono,
+        direccion: this.empleado.persona.direccion,
+        altura: this.empleado.persona.altura,
+        nickname: this.empleado.persona.user.nickname,
+        email: this.empleado.persona.user.email,
+        password: this.empleado.persona.user.password,
+        password_confirmation: this.empleado.persona.user.password_confirmation,
+        tip_emp_id: this.empleado.persona.tipo_emple
+      }; //console.log(params),
+
+      axios.post('/Empleado', params).then(function (res) {
+        console.log(res.data);
+      });
+    },
+    eliminar: function eliminar(empleado, index) {
+      var _this3 = this;
+
+      var confirmacion = confirm("Confirma Eliminar empleado: ".concat(empleado.id));
+
+      if (confirmacion) {
+        axios["delete"]('/Empleado/' + empleado.id).then(function () {
+          _this3.empleados.splice(index, 1);
+        });
+      }
+    },
+    editarForm: function editarForm(empleado) {
+      this.editarActivo = true;
+      this.empleado.tip_emp_id = empleado.tipo_emple;
+    },
+    editar: function editar(empleado) {
+      var _this4 = this;
+
+      var params = {
+        tipo_doc: empleado.persona.tipo_doc,
+        documento: empleado.persona.documento,
+        nombre: empleado.persona.nombre,
+        apellido: empleado.persona.apellido,
+        fecha_nac: empleado.persona.fecha_nac,
+        sexo: empleado.persona.sexo,
+        telefono: empleado.persona.telefono,
+        direccion: empleado.persona.direccion,
+        altura: empleado.persona.altura,
+        nickname: empleado.persona.user.nickname,
+        email: empleado.persona.user.email,
+        tip_emp_id: empleado.persona.tipo_emple
+      };
+      console.log(empleado);
+      axios.put('/Empleado/' + empleado.id, empleado).then(function (res) {
+        var index = _this4.Empleados.findIndex(function (buscar) {
+          return buscar.id == empleado.id;
+        });
+
+        console.log(res.data.status);
+        _this4.empleados[index].persona.tipo_doc = empleado.persona.tipo_doc;
+        _this4.empleados[index].persona.documento = empleado.persona.documento;
+        _this4.empleados[index].persona.nombre = empleado.persona.nombre;
+        _this4.empleados[index].persona.apellido = empleado.persona.apellido;
+        _this4.empleados[index].persona.fecha_nac = empleado.persona.fecha_nac;
+        _this4.empleados[index].persona.sexo = empleado.persona.sexo;
+        _this4.empleados[index].persona.telefono = empleado.persona.telefono;
+        _this4.empleados[index].persona.direccion = empleado.persona.direccion;
+        _this4.empleados[index].persona.altura = empleado.persona.altura;
+        _this4.empleados[index].persona.user.nickname = empleado.persona.user.nickname;
+        _this4.empleados[index].persona.user.email = empleado.persona.user.email;
+        _this4.empleados[index].persona.tipo_emple = empleado.persona.tipo_emple;
+        _this4.empleado.persona.tipo_doc = '';
+        _this4.empleado.persona.documento = '';
+        _this4.empleado.persona.nombre = '';
+        _this4.empleado.persona.apellido = '';
+        _this4.empleado.persona.fecha_nac = '';
+        _this4.empleado.persona.sexo = '';
+        _this4.empleado.persona.telefono = '';
+        _this4.empleado.persona.direccion = '';
+        _this4.empleado.persona.altura = '';
+        _this4.empleado.persona.user.nickname = '';
+        _this4.empleado.persona.user.email = '';
+        _this4.empleado.persona.tipo_emple = '';
+        _this4.editarActivo = false;
+      });
+    },
+    ver: function ver() {
+      console.log('entro al evento');
+    }
+  }
+});
 
 /***/ }),
 
@@ -38289,13 +38622,7 @@ var render = function() {
             }
           })
         ]),
-        _vm._v(
-          '\n  \n=======\n< template >\n    < div  class = " tarjeta " >\n        < div  class = " card-header " >\n                < h4  class = " text-center mb-2 card-title " > Registrador Empleado </ h4 >\n        </ div >\n        < Br >\n       \n\n       < div  class = " card-body " >\n            < div  class = " form-group row " >\n            <! - /.Div para el tipo de documento ->\n                < div  class = " col-md-6 " >\n                    < select  class = " form-control "  v-model = " empleado . persona . tipo_doc " >\n                        < option  disabled  value = " " > Seleccionar un tipo de documento </ option >\n                        < opción  v-for = " elemento en tipoDocumentos "  v-bind : key = " item . id "  v-bind : value = " item . id " > ' +
-            _vm._s(_vm.item.nombre) +
-            ' </ opción >\n                    </ select >\n                </ div >\n                \n                <! - /.Div para digitar y buscar el numero del documento ->\n                < div  class = " col " >\n                    < input  type = " text "  v-model = " empleado . persona . documento "  class = " form-control "    requerido  \n                        marcador de posición = " Documento "  v-on : keyup . enter = " buscar " >\n                    < span  class = " glyphicon glyphicon-user form-control-feedback " > </ span >\n                </ div >   \n            </ div >\n                \n                     \n            <! - /.Row para nombre y apellido ->\n            < div  class = " row form-group " >\n                < div  class = " col-md-6 " >\n                    < input  id = " firstname "  type = " text "  class = " form-control "  placeholder = " Nombres "  v-model = " empleado . persona . nombre "   autofocus >\n                </ div >\n\n                < div  class = " col-md-6 " >\n                    < input  id = " lastname "  type = " text "  class = " form-control "  placeholder = " Apellidos "  v-model = " empleado . persona . apellidos "   requiere  enfoque automático >            \n                </ div >\n            </ div >\n                    \n                \n            <! - /.Row para sexo y altura ->  \n                < div  class = " row form-group " >\n                    < div  class = " col " >\n                        < input  type = " date "  v-model = " empleado . persona . fecha_nac "  class = " form-control "  autocomplete = " off "\n                         placeholder = " Fecha de Nacimiento " >\n                    < span  class = " glyphicon glyphicon-user form-control-feedback " > </ span >          \n                </ div >\n\n                    < div  class = " col " >\n                        < SELECT  v-model = " empleado . Persona . Sexo "  class = " form-control "  autocomplete = " off " >\n                            < opción  seleccionada  deshabilitada > Sexo: </ opción >\n                            < opción  v-for = " item in genero "  v-bind : key = " item . text " > ' +
-            _vm._s(_vm.item.texto) +
-            ' </ opción >\n                        </ SELECCIONAR >\n                    </ div >\n\n                   < div  class = " col " >\n                        < input  type = " text "  v-model = " empleado . persona . altura "  class = " form-control "   autocomplete = " off " \n                            placeholder = " Altura " >\n                            < span  class = " glyphicon glyphicon-user form-control-feedback " > </ span >\n                               \n                    </ div >\n                </ div >\n\n\n                <! - /.Row para telefono y direcion   ->  \n                < div  class = " row form-group " >\n                    < div  class = " col " >\n                        < input  type = " text "  v-model = " empleado . persona . telefono "   class = " form-control "  autocomplete = " off " \n                            placeholder = " Telefono " >\n                        < span  class = " glyphicon glyphicon-user form-control-feedback " > </ span >\n                    </ div >\n\n                    < div  class = " col " >\n                        < input  type = " text "  v-model = " empleado . persona . direccion "  class = " form-control "  autocomplete = " off " \n                            placeholder = " Direccion " >\n                        < span  class = " glyphicon glyphicon-user form-control-feedback " > </ span >\n                    </ div >\n\n                </ div >\n\n\n                 <! - /.Div para el apodo ->\n                 < div  class = " form-group row " >\n\n                    < div  class = " col-md-6 " >\n                        < input  id = " nickname "  type = " text "  class = " form-control "  v-model = " empleado . persona . user . nickname "  placeholder = " Nombre de usuario "  requiere   enfoque automático >        \n                    </ div >\n                            <! - /.fin de div para el apodo ->\n\n                            <! - /.inicio de correo electrónico ->\n                    < div  class = " col-md-6 " >\n                        < input  id = " email "  type = " email "  class = " form-control "  v-model = " empleado . persona . user . email "   required   placeholder = " E-mail " >          \n                    </ div >\n                </ div >\n                        \n                < div  class = " form-group row   " >\n\n                    < div  class = " col-md-6 " >\n                        < input  id = " password "  type = " password "  class = " form-control "  v-model = " empleado . persona . user . password "  required  autocomplete = " new-password "  placeholder = " Contraseña " >      \n                    </ div >\n  \n\n>>>>>>> parent of 6022ad3... errores\n                    '
-        ),
+        _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
           _c("input", {
             directives: [
@@ -38429,9 +38756,6 @@ var render = function() {
           "tbody",
           _vm._l(_vm.empleados, function(empleado, index) {
             return _c("tr", { key: index }, [
-              _vm._v(
-                "\n<<<<<<< HEAD\n                            \n                            \n                                "
-              ),
               _c("td", [_vm._v(_vm._s(empleado.id))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(empleado.persona.nombre))]),
