@@ -39,7 +39,7 @@ class Empleado extends Model
      */
     public function persona()
     {
-        return $this->hasOne('App\Models\Persona','id','per_id');
+        return $this->belongsTo('App\Persona', 'per_id');
     }
 
     /**

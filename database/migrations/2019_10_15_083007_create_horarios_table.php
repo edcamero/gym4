@@ -28,8 +28,7 @@ class CreateHorariosTable extends Migration
      * @return void
      */
     public function down()
-    {   
-        Schema::disableForeignKeyConstraints();
+    {
         Schema::dropIfExists('horario');
     }
 }
