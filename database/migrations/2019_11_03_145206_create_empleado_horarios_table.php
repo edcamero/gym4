@@ -15,9 +15,11 @@ class CreateEmpleadoHorariosTable extends Migration
     {
         Schema::create('empleado_horarios', function (Blueprint $table) {
             $table->Increments('id');
-            $table->Integer('id_hor');
+            $table->Integer('id_hor')->unsigned();
+            $table->foreign('id_hor')->references('id')->on('horario');
             $table->Integer('id_emp');
-            
+            $table->foreign('id_emp')->references('id')->on('empleados');
+            $table->Date('dia');
             $table->timestamps();
         });
     }
