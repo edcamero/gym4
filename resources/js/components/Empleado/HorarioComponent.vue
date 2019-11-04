@@ -6,11 +6,8 @@
                     <div class="card-header">Horario Empleado</div>
 
                     <div class="card-body">
-                        
-                            <div class="form-group">
-                                <input v-model="saludo" v-on:keyup.enter="hola" class="form-control" type="text" >
-                            </div>
-                        
+                            
+                            
                     </div>
                 </div>
             </div>
