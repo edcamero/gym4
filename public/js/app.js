@@ -38732,7 +38732,7 @@ var render = function() {
           _c("tr", [
             _c("th", [_vm._v("id")]),
             _vm._v(" "),
-            _c("th", [_vm._v("id tip emp")]),
+            _c("th", [_vm._v("nombre")]),
             _vm._v(" "),
             _c("th", [_vm._v("id persona")]),
             _vm._v(" "),
