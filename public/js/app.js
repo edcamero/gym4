@@ -38759,6 +38759,8 @@ var render = function() {
             return _c("tr", { key: index }, [
               _c("td", [_vm._v(_vm._s(empleado.id))]),
               _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(empleado.persona.nombre))]),
+              _vm._v(" "),
               _c(
                 "td",
                 {

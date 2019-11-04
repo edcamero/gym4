@@ -139,7 +139,7 @@
                             
                             
                                 <td>{{empleado.id}}</td>
-                            
+                                <td>{{empleado.persona.nombre}}</td>
                             <!--En la primera columna mostramos el nombre-->
                            
                             <td v-can="'editar-empleado'||'eliminar-empleado'">
