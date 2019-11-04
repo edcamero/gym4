@@ -32,6 +32,13 @@
                                     </a> 
                                   </li>
                                 @endcan
+
+                                @can('editar-empleado')
+                                <li class="nav-item"><a class="nav-link py-0" href="{{ route('horarios-empleado') }}">
+                                      Horarios Empleado
+                                    </a> 
+                                  </li>
+                                @endcan
                               </ul>
                             </div>
 

@@ -24,6 +24,16 @@ class EmpleadoController extends Controller
         }
     }
 
+    public function horarios(Request $request){
+        if($request->ajax()){
+            return 'hola';
+            //return Empleado::all();
+        }else{
+            $tipoCli = Empleado::paginate();
+            return view('Empleado.horario', compact('tipoCli'));
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
