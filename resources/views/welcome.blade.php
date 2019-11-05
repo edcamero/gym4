@@ -12,11 +12,11 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-image: url('images/3f.jpg');
-                color: yellow;
+                background-image: url('images/2f.jpg');
+                color: white;
                 font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
+                font-weight: 100;
+                height: 0vh;
                 margin: 0;
             }
 
@@ -41,7 +41,7 @@
             }
 
             .content {
-                text-align: center;
+                text-align: left;
             }
 
             .title {
@@ -50,13 +50,18 @@
 
             .links > a {
                 color: #636b6f;
-                padding: 0 25px;
+                padding: 10px;
                 font-size: 13px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            .login_btn{
+    color: white;
+    background-color: white;
+    width: 100px;
+    }
 
             .m-b-md {
                 margin-bottom: 30px;
@@ -66,7 +71,11 @@
     <body>
         <div class="container">
         <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm">
-       
+        <div class="content">
+                <div class="title m-b-md">
+                &#9733;&#9733; Gimnasio fit &#9733;&#9733;
+                    
+                </div>
      
       
    </nav>
@@ -80,10 +89,10 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}" class="login_btn">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Registrar</a>
+                            <a href="{{ route('register') }}" class="login_btn ">Registrar</a>
                         @endif
                     @endauth
                 </div>
