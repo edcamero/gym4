@@ -1,5 +1,8 @@
 <template>
-	<div class="card-body">
+	<div class="card">
+        <div class="card-header">
+                <h4 class="text-center mb-2 card-title">Lista de Empleados</h4>
+        </div>
 	<div class="card-body">
                 <table class="table text-center">
                     <thead>
@@ -92,7 +95,7 @@ created(){
     }),
 
 
-    axios.get('/Empleado').then(res=>{
+    axios.get('/Empleado/index').then(res=>{
         this.empleados = res.data;
         console.log(this.empleados);
        

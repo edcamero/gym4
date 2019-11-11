@@ -79,7 +79,7 @@ Route::group(['middleware' => ['permission:eliminar-horario']], function () {
 //Permisos y rutas definidos para Empleado
 
 Route::group(['middleware' => ['permission:listar-empleado']], function () {
-    Route::get('Empleado', 'EmpleadoController@index')->name('listar-empleado');
+    Route::get('Empleado/index', 'EmpleadoController@index')->name('listar-empleado');
 });
 
 Route::group(['middleware' => ['permission:listar-empleado']], function () {
@@ -94,6 +94,9 @@ Route::group(['middleware' => ['permission:listar-empleado']], function () {
     Route::get('/Persona/buscar/{id}', 'PersonaController@buscarId')->name('personaid');
 });
 
+Route::group(['middleware' => ['permission:guardar-empleado']], function () {
+    Route::get('Empleado', 'EmpleadoController@create')->name('create-empleado');
+});
 Route::group(['middleware' => ['permission:guardar-empleado']], function () {
     Route::post('Empleado', 'EmpleadoController@store')->name('guardar-empleado');
 });

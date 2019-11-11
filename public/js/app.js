@@ -1966,6 +1966,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("se monto el componente agregar empleado");
@@ -2218,6 +2222,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("se monto el componente agregar empleado");
@@ -2267,7 +2274,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.tipoEmpleados = res.data;
     }), axios.get('/TipoDocumento').then(function (res) {
       _this.tipoDocumentos = res.data;
-    }), axios.get('/Empleado').then(function (res) {
+    }), axios.get('/Empleado/index').then(function (res) {
       _this.empleados = res.data;
       console.log(_this.empleados); //this.empleados.persona=this.buscar2(this.empleado.per_id);
     });
@@ -38266,7 +38273,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "card" }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
       _c("div", { staticClass: "form-group row" }, [
         _c("div", { staticClass: "col-md-6" }, [
@@ -38785,7 +38794,18 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h4", { staticClass: "text-center mb-2 card-title" }, [
+        _vm._v("Agregar Empleado")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -38850,10 +38870,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card-body" }, [
+  return _c("div", { staticClass: "card" }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
       _c("table", { staticClass: "table text-center" }, [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _c(
           "tbody",
@@ -38877,6 +38899,16 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h4", { staticClass: "text-center mb-2 card-title" }, [
+        _vm._v("Lista de Empleados")
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

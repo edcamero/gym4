@@ -27,8 +27,16 @@
                                   </li>
                                 @endcan
 
+
+                                  @can('listar-empleado')
+                                <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-empleado') }}">
+                                    Consultar Empleado
+                                  </a>
+                                </li>
+                                  @endcan
+
                                 @can('guardar-empleado')
-                                <li class="nav-item"><a class="nav-link py-0" href="{{ route('guardar-empleado') }}">
+                                <li class="nav-item"><a class="nav-link py-0" href="{{ route('create-empleado') }}">
                                       Agregar Empleado
                                     </a> 
                                   </li>
@@ -42,10 +50,7 @@
                                 @endcan
 
                                 
-                                <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-empleado') }}">
-                                      Horarios Empleado
-                                    </a>
-                                  </li>
+                               
                                
 
                               </ul>

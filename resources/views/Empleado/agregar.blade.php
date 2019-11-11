@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div>
 
-                <listar-empleado/>
+                <crear-empleado/>
 
                 <div>
                 @if (session('status'))

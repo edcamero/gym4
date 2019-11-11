@@ -1,6 +1,10 @@
 
 <template>
-        <div>
+    <div class="card">
+
+        <div class="card-header">
+                <h4 class="text-center mb-2 card-title">Agregar Empleado</h4>
+        </div>
        <div class="card-body">
             <div class="form-group row">
             <!-- /.Div para el tipo de documento -->
