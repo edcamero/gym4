@@ -97,9 +97,22 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function show(Empleado $empleado)
+    public function show(Request $request,$id)
     {
-        //
+        if($request->ajax()){
+            $empleado=Empleado::find($id);
+            $empleado->persona;
+            $empleado->tipoEmpleado;
+            $empleado->persona->user;
+            $empleado->persona->tipoDocumento;
+
+            return $empleado;
+            
+        }else{
+            
+            return view('Empleado.show');
+        }
+        
     }
 
     /**

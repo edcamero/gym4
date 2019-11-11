@@ -12,6 +12,7 @@
                             <th>Apellido</th>
                             <th>Documento</th>
                             <th>Cargo</th>
+                            <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,6 +23,11 @@
                                 <td>{{empleado.persona.apellido}}</td>
                                 <td>{{empleado.persona.documento}}</td>
                                 <td>{{empleado.tipo_empleado.nombre}}</td>
+                                <td>
+                                    <button v-can="'listar-empleado'" class="btn btn-primary btn-sm" @click="ver(empleado)"><i class="far fa-eye"></i></button>
+                                    <button v-can="'editar-empleado'" class="btn btn-success btn-sm" @click="editarForm(empleado,index)"><i class="fas fa-pencil-alt"></i></button>
+                                    <button v-can="'eliminar-empleado'" class="btn btn-danger btn-sm" @click="eliminar(empleado,index)"><i class="far fa-trash-alt"></i></button>
+                                </td>
                             <!--En la primera columna mostramos el nombre-->
                         </tr>
                     </tbody>
@@ -101,6 +107,14 @@ created(){
        
         //this.empleados.persona=this.buscar2(this.empleado.per_id);
     })
+},
+methods:{
+
+    
+    ver(empleado){
+        location.href='/Empleado/'+empleado.id
+    }
+
 },
 }
 </script>

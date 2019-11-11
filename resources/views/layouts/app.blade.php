@@ -114,7 +114,7 @@
                 
             @endauth
             
-            <main class="col-9 container ">
+            <main class="col-9 container  ">
                 
                         @yield('content')
                 

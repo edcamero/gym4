@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $foto
  * @property int $user_id
  * @property User $user
+ * @property tipoDomento $tip_doc
  */
 class Persona extends Model
 {
@@ -40,6 +41,14 @@ class Persona extends Model
     
 
 
+    public function tipoDocumento()
+    {
+                return $this->belongsTo('App\Models\TipoDocumento', 'tipo_doc');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+
     public function user()
     {
                 return $this->belongsTo('App\Models\User', 'user_id');
@@ -47,5 +56,7 @@ class Persona extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+
+    
    
 }

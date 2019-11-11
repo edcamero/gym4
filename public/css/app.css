@@ -23,6 +23,16 @@ i {
   font-size: 1.5rem;
 }
 
+button i {
+  font-size: 0.8rem;
+  color: white;
+}
+
+button a i {
+  font-size: 0.8rem;
+  color: white;
+}
+
 .card {
   border-radius: 30px 30px 30px 30px !important;
   -moz-border-radius: 30px 30px 30px 30px !important;
