@@ -6,13 +6,17 @@ html,body{
     font-family: 'Numans', sans-serif;
     color:white;
     }
+
+    
     
     .container{
     height: 100%;
     align-content: center;
     }
     
-
+.active{
+  color: rgb(201, 201, 201);
+}
     i{
     font-size: 1.5rem;
        
@@ -129,3 +133,5 @@ html,body{
             .nav-link[data-toggle]:not(.collapsed):after {
                 content: "▴";
             }
+
+            

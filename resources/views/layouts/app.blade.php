@@ -22,7 +22,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.nombre') }}
@@ -68,11 +68,11 @@
                     
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto navbar-dark text-white">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link " href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
@@ -85,11 +85,11 @@
                                     {{ Auth::user()->nickname }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu nav-dark dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-dark" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Salir
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -105,10 +105,20 @@
         <div class="container-fluid">
           
         
-        <div class="row">
-            @include('layouts.menu-vertical')
-            <main class="py-4 col-md-9 ml-sm-auto col-lg-9 px-4">
-                @yield('content')
+        <div class="row justify-content-start">
+
+            @auth
+            
+                    @include('layouts.menu-vertical')
+            
+                
+            @endauth
+            
+            <main class="col-9 container ">
+                
+                        @yield('content')
+                
+                
             </main>
         </div>
       </div>
