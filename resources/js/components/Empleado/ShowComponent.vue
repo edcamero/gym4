@@ -80,6 +80,37 @@
                     <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Horario de {{empleado.persona.nombre}} {{empleado.persona.apellido}}</h5>
+                       <table class="table">
+                           <thead>
+                               <tr>
+                                  
+                                   <th>Domingo</th>
+                                   <th>Lunes </th>
+                                   <th>Martes </th>
+                                   <th>Miercoles</th>
+                                   <th>Jueves</th>
+                                   <th>Viernes</th>
+                                   <th>Sabado </th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr>
+                                   <td scope="row"></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                               </tr>
+                               <tr>
+                                   <td scope="row"></td>
+                                   <td></td>
+                                   <td></td>
+                               </tr>
+                           </tbody>
+                       </table>
+                       
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
