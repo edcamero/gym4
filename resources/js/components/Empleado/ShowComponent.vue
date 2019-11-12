@@ -69,21 +69,37 @@
             </div>
             <div class="form-row mt-2">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalHorario">
-                Ver Horario
-            </button>
+                     Ver Horario
+                 </button>
             </div>
             
         </div>
         
-                <div class="modal fade" id="ModalHorario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal" id="ModalHorario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Horario de {{empleado.persona.nombre}} {{empleado.persona.apellido}}</h5>
-                       <table class="table">
+                       
+                       
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <select class="form-control" v-model="horario.id">
+                                    <option disabled value="">Seleccione Horario</option>
+                                        <option v-for="item in horarios" v-bind:key="item.id" v-bind:value="item.id">{{ item.nombre }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+
+                        </div>
+                        
+                        <table class="table table-sm">
                            <thead>
-                               <tr>
-                                  
+                               <tr>                                  
                                    <th>Domingo</th>
                                    <th>Lunes </th>
                                    <th>Martes </th>
@@ -95,28 +111,17 @@
                            </thead>
                            <tbody>
                                <tr>
-                                   <td scope="row"></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
+                                   <td ><button class="btn btn-primary"></button></td>
+                                   <td><button class="btn btn-primary"></button></td>
+                                   <td><button class="btn btn-primary"></button></td>
+                                   <td><button class="btn btn-primary"></button></td>
+                                   <td><button class="btn btn-primary"></button></td>
+                                   <td><button class="btn btn-primary"></button></td>
+                                   <td><button class="btn btn-primary"></button></td>
                                </tr>
-                               <tr>
-                                   <td scope="row"></td>
-                                   <td></td>
-                                   <td></td>
-                               </tr>
+                               
                            </tbody>
                        </table>
-                       
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ...
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -133,6 +138,7 @@
 export default {
     data(){
         return {
+        horarios:[],
          empleado:{
                 persona:{
                     tipo_doc:'',
@@ -161,12 +167,19 @@ export default {
                 	nombre:''
                 },
             },
+            horario:{
+                id:'',
+                nombre:'',
+                ingreso:'',
+                salida:''
+            }
     }
     },
 
 
     created(){
     
+    this.hoy();
     axios.get(window.location).then(res=>{
         //console.log(res.data);
         this.empleado=res.data;
@@ -181,14 +194,41 @@ export default {
         
 
     }),
+    axios.get('/Horario')
+    .then(res=>{
+        this.horarios= res.data;
+        console.log(res.data)
+       
+        
+
+    }),
 
     axios.get('/TipoDocumento')
     .then(res=>{
         this.tipoDocumentos = res.data;
     });
+    },
+methods:{
+    diaSemana(dia,mes,anio){
+            
+            var dt = new Date('"'+mes+' '+dia+', '+anio+' 12:00:00"');
+            document.getElementById('div1').innerHTML = "Dia de la semana : " + dias[dt.getDay()];    
+        },
 
+        hoy(){
+            let dt = new Date();
+            var dias=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+            //return dt.getDay();   
+            console.log(dias[dt.getDay()]);
+            var fecha=dt.getDate()+2;
+            dt.setDate(fecha)
+           console.log(dias[dt.getDay()]);
+            console.log(dias[dt.getDay()+1]); 
 
-    
+        }
+
 }
+    
+
 }
 </script>

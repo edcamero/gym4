@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    EL gimnacio  gonorrea
+                    
                 </div>
             </div>
         </div>

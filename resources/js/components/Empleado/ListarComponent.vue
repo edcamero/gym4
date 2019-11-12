@@ -26,6 +26,7 @@
                                 <td>
                                     <button v-can="'listar-empleado'" class="btn btn-primary btn-sm" @click="ver(empleado)"><i class="far fa-eye"></i></button>
                                     <button v-can="'editar-empleado'" class="btn btn-success btn-sm" @click="editarForm(empleado,index)"><i class="fas fa-pencil-alt"></i></button>
+                                    <button v-can="'editar-empleado'" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ModalHorario"><i class="far fa-calendar-alt"></i></button>
                                     <button v-can="'eliminar-empleado'" class="btn btn-danger btn-sm" @click="eliminar(empleado,index)"><i class="far fa-trash-alt"></i></button>
                                 </td>
                             <!--En la primera columna mostramos el nombre-->
@@ -33,6 +34,56 @@
                     </tbody>
                 </table>
         </div>
+
+        <div class="modal" id="ModalHorario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Horario del Empleado</h5>
+                       
+                       
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            
+                        </div>
+                        <table class="table table-sm">
+                           <thead>
+                               <tr>                                  
+                                   <th>Domingo</th>
+                                   <th>Lunes </th>
+                                   <th>Martes </th>
+                                   <th>Miercoles</th>
+                                   <th>Jueves</th>
+                                   <th>Viernes</th>
+                                   <th>Sabado </th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr>
+                                   <td ></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                               </tr>
+                               
+                           </tbody>
+                       </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
     </div>
 </template>
 
@@ -44,6 +95,13 @@ export default {
     },
     data(){
         return{
+            horarios:[],
+            horario:{
+                id:'',
+                nombre:'',
+                ingreso:'',
+                salida:'',
+            },
             tipoEmpleados:[],
             tipoDocumentos:[],
 
@@ -92,6 +150,12 @@ created(){
     axios.get('/TipoEmpleado')
     .then(res=>{
         this.tipoEmpleados = res.data;
+
+    }),
+    axios.get('/Horario')
+    .then(res=>{
+        this.horarios = res.data;
+        console.log(res.data[0]);
 
     }),
 

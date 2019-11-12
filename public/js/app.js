@@ -2231,12 +2231,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("se monto el componente agregar empleado");
   },
   data: function data() {
     return {
+      horarios: [],
+      horario: {
+        id: '',
+        nombre: '',
+        ingreso: '',
+        salida: ''
+      },
       tipoEmpleados: [],
       tipoDocumentos: [],
       empleados: [],
@@ -2278,6 +2339,9 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/TipoEmpleado').then(function (res) {
       _this.tipoEmpleados = res.data;
+    }), axios.get('/Horario').then(function (res) {
+      _this.horarios = res.data;
+      console.log(res.data[0]);
     }), axios.get('/TipoDocumento').then(function (res) {
       _this.tipoDocumentos = res.data;
     }), axios.get('/Empleado/index').then(function (res) {
@@ -2403,9 +2467,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      horarios: [],
       empleado: {
         persona: {
           tipo_doc: '',
@@ -2432,20 +2533,46 @@ __webpack_require__.r(__webpack_exports__);
           id: '',
           nombre: ''
         }
+      },
+      horario: {
+        id: '',
+        nombre: '',
+        ingreso: '',
+        salida: ''
       }
     };
   },
   created: function created() {
     var _this = this;
 
+    this.hoy();
     axios.get(window.location).then(function (res) {
       //console.log(res.data);
       _this.empleado = res.data;
     }), axios.get('/TipoEmpleado').then(function (res) {
       _this.tipoEmpleados = res.data;
+    }), axios.get('/Horario').then(function (res) {
+      _this.horarios = res.data;
+      console.log(res.data);
     }), axios.get('/TipoDocumento').then(function (res) {
       _this.tipoDocumentos = res.data;
     });
+  },
+  methods: {
+    diaSemana: function diaSemana(dia, mes, anio) {
+      var dt = new Date('"' + mes + ' ' + dia + ', ' + anio + ' 12:00:00"');
+      document.getElementById('div1').innerHTML = "Dia de la semana : " + dias[dt.getDay()];
+    },
+    hoy: function hoy() {
+      var dt = new Date();
+      var dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]; //return dt.getDay();   
+
+      console.log(dias[dt.getDay()]);
+      var fecha = dt.getDate() + 2;
+      dt.setDate(fecha);
+      console.log(dias[dt.getDay()]);
+      console.log(dias[dt.getDay() + 1]);
+    }
   }
 });
 
@@ -39109,6 +39236,26 @@ var render = function() {
                       {
                         name: "can",
                         rawName: "v-can",
+                        value: "editar-empleado",
+                        expression: "'editar-empleado'"
+                      }
+                    ],
+                    staticClass: "btn btn-success btn-sm",
+                    attrs: {
+                      "data-toggle": "modal",
+                      "data-target": "#ModalHorario"
+                    }
+                  },
+                  [_c("i", { staticClass: "far fa-calendar-alt" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    directives: [
+                      {
+                        name: "can",
+                        rawName: "v-can",
                         value: "eliminar-empleado",
                         expression: "'eliminar-empleado'"
                       }
@@ -39128,7 +39275,88 @@ var render = function() {
           0
         )
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal",
+        attrs: {
+          id: "ModalHorario",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: this.horario,
+                          expression: "this.horario"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            this,
+                            "horario",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { disabled: "", value: "" } }, [
+                        _vm._v("Seleccione Horario")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.horarios, function(item) {
+                        return _c(
+                          "option",
+                          { key: item.id, domProps: { value: item.id } },
+                          [_vm._v(_vm._s(item.nombre))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(3)
+              ]),
+              _vm._v(" "),
+              _vm._m(4)
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -39160,6 +39388,94 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Opciones")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Horario del Empleado")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("table", { staticClass: "table table-sm" }, [
+      _c("thead", [
+        _c("tr", [
+          _c("th", [_vm._v("Domingo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Lunes ")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Martes ")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Miercoles")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Jueves")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Viernes")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Sabado ")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tbody", [
+        _c("tr", [
+          _c("td"),
+          _vm._v(" "),
+          _c("td"),
+          _vm._v(" "),
+          _c("td"),
+          _vm._v(" "),
+          _c("td"),
+          _vm._v(" "),
+          _c("td"),
+          _vm._v(" "),
+          _c("td"),
+          _vm._v(" "),
+          _c("td")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Cerrar")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("Guardar")]
+      )
     ])
   }
 ]
@@ -39316,7 +39632,7 @@ var render = function() {
     _c(
       "div",
       {
-        staticClass: "modal fade",
+        staticClass: "modal",
         attrs: {
           id: "ModalHorario",
           tabindex: "-1",
@@ -39352,10 +39668,62 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _vm._v("\n                    ...\n                ")
+                _c("div", [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.horario.id,
+                          expression: "horario.id"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.horario,
+                            "id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { disabled: "", value: "" } }, [
+                        _vm._v("Seleccione Horario")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.horarios, function(item) {
+                        return _c(
+                          "option",
+                          { key: item.id, domProps: { value: item.id } },
+                          [_vm._v(_vm._s(item.nombre))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }),
+                _vm._v(" "),
+                _vm._m(15)
               ]),
               _vm._v(" "),
-              _vm._m(15)
+              _vm._m(16)
             ])
           ]
         )
@@ -39459,7 +39827,7 @@ var staticRenderFns = [
             "data-target": "#ModalHorario"
           }
         },
-        [_vm._v("\n            Ver Horario\n        ")]
+        [_vm._v("\n                 Ver Horario\n             ")]
       )
     ])
   },
@@ -39479,6 +39847,48 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("table", { staticClass: "table table-sm" }, [
+      _c("thead", [
+        _c("tr", [
+          _c("th", [_vm._v("Domingo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Lunes ")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Martes ")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Miercoles")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Jueves")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Viernes")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Sabado ")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tbody", [
+        _c("tr", [
+          _c("td", [_c("button", { staticClass: "btn btn-primary" })]),
+          _vm._v(" "),
+          _c("td", [_c("button", { staticClass: "btn btn-primary" })]),
+          _vm._v(" "),
+          _c("td", [_c("button", { staticClass: "btn btn-primary" })]),
+          _vm._v(" "),
+          _c("td", [_c("button", { staticClass: "btn btn-primary" })]),
+          _vm._v(" "),
+          _c("td", [_c("button", { staticClass: "btn btn-primary" })]),
+          _vm._v(" "),
+          _c("td", [_c("button", { staticClass: "btn btn-primary" })]),
+          _vm._v(" "),
+          _c("td", [_c("button", { staticClass: "btn btn-primary" })])
+        ])
+      ])
+    ])
   },
   function() {
     var _vm = this
