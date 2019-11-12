@@ -100,6 +100,7 @@ class EmpleadoController extends Controller
     public function show(Request $request,$id)
     {
         if($request->ajax()){
+
             $empleado=Empleado::find($id);
             $empleado->persona;
             $empleado->tipoEmpleado;
@@ -146,7 +147,6 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-
         $e = Empleado::find($id);
         $e->delete();
         return $e;

@@ -177,8 +177,17 @@ methods:{
     
     ver(empleado){
         location.href='/Empleado/'+empleado.id
-    }
+    },
 
+    eliminar(empleado,index){
+                const confirmacion = confirm(`Confirma Eliminar empleado: ${empleado.id}`);
+                    if(confirmacion){
+                            axios.delete('/Empleado/'+empleado.id)
+                            .then(()=>{
+                                    this.empleados.splice(index,1);
+                            });
+                        }
+        },
 },
 }
 </script>

@@ -2349,6 +2349,17 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     ver: function ver(empleado) {
       location.href = '/Empleado/' + empleado.id;
+    },
+    eliminar: function eliminar(empleado, index) {
+      var _this2 = this;
+
+      var confirmacion = confirm("Confirma Eliminar empleado: ".concat(empleado.id));
+
+      if (confirmacion) {
+        axios["delete"]('/Empleado/' + empleado.id).then(function () {
+          _this2.empleados.splice(index, 1);
+        });
+      }
     }
   }
 });
@@ -54123,8 +54134,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\gym4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
