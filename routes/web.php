@@ -98,6 +98,10 @@ Route::group(['middleware' => ['permission:listar-empleado']], function () {
     Route::get('/Empleado/{id}', 'EmpleadoController@show')->name('ver-empleado');
 });
 
+Route::group(['middleware' => ['permission:listar-empleado']], function () {
+    Route::get('/Empleado/{id}', 'EmpleadoController@cargar')->name('cargar-empleado');
+});
+
 Route::group(['middleware' => ['permission:guardar-empleado']], function () {
     Route::get('Empleado', 'EmpleadoController@create')->name('create-empleado');
 });

@@ -28,6 +28,7 @@ Vue.component('horario', require('./components/HorarioComponent').default);
 Vue.component('listar-empleado', require('./components/Empleado/ListarComponent').default);
 Vue.component('crear-empleado', require('./components/Empleado/CreateComponent').default);
 Vue.component('show-empleado', require('./components/Empleado/ShowComponent').default);
+Vue.component('cargar-empleado', require('./components/Empleado/editarComponent').default);
 Vue.component('horario-empleado', require('./components/Empleado/HorarioComponent').default);
 Vue.component('tipo-documento', require('./components/TipoDocumento/TipoDocumentoComponent').default);
 

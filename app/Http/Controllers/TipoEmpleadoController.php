@@ -40,8 +40,8 @@ class TipoEmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        $te=new TipoEmpleado();
-        $te->nombre=$request->nombre;
+        $te = new TipoEmpleado();
+        $te->nombre = $request->nombre;
         $te->save();
         return $te;
     }
@@ -75,7 +75,7 @@ class TipoEmpleadoController extends Controller
      * @param  \App\Models\TipoEmpleado  $tipoEmpleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
         $te = TipoEmpleado::find($id);
         $te->nombre = $request->nombre;
@@ -91,8 +91,7 @@ class TipoEmpleadoController extends Controller
      */
     public function destroy($id)
     {  
-        $te=TipoEmpleado::find($id);
-        
+        $te = TipoEmpleado::find($id);
         $te->delete();
         return $te;
     }

@@ -101,7 +101,8 @@ class EmpleadoController extends Controller
     {
         if($request->ajax()){
 
-            $empleado=Empleado::find($id);
+            $empleado = Empleado::find($id);
+
             $empleado->persona;
             $empleado->tipoEmpleado;
             $empleado->persona->user;
@@ -110,11 +111,33 @@ class EmpleadoController extends Controller
             return $empleado;
             
         }else{
-            
+
             return view('Empleado.show');
+
         }
-        
     }
+
+
+    public function cargar(Request $request, $id)
+    {
+        if($request->ajax()){
+
+            $empleado = Empleado::find($id);
+
+            $empleado->persona;
+            $empleado->tipoEmpleado;
+            $empleado->persona->user;
+            $empleado->persona->tipoDocumento;
+
+            return $empleado;
+            
+        }else{
+
+            return view('Empleado.cargar');
+
+        }
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -134,9 +157,28 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleado $empleado)
+    public function update($id, Request $request, Empleado $empleado)
     {
-        //
+        $persona             = Persona::find($empleado->persona->id);
+        /*
+        $persona->tipo_doc   = $request->tipo_doc; 
+        $persona->documento  = $request->documentoc; 
+        $persona->nombre     = $request->nombre; 
+        $persona->apellido   = $request->apellido; 
+        $persona->fecha_nac  = $request->fecha_nac; 
+        
+        //$persona->sexo          = $request->sexo; 
+        $persona->telefono   = $request->telefono; 
+        $persona->direccion  = $request->direccion; 
+        $persona->altura     = $request->altura; 
+        $persona->save();
+
+        $empleado = Empleado::find($empleado->id);
+        $empleado->tip_emp_id = $request->tip_emp_id;
+        $empleado->save();
+        */
+        
+        return "aaa";
     }
 
     /**

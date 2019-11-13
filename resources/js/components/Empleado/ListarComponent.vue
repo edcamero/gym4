@@ -24,9 +24,12 @@
                                 <td>{{empleado.persona.documento}}</td>
                                 <td>{{empleado.tipo_empleado.nombre}}</td>
                                 <td>
-                                    <button v-can="'listar-empleado'" class="btn btn-primary btn-sm" @click="ver(empleado)"><i class="far fa-eye"></i></button>
-                                    <button v-can="'editar-empleado'" class="btn btn-success btn-sm" @click="editarForm(empleado,index)"><i class="fas fa-pencil-alt"></i></button>
+                                    <button v-can="'listar-empleado'" class="btn btn-primary btn-sm" @click = "ver(empleado)"><i class="far fa-eye"></i></button>
+
+                                    <button v-can="'editar-empleado'" class="btn btn-success btn-sm" @click = "cargar(empleado)"><i class="fas fa-pencil-alt"></i></button>
+
                                     <button v-can="'editar-empleado'" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ModalHorario"><i class="far fa-calendar-alt"></i></button>
+
                                     <button v-can="'eliminar-empleado'" class="btn btn-danger btn-sm" @click="eliminar(empleado,index)"><i class="far fa-trash-alt"></i></button>
                                 </td>
                             <!--En la primera columna mostramos el nombre-->
@@ -176,7 +179,11 @@ methods:{
 
     
     ver(empleado){
-        location.href='/Empleado/'+empleado.id
+        location.href = '/Empleado/' + empleado.id
+    },
+
+    cargar(empleado){
+        location.href = '/Empleado/' + empleado.id
     },
 
     eliminar(empleado,index){
