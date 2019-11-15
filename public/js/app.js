@@ -2780,6 +2780,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       var params = {
+        emp_id: empleado.id,
+        per_id: empleado.persona.id,
         tipo_doc: empleado.persona.tipo_doc,
         documento: empleado.persona.documento,
         nombre: empleado.persona.nombre,
@@ -2793,7 +2795,7 @@ __webpack_require__.r(__webpack_exports__);
         tip_emp_id: empleado.tipo_emple
       };
       console.log(empleado);
-      axios.put('/Empleado/' + empleado.id, params, empleado).then(function (res) {
+      axios.put('/Empleado/' + empleado.id, params).then(function (res) {
         _this3.empleado.persona.tipo_doc = '';
         _this3.empleado.persona.documento = '';
         _this3.empleado.persona.nombre = '';

@@ -67,7 +67,7 @@ class EmpleadoController extends Controller
         $user->save();
         
         $persona            = new Persona();
-        $persona->tipo_doc   = $request->tipo_doc;
+        $persona->tipo_doc  = $request->tipo_doc;
         $persona->documento = $request->documento;
         $persona->nombre    = $request->nombre;
         $persona->apellido  = $request->apellido;
@@ -157,28 +157,28 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request, Empleado $empleado)
+    public function update($id, Request $request)
     {
-        $persona             = Persona::find($empleado->persona->id);
-        /*
-        $persona->tipo_doc   = $request->tipo_doc; 
-        $persona->documento  = $request->documentoc; 
-        $persona->nombre     = $request->nombre; 
-        $persona->apellido   = $request->apellido; 
-        $persona->fecha_nac  = $request->fecha_nac; 
+        $persona             = Persona::find($request->per_id);
+
+        $persona->tipo_doc  = $request->tipo_doc;
+        $persona->documento = $request->documento;
+        $persona->nombre    = $request->nombre;
+        $persona->apellido  = $request->apellido;
+        $persona->fecha_nac = $request->fecha_nac; 
         
         //$persona->sexo          = $request->sexo; 
-        $persona->telefono   = $request->telefono; 
-        $persona->direccion  = $request->direccion; 
-        $persona->altura     = $request->altura; 
+        $persona->telefono  = $request->telefono;
+        $persona->direccion = $request->direccion;
+        $persona->altura    = (int)$request->altura;
         $persona->save();
-
-        $empleado = Empleado::find($empleado->id);
+/*
+        $empleado = Empleado::find($request->emp_id);
         $empleado->tip_emp_id = $request->tip_emp_id;
         $empleado->save();
-        */
+*/   
         
-        return "aaa";
+        return $persona;
     }
 
     /**

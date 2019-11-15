@@ -191,6 +191,8 @@ methods: {
         editar(empleado){
             const params = {
 
+                emp_id:empleado.id,
+                per_id:empleado.persona.id,
                 tipo_doc:empleado.persona.tipo_doc,
                 documento:empleado.persona.documento,
                 nombre:empleado.persona.nombre,
@@ -205,7 +207,7 @@ methods: {
             }
 
             console.log(empleado);
-                axios.put('/Empleado/'+empleado.id, params, empleado)
+                axios.put('/Empleado/'+empleado.id, params)
                 .then(res=>{
 
                      this.empleado.persona.tipo_doc            = '';
