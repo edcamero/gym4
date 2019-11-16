@@ -13,7 +13,7 @@
                             
                             <div class="col-4  form-group">
                                 <select class=" form-control" v-model="horario.ingreso" >
-                                <option v-for="item in horas" v-bind:key = "item" >{{ item }}</option>
+                                    <option v-for="item in horas" v-bind:key = "item" >{{ item }}</option>
                                 </select>
                             </div>
 

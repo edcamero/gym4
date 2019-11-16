@@ -98,15 +98,22 @@ Route::group(['middleware' => ['permission:listar-empleado']], function () {
     Route::get('/Empleado/{id}', 'EmpleadoController@show')->name('ver-empleado');
 });
 
+Route::group(['middleware' => ['permission:listar-empleado']], function () {
+    Route::get('/Empleado/{id}', 'EmpleadoController@cargar')->name('cargar-empleado');
+});
+
 Route::group(['middleware' => ['permission:guardar-empleado']], function () {
     Route::get('Empleado', 'EmpleadoController@create')->name('create-empleado');
 });
+
 Route::group(['middleware' => ['permission:guardar-empleado']], function () {
     Route::post('Empleado', 'EmpleadoController@store')->name('guardar-empleado');
 });
+
 Route::group(['middleware' => ['permission:editar-empleado']], function () {
     Route::put('/Empleado/{id}', 'EmpleadoController@update')->name('editar-empleado');
 });
+
 Route::group(['middleware' => ['permission:eliminar-empleado']], function () {
     Route::delete('/Empleado/{id}', 'EmpleadoController@destroy')->name('eliminar-empleado');
 });
@@ -138,7 +145,14 @@ Route::group(['middleware' => ['permission:eliminar-tipo-documento']],function()
 
 
 
+
+
 //Permisos y rutas definidos para Tipo-Documento
+
+
+
+
+//permisos y rutas para los roles
 
 
 
@@ -150,20 +164,32 @@ Route::group(['middleware' => ['permission:eliminar-tipo-documento']],function()
 Route::middleware(['Auth'])->group(function(){
 
     	//Roles
-	Route::post('roles/store', 'RoleController@store')->name('roles.store')
-    ->middleware('permission:roles.create');
-        Route::get('roles', 'RoleController@index')->name('roles.index')
-            ->middleware('permission:roles.index');
-        Route::get('roles/create', 'RoleController@create')->name('roles.create')
-            ->middleware('permission:roles.create');
-        Route::put('roles/{role}', 'RoleController@update')->name('roles.update')
-            ->middleware('permission:roles.edit');
-        Route::get('roles/{role}', 'RoleController@show')->name('roles.show')
-            ->middleware('permission:roles.show');
-        Route::delete('roles/{role}', 'RoleController@destroy')->name('roles.destroy')
-            ->middleware('permission:roles.destroy');
-        Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')
-            ->middleware('permission:roles.edit');
+	Route::post('Role', 'RoleController@store')->name('guardar-role')
+    ->middleware('permission:guardar-role');
+
+    Route::get('Role', 'RoleController@index')->name('listar-role')
+            ->middleware('permission:listar-role');
+
+    Route::get('Role', 'RoleController@create')->name('crear-role')
+           ->middleware('permission:guardar-role');
+
+    Route::put('Role/{id}', 'RoleController@update')->name('editar-role')
+            ->middleware('permission:editar-role');
+
+    Route::get('roles/{role}', 'RoleController@show')->name('ver-role')
+            ->middleware('permission:ver-role');
+
+    Route::delete('Role/{id}', 'RoleController@destroy')->name('eliminar-role')
+            ->middleware('permission:eliminar-role');
+
+            
+
+    //Route::get('roles/{role}/edit', 'RoleController@edit')->name('editar-role')
+    //        ->middleware('permission:editar-role');
+
+
+
+
         //Users
         Route::get('users', 'UserController@index')->name('users.index')
             ->middleware('permission:users.index');

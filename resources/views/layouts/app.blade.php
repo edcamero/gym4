@@ -40,11 +40,31 @@
                     <ul  class="navbar-nav mr-auto">
                     
                     
-                    
 
-                   
+                    @can('listar-horario')
+                        <a class="navbar-brand" href="{{ route('listar-horario') }}">
+                            Horario
+                        </a> 
+                    @endcan
 
-                    
+                    @can('listar-tipo-documento')
+                        <a class="navbar-brand" href="{{ route('listar-tipo-documento') }}">
+                            Tipo Documento
+                        </a> 
+                    @endcan
+
+                    @can('listar-empleado')
+                        <a class="navbar-brand" href="{{ route('listar-empleado') }}">
+                            empleados
+                        </a> 
+                    @endcan
+
+                    @can('guardar-role')
+                        <li class="nav-item"><a class="nav-link py-0" href="{{ route('crear-role') }}">
+                            crear role
+                            </a> 
+                        </li>
+                    @endcan
                     
                     </ul>
                     

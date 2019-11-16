@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TipoEmpleado;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class TipoEmpleadoController extends Controller
+
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,14 +15,10 @@ class TipoEmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        if($request->ajax()){
-            return TipoEmpleado::all();
-        }else{
-            $tipoEmpl = TipoEmpleado::paginate();
-            return view('TipoEmpleado.index', compact('tipoEmpl'));
-        }
+    { 
+        
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +27,9 @@ class TipoEmpleadoController extends Controller
      */
     public function create()
     {
-        //
+        //return view('Role.agregar');
+        //return view('Role.crear');
+        return "string";
     }
 
     /**
@@ -38,32 +38,42 @@ class TipoEmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$permisos)
     {
-        $te = new TipoEmpleado();
-        $te->nombre = $request->nombre;
-        $te->save();
-        return $te;
+        /*
+        $role = new Role();
+        $role->name = $request->name;
+        $role->guard_name = 'wed';
+        $role->save();
+
+        foreach ($permisos as $p){
+                $role->givePermissionTo($p);
+            }
+
+            return $role;
+            */
     }
+    
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TipoEmpleado  $tipoEmpleado
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function show(TipoEmpleado $tipoEmpleado)
+    public function show(Request $request,$id)
     {
-        //
+
     }
+
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TipoEmpleado  $tipoEmpleado
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoEmpleado $tipoEmpleado)
+    public function edit(Empleado $empleado)
     {
         //
     }
@@ -72,27 +82,24 @@ class TipoEmpleadoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TipoEmpleado  $tipoEmpleado
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
     public function update($id, Request $request)
     {
-        $te = TipoEmpleado::find($id);
-        $te->nombre = $request->nombre;
-        $te->save();
-        return $te;
+       
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TipoEmpleado  $tipoEmpleado
+     * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {  
-        $te = TipoEmpleado::find($id);
-        $te->delete();
-        return $te;
+    {
+        
     }
+
+    
 }

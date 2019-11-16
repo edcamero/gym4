@@ -123,15 +123,15 @@ created(){
 
 
         editar(tc){
-            const params={
+            const params = {
                 nombre:tc.nombre,
                 descuento:tc.descuento
                 
             }
             console.log(tc);
-                axios.put('/TipoEmpleado/'+tc.id,tc)
+                axios.put('/TipoEmpleado/' + tc.id, tc)
                 .then(res=>{
-                     const index=this.tipoEmpleados.findIndex(buscar=>buscar.id==tc.id);
+                     const index = this.tipoEmpleados.findIndex(buscar=>buscar.id==tc.id);
                      console.log(res.data.status);
                      this.tipoEmpleados[index].nombre=tc.nombre;
                      this.tipoEmpleados[index].descuento=tc.descuento;

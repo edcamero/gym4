@@ -3,70 +3,69 @@
         <div class="card-header text-center">
             <h4>Datos de Empleado </h4>
         </div>
+
         <div class="card-body">
             <div class="form-row border justify-content-between px-2">
-                
                 <label ><strong>Identificacion de Empleado:</strong></label>
                 <label >{{this.empleado.id}}</label>
             </div>
+
             <div class="form-row border justify-content-between px-2">
-                
                 <label ><strong>Nombre de usuario:</strong></label>
                 <label >{{this.empleado.persona.user.nickname}}</label>
             </div>
+
             <div class="form-row border justify-content-between px-2">
-                
                 <label ><strong>Tipo de Documento:</strong></label>
                 <label >{{this.empleado.persona.tipo_documento.nombre}}</label>
             </div>
+
             <div class="form-row border justify-content-between px-2">
-                
-                
                 <label ><strong>Numero de Documento:</strong></label>                
                 <label >{{this.empleado.persona.documento}}</label>
             </div>
+
             <div class="form-row border justify-content-between px-2">
-                
                 <label ><strong>Nombre:</strong></label>
                 <label >{{this.empleado.persona.nombre}}</label>
-                
             </div>
+
             <div class="form-row border justify-content-between px-2">
                 
                 <label ><strong>Apellido:</strong></label>
                 <label >{{this.empleado.persona.apellido}}</label>
-                
             </div>
+
             <div class="form-row border justify-content-between px-2">
                 <label ><strong>Tipo Empleado:</strong></label>
                 <label >{{this.empleado.tipo_empleado.nombre}}</label>
-                
             </div>
+
             <div class="form-row border justify-content-between px-2">
                 <label ><strong>Fecha de Nacimiento:</strong></label>
                 <label >{{this.empleado.persona.fecha_nac}}</label>
-                
             </div>
+
             <div class="form-row border justify-content-between px-2">
                 <label ><strong>Email:</strong></label>
                 <label >{{this.empleado.persona.user.email}}</label>
-                
             </div>
+
             <div class="form-row border justify-content-between px-2">
                 <label ><strong>Telefono:</strong></label>
                 <label >{{this.empleado.persona.telefono}}</label>
-                
             </div>
+
             <div class="form-row border justify-content-between px-2">
                 <label ><strong>Direccion:</strong></label>
                 <label >{{this.empleado.persona.direccion}}</label>
-                
             </div>
+
             <div class="form-row border justify-content-between px-2">
                 <label ><strong>Sexo:</strong></label>
                 <label >{{this.empleado.persona.sexo}}</label>
-                
             </div>
+
             <div class="form-row mt-2">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalHorario">
                      Ver Horario
@@ -182,10 +181,8 @@ export default {
     this.hoy();
     axios.get(window.location).then(res=>{
         //console.log(res.data);
-        this.empleado=res.data;
-       
-       
-        
+        this.empleado = res.data;
+    
     }),
 
     axios.get('/TipoEmpleado')
