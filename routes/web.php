@@ -162,6 +162,11 @@ Route::group(['middleware' => ['permission:guardar-role']], function () {
 });
 
 
+Route::group(['middleware' => ['permission:listar-permisos']], function () {
+    Route::get('permission', 'PermissionController@getModulos')->name('listar-permisos');
+});
+
+
 
 
 
@@ -176,8 +181,7 @@ Route::middleware(['Auth'])->group(function(){
     //Route::get('roles/{role}/edit', 'RoleController@edit')->name('editar-role')
     //        ->middleware('permission:editar-role');
 
-
-
+    
 
         //Users
         Route::get('users', 'UserController@index')->name('users.index')
