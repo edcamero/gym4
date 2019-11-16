@@ -28,8 +28,8 @@ class RoleController extends Controller
     public function create()
     {
         //return view('Role.agregar');
-        //return view('Role.crear');
-        return "string";
+        return view('Role.crear');
+       
     }
 
     /**
@@ -40,6 +40,8 @@ class RoleController extends Controller
      */
     public function store(Request $request,$permisos)
     {
+        
+        $role = Role::create(['name' => $request->name]);
         /*
         $role = new Role();
         $role->name = $request->name;
@@ -47,11 +49,11 @@ class RoleController extends Controller
         $role->save();
 
         foreach ($permisos as $p){
-                $role->givePermissionTo($p);
-            }
-
-            return $role;
-            */
+                $role->givePermissionTo($p);*/
+        
+        $role->givePermissionTo($permisos);
+        return $role;
+            
     }
     
 
