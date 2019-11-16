@@ -12,7 +12,7 @@
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/bootstrap.css" rel="stylesheet"> 
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
 <link href="css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
@@ -148,7 +148,7 @@ Transformar la vida de nuestros clientes a través del entrenamiento físico, ha
                                       
 		          </div>
 		   	<div class="clearfix"> </div>
->>>>>>> 89e8e8dab113054cc124e1c527ed08eb14a44d92
+
     </div>
 </div>
  	<!-- //about -->
@@ -178,10 +178,10 @@ Transformar la vida de nuestros clientes a través del entrenamiento físico, ha
 						<div class="col-md-6 team-img-w3-agile">
 						</div>
 						<div class="col-md-6 team-Info-agileits">
-							<h4>Gregory James</h4>
+							<h4>Enyerson Camero</h4>
 							<span>Gerente
 </span>
-							<p>El encargado de dirigir GYM FIT proactivo, serio e integro.
+							<p>Programador Principal, serio e integro.
 						<div class="social-bnr-agileits footer-icons-agileinfo">
 							<ul class="social-icons3">
 								<li><a href="#" class="fa fa-facebook icon-border facebook"> </a></li>

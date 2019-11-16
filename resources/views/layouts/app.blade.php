@@ -59,12 +59,7 @@
                         </a> 
                     @endcan
 
-                    @can('guardar-role')
-                        <a class="nav-link py-0" href="{{ route('crear-role') }}">
-                            crear role
-                            </a> 
-                        </li>
-                    @endcan
+                    
                     
                     </ul>
                     
