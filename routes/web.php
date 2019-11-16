@@ -166,6 +166,9 @@ Route::group(['middleware' => ['permission:listar-permisos']], function () {
     Route::get('permission', 'PermissionController@getModulos')->name('listar-permisos');
 });
 
+ Route::get('/permission/check', 'PermissionController@check')->name('listar-permisos');
+
+
 
 
 

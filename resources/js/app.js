@@ -69,7 +69,7 @@ const app = new Vue({
     methods: {
         getPermisos:function(){
             
-            axios.get('/permission')
+            axios.get('/permission/check')
             .then(res=>{
                //this.permisos=res.data;
                Vue.prototype.$permisos =res.data;

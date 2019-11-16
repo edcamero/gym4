@@ -40,11 +40,7 @@
                     <label ><strong>Lista de permisos:</strong></label>
                 </div>
 
-                <div class="col">
-                        <SELECT v-model="e" class="form-control " autocomplete="off">
-                            <option v-for = "item in modulos" v-bind:key="item.key" data-toggle="modal" data-target="#Permisos+'item.id'">{{ item}}</option>
-                        </SELECT>
-                </div>
+                
             <div class="container-fluid" v-for="item in  modulos" v-bind:key="item.key">
                     <div class="form-group">
                         <button class="form-control btn btn-primary" type="button" data-toggle="collapse" :data-target="'#'+item" aria-expanded="false" v-bind:aria-controls="item">{{item}}</button>
@@ -53,7 +49,7 @@
                             <div class="card card-body">
                                 <div class="row  form-line">
                                     <div class="col-3"  v-for="permiso in mpermisos" v-bind:key="permiso"> 
-                                                <input type="checkbox" id="checkbox" value = "">
+                                                <input type="checkbox" id="checkbox" v-model="selecionados" :value = "permiso+'-'+item">
                                                 <label for="checkbox">{{permiso}}</label>
                                         </div> 
                                 </div>
@@ -62,6 +58,12 @@
             </div>
             
 
+
+           <div class="container-fluid">
+               <div class="form-group">
+                   <button @click="guardar()"  class="btn btn-success">Guardar Rol</button>
+               </div>
+           </div>
                 
 
          </div>
@@ -83,20 +85,11 @@ export default {
         return{
             role:{
                 nombre:'',
+                permisos:[]
             },
             e:'',
-
+            selecionados:[],
             permisos:[],
-            descripciones:[
-                {id:0,text:'Seleccione'},
-                {id:1,text:'Permisos de cliente'},
-                {id:2,text:'Permisos de empleado'},
-                {id:3,text:'Permisos de tipo de clienetes'},
-                {id:4,text:'Permisos de tipo de empleados'},
-                {id:5,text:'Permisos de los roles'},
-                {id:6,text:'Permisos de horarios'},
-                {id:7,text:'Permisos de tipos de documentos'},
-            ],
             modulos:[],
             mpermisos:['listar','guardar','editar','eliminar']
         }
@@ -107,6 +100,11 @@ export default {
    
 
 created(){
+    const params={
+        nombre:this.role.nombre,
+        permisos:this.selecionados
+        }
+        
     axios.get('/permission')
     .then(res=>{
         this.modulos = res.data;
@@ -122,6 +120,14 @@ created(){
 
 methods: {
 
+guardar(){
+    const params={nombre:this.role.nombre,permisos:this.selecionados}
+    axios.post('/Role',params)
+                .then(res=>{
+                   // this.horarios.push(res.data)
+                });
+    console.log(this.selecionados)
+}
         
 
     },

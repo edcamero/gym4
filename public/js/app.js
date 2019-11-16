@@ -3128,6 +3128,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("se monto el componente agregar empleado");
@@ -3135,35 +3137,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       role: {
-        nombre: ''
+        nombre: '',
+        permisos: []
       },
       e: '',
+      selecionados: [],
       permisos: [],
-      descripciones: [{
-        id: 0,
-        text: 'Seleccione'
-      }, {
-        id: 1,
-        text: 'Permisos de cliente'
-      }, {
-        id: 2,
-        text: 'Permisos de empleado'
-      }, {
-        id: 3,
-        text: 'Permisos de tipo de clienetes'
-      }, {
-        id: 4,
-        text: 'Permisos de tipo de empleados'
-      }, {
-        id: 5,
-        text: 'Permisos de los roles'
-      }, {
-        id: 6,
-        text: 'Permisos de horarios'
-      }, {
-        id: 7,
-        text: 'Permisos de tipos de documentos'
-      }],
       modulos: [],
       mpermisos: ['listar', 'guardar', 'editar', 'eliminar']
     };
@@ -3171,12 +3150,26 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    var params = {
+      nombre: this.role.nombre,
+      permisos: this.selecionados
+    };
     axios.get('/permission').then(function (res) {
       _this.modulos = res.data;
       console.log(res.data);
     });
   },
-  methods: {}
+  methods: {
+    guardar: function guardar() {
+      var params = {
+        nombre: this.role.nombre,
+        permisos: this.selecionados
+      };
+      axios.post('/Role', params).then(function (res) {// this.horarios.push(res.data)
+      });
+      console.log(this.selecionados);
+    }
+  }
 });
 
 /***/ }),
@@ -41192,42 +41185,6 @@ var render = function() {
           _vm._v(" "),
           _vm._m(3),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col" },
-            [
-              _c(
-                "SELECT",
-                {
-                  staticClass: "form-control ",
-                  attrs: { autocomplete: "off" },
-                  model: {
-                    value: _vm.e,
-                    callback: function($$v) {
-                      _vm.e = $$v
-                    },
-                    expression: "e"
-                  }
-                },
-                _vm._l(_vm.modulos, function(item) {
-                  return _c(
-                    "option",
-                    {
-                      key: item.key,
-                      attrs: {
-                        "data-toggle": "modal",
-                        "data-target": "#Permisos+'item.id'"
-                      }
-                    },
-                    [_vm._v(_vm._s(item))]
-                  )
-                }),
-                0
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
           _vm._l(_vm.modulos, function(item) {
             return _c(
               "div",
@@ -41261,10 +41218,45 @@ var render = function() {
                           { key: permiso, staticClass: "col-3" },
                           [
                             _c("input", {
-                              attrs: {
-                                type: "checkbox",
-                                id: "checkbox",
-                                value: ""
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.selecionados,
+                                  expression: "selecionados"
+                                }
+                              ],
+                              attrs: { type: "checkbox", id: "checkbox" },
+                              domProps: {
+                                value: permiso + "-" + item,
+                                checked: Array.isArray(_vm.selecionados)
+                                  ? _vm._i(
+                                      _vm.selecionados,
+                                      permiso + "-" + item
+                                    ) > -1
+                                  : _vm.selecionados
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.selecionados,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = permiso + "-" + item,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.selecionados = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.selecionados = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.selecionados = $$c
+                                  }
+                                }
                               }
                             }),
                             _vm._v(" "),
@@ -41280,7 +41272,24 @@ var render = function() {
                 ])
               ]
             )
-          })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "container-fluid" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  on: {
+                    click: function($event) {
+                      return _vm.guardar()
+                    }
+                  }
+                },
+                [_vm._v("Guardar Rol")]
+              )
+            ])
+          ])
         ],
         2
       )
@@ -54393,7 +54402,7 @@ var app = new Vue({
   },
   methods: {
     getPermisos: function getPermisos() {
-      axios.get('/permission').then(function (res) {
+      axios.get('/permission/check').then(function (res) {
         //this.permisos=res.data;
         Vue.prototype.$permisos = res.data;
       });

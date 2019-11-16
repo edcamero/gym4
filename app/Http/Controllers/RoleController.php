@@ -40,10 +40,10 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$permisos)
+    public function store(Request $request)
     {
         
-        $role = Role::create(['name' => $request->name]);
+        $role = Role::create(['name' => $request->nombre]);
         /*
         $role = new Role();
         $role->name = $request->name;
@@ -53,7 +53,7 @@ class RoleController extends Controller
         foreach ($permisos as $p){
                 $role->givePermissionTo($p);*/
         
-        $role->givePermissionTo($permisos);
+        $role->givePermissionTo($request->permisos);
         return $role;
             
     }
