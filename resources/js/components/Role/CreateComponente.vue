@@ -7,171 +7,206 @@
        <div class="card-body">
             <div class="form-group row">
             <!-- /.Div para el tipo de documento -->
-                <div class="col-md-6">
-                    <select class="form-control" v-model="empleado.persona.tipo_doc">
-                        <option disabled value="">Selecione un tipo de documento</option>
-                        <option v-for="item in tipoDocumentos" v-bind:key="item.id" v-bind:value="item.id">{{ item.nombre }}</option>
-                    </select>
+                
+                <div class="col-md-4">
+                    <label ><strong>Nombre del role:</strong></label>
+                </div>
+
+                <div class="col-md-8 form-group" >
+                    <input type="text" v-model="a" class="form-control "   required  
+                            placeholder="Role">
                 </div>
                 
+                
+
+                <div class="col-md-12 form-group">
+                    <label ><strong>Descripcion:</strong></label>
+                </div>
+
+                <div class="col-md-12 form-group">
+                    <input type="v-textarea" v-model="a" class="form-control " placeholder="aaa">
+                </div>
+
+                <v-hr style="color: #0056b2;" />
+
+                <div class="col-md-12 form-group">
+                    <label ><strong>Permisos especiales:</strong></label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked" value = "">
+                    <label for="checkbox">{{ "Acceso total" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "Ningun Acceso" }}</label>
+                </div>
+
+                <div class="col-md-12 form-group">
+                    <label ><strong>Lista de permisos:</strong></label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "ver empleados" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "agregar empleados" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "eliminar empleados" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "modificar empleados" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "ver roles" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "agregar roles" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "eliminar roles" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "modificar roles" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "ver tipos de empleados" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "agregar tipos de empleados" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "eliminar tipos de empleados" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "modificar tipos de empleados" }}</label>
+                </div>
+                
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "ver tipos de clientes" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "agregar tipos de clientes" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "eliminar tipos de clientes" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "modificar tipos de clientes" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "ver horarios" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "agregar horarios" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "eliminar horarios" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "modificar horarios" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "ver clientes" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "agregar clientes" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "eliminar clientes" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "modificar clientes" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "ver tipos de documetos" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "agregar tipos de documetos" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked">
+                    <label for="checkbox">{{ "eliminar tipos de documetos" }}</label>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <input type="checkbox" id="checkbox" v-model="checked" value="">
+                    <label for="checkbox">{{ "modificar tipos de documetos" }}</label>
+                </div>
+         </div>
+
                 <!-- /.Div para digitar y buscar el numero del documento -->
-                <div class="col">
-                    <input type="text" v-model="empleado.persona.documento" class="form-control "   required  
-                        placeholder="Documento" v-on:keyup.enter = "buscar">
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                </div>   
-            </div>
-                
-                     
-            <!-- /.Row para nombre y apellido -->
-            <div class="row form-group">
-                <div class="col-md-6">
-                    <input id="firstname" type="text" class="form-control " placeholder="Nombres" v-model="empleado.persona.nombre"  autofocus>
-                </div>
-
-                <div class="col-md-6">
-                    <input id="lastname" type="text" class="form-control " placeholder="Apellidos" v-model="empleado.persona.apellido"  required autofocus>            
-                </div>
-            </div>
-                    
-                
-            <!-- /.Row para sexo y altura-->  
-                <div class="row form-group">
-                    <div class="col">
-                        <input type="date" v-model="empleado.persona.fecha_nac" class="form-control" autocomplete="off"
-                         placeholder="Fecha de Nacimiento">
-                    <span class="glyphicon glyphicon-user form-control-feedback"></span>          
-                </div>
-
-                    <div class="col">
-                        <SELECT v-model="empleado.persona.sexo" class="form-control " autocomplete="off">
-                            <option selected disabled>Sexo:</option>
-                            <option v-for = "item in genero" v-bind:key="item.text">{{ item.text }}</option>
-                        </SELECT>
-                    </div>
-
-                   <div class="col ">
-                        <input type="text" v-model="empleado.persona.altura" class="form-control"  autocomplete="off" 
-                            placeholder="Altura">
-                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                               
-                    </div>
-                </div>
-
-
-                <!-- /.Row para telefono y direcion  -->  
-                <div class="row form-group">
-                    <div class="col">
-                        <input type="text" v-model="empleado.persona.telefono"  class="form-control " autocomplete="off" 
-                            placeholder="Telefono">
-                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                    </div>
-
-                    <div class="col">
-                        <input type="text" v-model="empleado.persona.direccion" class="form-control " autocomplete="off" 
-                            placeholder="Direccion">
-                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                    </div>
-
-                </div>
-
-
-                 <!-- /.Div para el nickname -->
-                 <div class="form-group row">
-
-                    <div class="col-md-6">
-                        <input id="nickname" type="text" class="form-control " v-model="empleado.persona.user.nickname" placeholder="Nombre de usuario" required  autofocus>        
-                    </div>
-                            <!-- /.fin de div para el nickname -->
-
-                            <!-- /.inicio de correo electronico -->
-                    <div class="col-md-6">
-                        <input id="email" type="email" class="form-control " v-model="empleado.persona.user.email"  required  placeholder="E-mail">          
-                    </div>
-                </div>
-                        
-                <div class="form-group row  ">
-
-                    <div class="col-md-6">
-                        <input id="password" type="password" class="form-control " v-model="empleado.persona.user.password" required autocomplete="new-password" placeholder="Contraseña">      
-                    </div>
-  
-                    <div class="col-md-6">
-                        <input id="password-confirm" type="password" class="form-control" v-model="empleado.persona.user.password_confirmation" placeholder="Confirmar contraseña" required >
-                    </div>
-
-                </div>
-
-                            <!-- /.col -->
-                <div class="form-group row mb-0">
-                    <div class="col-md-6">
-                        <select class="form-control" v-model="empleado.persona.tipo_emple">
-                            <option disabled value="">Selecione un tipo de empleado</option>
-
-                            <option v-for="item in tipoEmpleados" v-bind:key="item.id" v-bind:value="item.id">{{ item.nombre }}</option>
-                        </select>
-                    </div>
-
-
-                    <div class="col-md-6 text-center">
-                        <button  v-on:click="crear()" class="btn btn-primary">Registrar
-                        </button>
-                    </div>
-
-                </div>
         </div>
 
 </div>
-
-
-
-    
 </template>
 
 
 <script>
+
 export default {
     mounted(){
         console.log("se monto el componente agregar empleado");
     },
     data(){
         return{
-            tipoEmpleados:[],
-            tipoDocumentos:[],
-
-            empleados:[],
-            personas:[],
-            genero:[
-                {id:1,text:'Hombre'},
-                {id:2,text:'Mujer'}
+            permisos:[],
+            descripciones:[
+                
             ],
-
-            
-
-            empleado:{
-                persona:{
-                    tipo_doc:'',
-                    documento:'',
-                    nombre:'',
-                    apellido:'',
-                    fecha_nac:'',
-                    sexo:'',
-                    telefono:'',
-                    direccion:'',
-                    altura:'',
-
-                    user:{
-                        nickname:'',
-                        email:'',
-                        password:'',
-                        password_confirmation:'',
-                    },
-                },
-                tipo_emple:{
-                        id:'',
-                        nombre:'',
-                    },
-            },
         }
         
         
