@@ -17,15 +17,9 @@
                             placeholder="Role">
                 </div>
                 
+
                 
-
-                <div class="col-md-12 form-group">
-                    <label ><strong>Descripcion:</strong></label>
-                </div>
-
-                <div class="col-md-12 form-group">
-                    <input type="v-textarea" v-model="a" class="form-control " placeholder="aaa">
-                </div>
+                
 
                 <v-hr style="color: #0056b2;" />
 
@@ -38,6 +32,8 @@
                     <label for="checkbox">{{ "Acceso total" }}</label>
                 </div>
 
+
+
                 <div class="col-md-6 form-group">
                     <input type="checkbox" id="checkbox" v-model="checked">
                     <label for="checkbox">{{ "Ningun Acceso" }}</label>
@@ -46,6 +42,79 @@
                 <div class="col-md-12 form-group">
                     <label ><strong>Lista de permisos:</strong></label>
                 </div>
+
+                <div class="col">
+                        <SELECT v-model="e" class="form-control " autocomplete="off">
+                            <option v-for = "item in descripciones" v-bind:key="item.text" data-toggle="modal" data-target="#Permisos+'item.id'">>{{ item.text }}</option>
+                        </SELECT>
+                </div>
+
+
+
+
+
+
+
+                <div class="modal" id="permisos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Horario del Empleado</h5>
+                       
+                       
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            
+                        </div>
+                        <table class="table table-sm">
+                           <thead>
+                               <tr>                                  
+                                   <th>Domingo</th>
+                                   <th>Lunes </th>
+                                   <th>Martes </th>
+                                   <th>Miercoles</th>
+                                   <th>Jueves</th>
+                                   <th>Viernes</th>
+                                   <th>Sabado </th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr>
+                                   <td ></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                               </tr>
+                               
+                           </tbody>
+                       </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                
 
                 <div class="col-md-6 form-group">
                     <input type="checkbox" id="checkbox" v-model="checked">
@@ -205,7 +274,14 @@ export default {
         return{
             permisos:[],
             descripciones:[
-                
+                {id:0,text:'Seleccione'},
+                {id:1,text:'Permisos de cliente'},
+                {id:2,text:'Permisos de empleado'},
+                {id:3,text:'Permisos de tipo de clienetes'},
+                {id:4,text:'Permisos de tipo de empleados'},
+                {id:5,text:'Permisos de los roles'},
+                {id:6,text:'Permisos de horarios'},
+                {id:7,text:'Permisos de tipos de documentos'},
             ],
         }
         

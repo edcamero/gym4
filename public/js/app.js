@@ -3250,6 +3250,75 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("se monto el componente agregar empleado");
@@ -3257,7 +3326,31 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       permisos: [],
-      descripciones: []
+      descripciones: [{
+        id: 0,
+        text: 'Seleccione'
+      }, {
+        id: 1,
+        text: 'Permisos de cliente'
+      }, {
+        id: 2,
+        text: 'Permisos de empleado'
+      }, {
+        id: 3,
+        text: 'Permisos de tipo de clienetes'
+      }, {
+        id: 4,
+        text: 'Permisos de tipo de empleados'
+      }, {
+        id: 5,
+        text: 'Permisos de los roles'
+      }, {
+        id: 6,
+        text: 'Permisos de horarios'
+      }, {
+        id: 7,
+        text: 'Permisos de tipos de documentos'
+      }]
     };
   },
   created: function created() {
@@ -41378,35 +41471,9 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-12 form-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.a,
-                  expression: "a"
-                }
-              ],
-              staticClass: "form-control ",
-              attrs: { type: "v-textarea", placeholder: "aaa" },
-              domProps: { value: _vm.a },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.a = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
           _c("v-hr", { staticStyle: { color: "#0056b2" } }),
           _vm._v(" "),
-          _vm._m(3),
+          _vm._m(2),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6 form-group" }, [
             _c("input", {
@@ -41495,6 +41562,44 @@ var render = function() {
               _vm._v(_vm._s("Ningun Acceso"))
             ])
           ]),
+          _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col" },
+            [
+              _c(
+                "SELECT",
+                {
+                  staticClass: "form-control ",
+                  attrs: { autocomplete: "off" },
+                  model: {
+                    value: _vm.e,
+                    callback: function($$v) {
+                      _vm.e = $$v
+                    },
+                    expression: "e"
+                  }
+                },
+                _vm._l(_vm.descripciones, function(item) {
+                  return _c(
+                    "option",
+                    {
+                      key: item.text,
+                      attrs: {
+                        "data-toggle": "modal",
+                        "data-target": "#Permisos+'item.id'"
+                      }
+                    },
+                    [_vm._v(">" + _vm._s(item.text))]
+                  )
+                }),
+                0
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           _vm._m(4),
           _vm._v(" "),
@@ -42759,14 +42864,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-12 form-group" }, [
-      _c("label", [_c("strong", [_vm._v("Descripcion:")])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 form-group" }, [
       _c("label", [_c("strong", [_vm._v("Permisos especiales:")])])
     ])
   },
@@ -42777,6 +42874,120 @@ var staticRenderFns = [
     return _c("div", { staticClass: "col-md-12 form-group" }, [
       _c("label", [_c("strong", [_vm._v("Lista de permisos:")])])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal",
+        attrs: {
+          id: "permisos",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v("Horario del Empleado")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "form-group" }),
+                _vm._v(" "),
+                _c("table", { staticClass: "table table-sm" }, [
+                  _c("thead", [
+                    _c("tr", [
+                      _c("th", [_vm._v("Domingo")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Lunes ")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Martes ")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Miercoles")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Jueves")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Viernes")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Sabado ")])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c("tr", [
+                      _c("td"),
+                      _vm._v(" "),
+                      _c("td"),
+                      _vm._v(" "),
+                      _c("td"),
+                      _vm._v(" "),
+                      _c("td"),
+                      _vm._v(" "),
+                      _c("td"),
+                      _vm._v(" "),
+                      _c("td"),
+                      _vm._v(" "),
+                      _c("td")
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Cerrar")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "button" } },
+                  [_vm._v("Guardar")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -56708,8 +56919,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\gym4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
