@@ -118,13 +118,7 @@ Route::group(['middleware' => ['permission:eliminar-empleado']], function () {
     Route::delete('/Empleado/{id}', 'EmpleadoController@destroy')->name('eliminar-empleado');
 });
 
-//Route::post('TipoCliente', 'TipoClienteController@store')->middleware('permission:guardar-tipo-cliente');
-    Route::group(['middleware' => ['role:admin']], function () {
-    //Route::get('TipoCliente', 'TipoClienteController@index')->name('listar-tipo-cliente');
-   // Route::post('TipoCliente', 'TipoClienteController@store')->name('guardar-tipo-cliente');
-   // Route::delete('/TipoCliente/{id}', 'TipoClienteController@destroy')->name('eliminar-tipo-cliente');
-   // Route::put('/TipoCliente/{id}', 'TipoClienteController@update')->name('editar-tipo-cliente');
-});
+
 
 
 //Permisos y rutas definidos para Tipo-Documento
@@ -156,9 +150,11 @@ Route::group(['middleware' => ['permission:eliminar-tipo-documento']],function()
 
 
 
-
+Route::group(['middleware' => ['permission:listar-role']], function () {
+    Route::get('Role', 'RoleController@index')->name('listar-role');
+});
 Route::group(['middleware' => ['permission:guardar-role']],function(){
-    Route::get('Role', 'RoleController@create')->name('crear-role');
+    Route::get('Role/nuevo', 'RoleController@create')->name('crear-role');
 });
 
 Route::group(['middleware' => ['permission:guardar-role']], function () {
@@ -166,9 +162,7 @@ Route::group(['middleware' => ['permission:guardar-role']], function () {
 });
 
 
-Route::group(['middleware' => ['permission:listar-role']], function () {
-    Route::get('Role', 'RoleController@index')->name('listar-role');
-});
+
 
 
 

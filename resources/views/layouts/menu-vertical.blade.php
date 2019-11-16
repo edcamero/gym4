@@ -108,7 +108,14 @@
               </li>
               @endcan
             
-            
+              @can('guardar-role')
+              <li class="nav-item py-2">
+                <a class="nav-link" href="/Role/nuevo">
+               <i class="far fa-clock"></i>
+                  <span class="pl-1">Roles</span>
+                  </a> 
+              
+          @endcan
             
            
             
