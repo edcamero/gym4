@@ -157,30 +157,25 @@ Route::group(['middleware' => ['permission:eliminar-tipo-documento']],function()
 
 
 
+Route::group(['middleware' => ['permission:guardar-role']],function(){
+    Route::get('Role', 'RoleController@create')->name('crear-role');
+});
+
+Route::group(['middleware' => ['permission:guardar-role']], function () {
+    Route::post('Role', 'RoleController@store')->name('crear-role');
+});
+
+
+Route::group(['middleware' => ['permission:listar-role']], function () {
+    Route::get('Role', 'RoleController@index')->name('listar-role');
+});
 
 
 
 
 Route::middleware(['Auth'])->group(function(){
 
-    	//Roles
-	Route::post('Role', 'RoleController@store')->name('guardar-role')
-    ->middleware('permission:guardar-role');
 
-    Route::get('Role', 'RoleController@index')->name('listar-role')
-            ->middleware('permission:listar-role');
-
-    Route::get('Role', 'RoleController@create')->name('crear-role')
-           ->middleware('permission:guardar-role');
-
-    Route::put('Role/{id}', 'RoleController@update')->name('editar-role')
-            ->middleware('permission:editar-role');
-
-    Route::get('roles/{role}', 'RoleController@show')->name('ver-role')
-            ->middleware('permission:ver-role');
-
-    Route::delete('Role/{id}', 'RoleController@destroy')->name('eliminar-role')
-            ->middleware('permission:eliminar-role');
 
             
 
