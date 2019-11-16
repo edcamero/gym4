@@ -17,7 +17,7 @@ class PermisosSeeder extends Seeder
 
         foreach(config('app.modulos') as $modulo){
             foreach(config('app.permisos') as $permiso){
-                $modulo_permiso=$permiso.'-'.$modulo;
+                $modulo_permiso = $permiso.'-'.$modulo;
 
                 Permission::create([
                     'name'=>$modulo_permiso,

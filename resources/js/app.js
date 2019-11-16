@@ -31,6 +31,8 @@ Vue.component('show-empleado', require('./components/Empleado/ShowComponent').de
 Vue.component('cargar-empleado', require('./components/Empleado/editarComponent').default);
 Vue.component('horario-empleado', require('./components/Empleado/HorarioComponent').default);
 Vue.component('tipo-documento', require('./components/TipoDocumento/TipoDocumentoComponent').default);
+Vue.component('crear-role', require('./components/Role/CreateComponente').default);
+
 
 
 Vue.directive('can', function (el, binding, vnode) {
