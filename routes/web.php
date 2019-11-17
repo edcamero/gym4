@@ -19,12 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-//ruta para comprobar permisos desde vue.js
-Route::get('/permission', 'PermissionController@check');
+Route::get('/permission/check', 'PermissionController@check')->name('listar-permisos');
 
 //Permisos y rutas definidos para Tipo-Cliente
 Route::group(['middleware' => ['permission:listar-tipo-cliente']], function () {
@@ -80,11 +75,10 @@ Route::group(['middleware' => ['permission:eliminar-horario']], function () {
 
 Route::group(['middleware' => ['permission:listar-empleado']], function () {
     Route::get('Empleado/index', 'EmpleadoController@index')->name('listar-empleado');
-});
-
-Route::group(['middleware' => ['permission:listar-empleado']], function () {
     Route::get('Empleado/horario', 'EmpleadoController@horarios')->name('horarios-empleado');
 });
+
+
 
 Route::group(['middleware' => ['permission:listar-empleado']], function () {
     Route::get('/Persona/{id}', 'PersonaController@buscar');
@@ -99,7 +93,7 @@ Route::group(['middleware' => ['permission:listar-empleado']], function () {
 });
 
 Route::group(['middleware' => ['permission:listar-empleado']], function () {
-    Route::get('/Empleado/{id}', 'EmpleadoController@cargar')->name('cargar-empleado');
+    Route::get('/Empleado/actualizar/{id}', 'EmpleadoController@cargar')->name('cargar-empleado');
 });
 
 Route::group(['middleware' => ['permission:guardar-empleado']], function () {
@@ -141,6 +135,7 @@ Route::group(['middleware' => ['permission:eliminar-tipo-documento']],function()
 
 
 
+
 //Permisos y rutas definidos para Tipo-Documento
 
 
@@ -166,11 +161,14 @@ Route::group(['middleware' => ['permission:listar-permisos']], function () {
     Route::get('permission', 'PermissionController@getModulos')->name('listar-permisos');
 });
 
- Route::get('/permission/check', 'PermissionController@check')->name('listar-permisos');
 
 
 
 
+//Horario 
+Route::group(['middleware' => ['permission:listar-horario']], function () {
+    Route::get('horario', 'HorarioController@calendario')->name('calendario');
+});
 
 
 
@@ -187,7 +185,7 @@ Route::middleware(['Auth'])->group(function(){
     
 
         //Users
-        Route::get('users', 'UserController@index')->name('users.index')
+       /* Route::get('users', 'UserController@index')->name('users.index')
             ->middleware('permission:users.index');
         Route::put('users/{user}', 'UserController@update')->name('users.update')
             ->middleware('permission:users.edit');
@@ -197,6 +195,8 @@ Route::middleware(['Auth'])->group(function(){
             ->middleware('permission:users.destroy');
         Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit')
             ->middleware('permission:users.edit');
+
+            */
 
         //Tipo Cliente
 

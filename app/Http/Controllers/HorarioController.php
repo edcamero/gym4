@@ -22,6 +22,11 @@ class HorarioController extends Controller
         }
     }
 
+    public function calendario(Request $request){
+
+        return view('horario.calendario');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

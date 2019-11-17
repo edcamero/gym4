@@ -41,8 +41,8 @@
                 </div>
 
                 
-            <div class="container-fluid" v-for="item in  modulos" v-bind:key="item.key">
-                    <div class="form-group">
+            <div class="container-fluid " v-for="item in  modulos" v-bind:key="item.key">
+                    <div class="form-group mb-1">
                         <button class="form-control btn btn-primary" type="button" data-toggle="collapse" :data-target="'#'+item" aria-expanded="false" v-bind:aria-controls="item">{{item}}</button>
                     </div>
                     <div class="collapse" v-bind:id="item">

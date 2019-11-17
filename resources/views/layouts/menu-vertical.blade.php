@@ -5,7 +5,7 @@
            
 
                 <li class="nav-item py-2">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="/hom">
                     <i class="fas fa-chalkboard-teacher"> </i>
                     <span class="pl-1">Panel de Control</span>
                   </a>
@@ -101,7 +101,7 @@
 
                 @can('listar-horario')
                 <li class="nav-item py-2">
-                  <a class="nav-link" href="{{ route('listar-empleado') }}">
+                  <a class="nav-link" href="{{ route('calendario') }}">
                     <i class="far fa-clock"></i>
                   <span class="pl-1">Horarios</span>
                 </a>
