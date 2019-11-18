@@ -2904,13 +2904,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       actual: '',
+      mes: '',
+      year: '',
+      month: '',
       now: '',
       last: '',
-      primerDiaSemana: ''
+      primerDiaSemana: '',
+      diaActual: '',
+      vectorMes: [],
+      semana: [],
+      dia: {
+        numero: ''
+      }
     };
   },
   created: function created() {
@@ -2923,20 +2941,67 @@ __webpack_require__.r(__webpack_exports__);
     },
     fechaActual: function fechaActual() {
       this.actual = new Date();
-      var year = this.actual.getFullYear();
-      var month = this.actual.getMonth();
-      var dia = this.actual.getDay();
-      this.now = new Date(year, month + 1, 1);
-      this.last = new Date(year, month, 0);
-      this.primerDiaSemana = this.primerDia(this.now.getDay());
-      console.log(this.primerDiaSemana);
+      this.year = this.actual.getFullYear();
+      this.month = this.actual.getMonth();
+      this.Calendario(this.year, this.month);
     },
-    primerDia: function primerDia(dia) {
-      if (dia == 0) {
-        return 7;
-      } else {
-        return dia;
+    siguienteMes: function siguienteMes() {
+      this.month++;
+
+      if (this.month > 11) {
+        this.month = 0;
+        this.year++;
       }
+
+      this.Calendario(this.year, this.month);
+    },
+    Calendario: function Calendario(year, month) {
+      this.GetMes(month);
+      var dia = 0;
+      this.diaActual = this.actual.getDate();
+      this.now = new Date(this.year, month, 1);
+      this.last = new Date(this.year, month + 1, 0);
+      this.primerDiaSemana = this.now.getDay();
+      var ultimoDiaMes = this.last.getDate();
+      var last_cell = this.primerDiaSemana + ultimoDiaMes;
+      console.log(ultimoDiaMes);
+      console.log(this.primerDiaSemana);
+      var dia = 1;
+      this.vectorMes = new Array(6);
+
+      for (var i = 0; i < 6; i++) {
+        this.vectorMes[i] = new Array(7);
+        var id = 1;
+
+        for (var j = 0; j < 7; j++) {
+          if (j == this.primerDiaSemana && i == 0 && dia == 1) {
+            this.vectorMes[i][j] = {
+              id: id++,
+              data: dia
+            };
+            dia++;
+            console.log(dia);
+            console.log(this.primerDiaSemana);
+          } else {
+            if (dia > 1 && dia <= ultimoDiaMes) {
+              this.vectorMes[i][j] = {
+                id: id++,
+                data: dia
+              };
+              dia++;
+            } else {
+              this.vectorMes[i][j] = {
+                id: id++,
+                data: ''
+              };
+            }
+          }
+        }
+      }
+    },
+    GetMes: function GetMes(m) {
+      var meses = Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+      this.mes = meses[m];
     }
   }
 });
@@ -40788,62 +40853,86 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-10" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("Calendario")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-10" }, [
+                _c("label", [
+                  _c("strong", [
+                    _vm._v(
+                      " " + _vm._s(this.mes) + " " + _vm._s(this.year) + "  "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-sm",
+                    on: { click: _vm.siguienteMes }
+                  },
+                  [_c("i", { staticClass: "fas fa-arrow-circle-right" })]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table-sm" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(this.vectorMes, function(semana, index) {
+                  return _c(
+                    "tr",
+                    { key: index },
+                    _vm._l(semana, function(dia) {
+                      return _c("td", { key: dia.id }, [
+                        dia.data == _vm.diaActual
+                          ? _c("div", { class: { "bg-info": true } }, [
+                              _vm._v(_vm._s(dia.data))
+                            ])
+                          : _c("div", [_vm._v(_vm._s(dia.data))])
+                      ])
+                    }),
+                    0
+                  )
+                }),
+                0
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-10" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("Calendario")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("label", { attrs: { for: "" } }),
-              _vm._v(" "),
-              _c("table", { staticClass: "table table-sm" }, [
-                _c("thead", [
-                  _c("tr", [
-                    _c("th", [_vm._v("Domingo")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Lunes ")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Martes ")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Miercoles")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Jueves")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Viernes")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Sabado ")])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tbody", [
-                  _c("tr", [
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td"),
-                    _vm._v(" "),
-                    _c("td")
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Domingo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Lunes ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Martes ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Miercoles")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Jueves")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Viernes")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Sabado ")])
       ])
     ])
   }
