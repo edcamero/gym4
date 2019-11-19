@@ -118,26 +118,7 @@ class EmpleadoController extends Controller
     }
 
 
-    public function cargar(Request $request, $id)
-    {
-        if($request->ajax()){
-
-            $empleado = Empleado::find($id);
-
-            $empleado->persona;
-            $empleado->tipoEmpleado;
-            $empleado->persona->user;
-            $empleado->persona->tipoDocumento;
-
-            return $empleado;
-            
-        }else{
-
-            return view('Empleado.cargar');
-
-        }
-    }
-
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -145,9 +126,19 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empleado $empleado)
+    public function edit(Request $request, $id)
     {
-        //
+        if($request->ajax()){
+            $empleado = Empleado::find($id);
+            $empleado->persona;
+            $empleado->tipoEmpleado;
+            $empleado->persona->user;
+            $empleado->persona->tipoDocumento;
+            return $empleado;
+            
+        }else{
+            return view('Empleado.cargar');
+        }
     }
 
     /**

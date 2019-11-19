@@ -2354,7 +2354,7 @@ __webpack_require__.r(__webpack_exports__);
       location.href = '/Empleado/' + empleado.id;
     },
     cargar: function cargar(empleado) {
-      location.href = '/Empleado/actulizar/' + empleado.id;
+      location.href = '/Empleado/actualizar/' + empleado.id;
     },
     eliminar: function eliminar(empleado, index) {
       var _this2 = this;

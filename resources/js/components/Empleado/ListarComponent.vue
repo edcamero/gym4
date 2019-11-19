@@ -183,7 +183,7 @@ methods:{
     },
 
     cargar(empleado){
-        location.href = '/Empleado/actulizar/' + empleado.id
+        location.href = '/Empleado/actualizar/' + empleado.id
     },
 
     eliminar(empleado,index){

@@ -5,7 +5,7 @@
            
 
                 <li class="nav-item py-2">
-                    <a class="nav-link" href="/hom">
+                    <a class="nav-link" href="/home">
                     <i class="fas fa-chalkboard-teacher"> </i>
                     <span class="pl-1">Panel de Control</span>
                   </a>

@@ -76,37 +76,24 @@ Route::group(['middleware' => ['permission:eliminar-horario']], function () {
 Route::group(['middleware' => ['permission:listar-empleado']], function () {
     Route::get('Empleado/index', 'EmpleadoController@index')->name('listar-empleado');
     Route::get('Empleado/horario', 'EmpleadoController@horarios')->name('horarios-empleado');
-});
-
-
-
-Route::group(['middleware' => ['permission:listar-empleado']], function () {
-    Route::get('/Persona/{id}', 'PersonaController@buscar');
-});
-
-Route::group(['middleware' => ['permission:listar-empleado']], function () {
+    Route::get('/Persona/{id}', 'PersonaController@buscar')->name('persona.buscar');
     Route::get('/Persona/buscar/{id}', 'PersonaController@buscarId')->name('personaid');
-});
-
-Route::group(['middleware' => ['permission:listar-empleado']], function () {
     Route::get('/Empleado/{id}', 'EmpleadoController@show')->name('ver-empleado');
 });
 
-Route::group(['middleware' => ['permission:listar-empleado']], function () {
-    Route::get('/Empleado/actualizar/{id}', 'EmpleadoController@cargar')->name('cargar-empleado');
+
+
+Route::group(['middleware' => ['permission:editar-empleado']], function () {
+    Route::get('Empleado/actualizar/{id}', 'EmpleadoController@edit')->name('empleado.editar');
+    Route::put('Empleado/{id}', 'EmpleadoController@update')->name('editar-empleado');
 });
 
 Route::group(['middleware' => ['permission:guardar-empleado']], function () {
     Route::get('Empleado', 'EmpleadoController@create')->name('create-empleado');
-});
-
-Route::group(['middleware' => ['permission:guardar-empleado']], function () {
     Route::post('Empleado', 'EmpleadoController@store')->name('guardar-empleado');
 });
 
-Route::group(['middleware' => ['permission:editar-empleado']], function () {
-    Route::put('/Empleado/{id}', 'EmpleadoController@update')->name('editar-empleado');
-});
+
 
 Route::group(['middleware' => ['permission:eliminar-empleado']], function () {
     Route::delete('/Empleado/{id}', 'EmpleadoController@destroy')->name('eliminar-empleado');
