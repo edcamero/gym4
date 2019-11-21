@@ -16,17 +16,17 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     { 
-        $empleados = Cliente::all();
+        $clientes = Cliente::all();
         
         if($request->ajax()){
-            foreach ($empleados as $em){
-                $em->persona;
-                $em->tipoEmpleado;
+            foreach ($clientes as $c){
+                $c->persona;
+                $c->tipocliente;
             }
-            return $empleados;
+            return $clientes;
         }else{
-            $tipoCli = Cliente::paginate();
-            return view('Empleado.index', compact('tipoCli'));
+            $cliente = Cliente::paginate();
+            return view('Cliente.index', compact('cliente'));
         }
     }
 
