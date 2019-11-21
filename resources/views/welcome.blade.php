@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -137,7 +134,7 @@
  	<div class="about-wthree" id="about">
 		  <div class="container">
 				   <div class="ab-w3l-spa">
-                            <h3 class="title-w3-agileits title-black-wthree">Acerca de nuestro GYM FIT
+                            <h3 class="title-w3-agileits title-black-wthree">Acerca de  GYM FIT
 </h3> 
 						   <p class="about-para-w3ls"> Propósito:
 Transformar la vida de nuestros clientes a través del entrenamiento físico, haciendo que se sientan mejor, más fuertes y saludables, mejorando su autoestima y alcanzando sus sueños.
@@ -169,9 +166,7 @@ Transformar la vida de nuestros clientes a través del entrenamiento físico, ha
 					<li>
 						<img src="images/teams3.jpg" alt=" " class="img-responsive" />
 					</li>
-					<li>
-						<img src="images/teams4.jpg" alt=" " class="img-responsive" />
-					</li>
+					
 					</ul>
 					<div class="resp-tabs-container">
 					<div class="tab1">
@@ -197,10 +192,10 @@ Transformar la vida de nuestros clientes a través del entrenamiento físico, ha
 					<div class="col-md-6 team-img-w3-agile">
 						</div>
 						<div class="col-md-6 team-Info-agileits">
-							<h4>Sarah Connor</h4>
-							<span>Entrenadora
+							<h4>Carlos Fuentes</h4>
+							<span>Programador
 </span>
-							<p>La bella Sara te ayudara con sus clases de baile a encontrarte.</p>	
+							<p>Negro.</p>	
 						<div class="social-bnr-agileits footer-icons-agileinfo">
 							<ul class="social-icons3">
 								<li><a href="#" class="fa fa-facebook icon-border facebook"> </a></li>
@@ -216,9 +211,9 @@ Transformar la vida de nuestros clientes a través del entrenamiento físico, ha
 						<div class="col-md-6 team-img-w3-agile">
 						</div>
 						<div class="col-md-6 team-Info-agileits">
-							<h4>Ivan Simpson</h4>
-							<span>Entrenador FIT</span>
-							<p>Con Ivan te daras cuenta que los limites no existen cuando hay pasion.</p>
+							<h4>Alejandra Carreño</h4>
+							<span>-</span>
+							<p>.</p>
 						<div class="social-bnr-agileits footer-icons-agileinfo">
 							<ul class="social-icons3">
 								<li><a href="#" class="fa fa-facebook icon-border facebook"> </a></li>
@@ -230,25 +225,8 @@ Transformar la vida de nuestros clientes a través del entrenamiento físico, ha
 						</div>
 						<div class="clearfix"> </div>
 					</div>
-					<div class="tab4">
-					<div class="col-md-6 team-img-w3-agile">
-						</div>
-						<div class="col-md-6 team-Info-agileits">
-							<h4>Marc Gutierrez</h4>
-							<span>Nutricionista</span>
-							<p>Mark es tu amigo te guia y te escucha .</p>
-						<div class="social-bnr-agileits footer-icons-agileinfo">
-							<ul class="social-icons3">
-								<li><a href="#" class="fa fa-facebook icon-border facebook"> </a></li>
-								<li><a href="#" class="fa fa-twitter icon-border twitter"> </a></li>
-								<li><a href="#" class="fa fa-google-plus icon-border googleplus"> </a></li> 
-								<li><a href="#" class="fa fa-rss icon-border rss"> </a></li>
-							</ul>
-						</div>							
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					</div>
+					
+					
 			</div>
 	</div>
 </div>
