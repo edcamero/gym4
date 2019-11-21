@@ -3285,6 +3285,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("se monto el componente agregar empleado");
@@ -3299,7 +3356,14 @@ __webpack_require__.r(__webpack_exports__);
       selecionados: [],
       permisos: [],
       modulos: [],
-      mpermisos: ['listar', 'guardar', 'editar', 'eliminar']
+      mpermisos: ['listar', 'guardar', 'editar', 'eliminar'],
+      mensaje: {
+        color: '',
+        texto: ''
+      },
+      dismissSecs: 10,
+      dismissCountDown: 0,
+      showDismissibleAlert: false
     };
   },
   created: function created() {
@@ -3323,6 +3387,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/Role', params).then(function (res) {// this.horarios.push(res.data)
       });
       console.log(this.selecionados);
+    },
+    countDownChanged: function countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown;
+    },
+    showAlert: function showAlert() {
+      this.dismissCountDown = this.dismissSecs;
     }
   }
 });
@@ -41395,9 +41465,32 @@ var render = function() {
     _c("div", { staticClass: "card-body" }, [
       _c(
         "div",
+        { staticClass: "alert alert-primary", attrs: { role: "alert" } },
+        [_vm._v("\n  This is a primary alert—check it out!\n")]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "alert alert-success dismissible show",
+          model: {
+            value: _vm.showDismissibleAlert,
+            callback: function($$v) {
+              _vm.showDismissibleAlert = $$v
+            },
+            expression: "showDismissibleAlert"
+          }
+        },
+        [_vm._m(1)]
+      ),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _c(
+        "div",
         { staticClass: "form-group row" },
         [
-          _vm._m(1),
+          _vm._m(3),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-8 form-group" }, [
             _c("input", {
@@ -41410,7 +41503,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control ",
-              attrs: { type: "text", required: "", placeholder: "Role" },
+              attrs: { type: "text", required: "", placeholder: "Rol" },
               domProps: { value: _vm.role.nombre },
               on: {
                 input: function($event) {
@@ -41423,7 +41516,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(2),
+          _vm._m(4),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6 form-group" }, [
             _c("input", {
@@ -41443,7 +41536,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(3),
+          _vm._m(5),
           _vm._v(" "),
           _vm._l(_vm.modulos, function(item) {
             return _c(
@@ -41535,20 +41628,25 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("div", { staticClass: "container-fluid" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-success",
-                  on: {
-                    click: function($event) {
-                      return _vm.guardar()
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c(
+                  "b-button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: {
+                      click: function($event) {
+                        return _vm.guardar()
+                      }
                     }
-                  }
-                },
-                [_vm._v("Guardar Rol")]
-              )
-            ])
+                  },
+                  [_vm._v("Guardar Rol")]
+                )
+              ],
+              1
+            )
           ])
         ],
         2
@@ -41563,9 +41661,56 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h4", { staticClass: "text-center mb-2 card-title" }, [
-        _vm._v("Agregar Empleado")
+        _vm._v("Agregar rol")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "alert alert-warning alert-dismissible fade show",
+        attrs: { role: "alert" }
+      },
+      [
+        _c("strong", [_vm._v("Holy guacamole!")]),
+        _vm._v(
+          " You should check in on some of those fields below.\n              "
+        ),
+        _c(
+          "button",
+          {
+            staticClass: "close",
+            attrs: {
+              type: "button",
+              "data-dismiss": "alert",
+              "aria-label": "Close"
+            }
+          },
+          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this
@@ -55591,8 +55736,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\gym4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -1,20 +1,77 @@
 <template>
     <div class="card">
 
+
+
+
         <div class="card-header">
-                <h4 class="text-center mb-2 card-title">Agregar Empleado</h4>
+                <h4 class="text-center mb-2 card-title">Agregar rol</h4>
         </div>
        <div class="card-body">
+
+
+
+<div class="alert alert-primary" role="alert">
+  This is a primary alert—check it out!
+</div>
+
+
+        <div class="alert alert-success dismissible show" v-model="showDismissibleAlert">
+            
+
+        
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        </div>
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="form-group row">
             <!-- /.Div para el tipo de documento -->
+           
+            
+           
+               
                 
                 <div class="col-md-4">
                     <label ><strong>Nombre del role:</strong></label>
                 </div>
 
+
+
                 <div class="col-md-8 form-group" >
-                    <input type="text" v-model="role.nombre" class="form-control "   required  
-                            placeholder="Role">
+                    <input type="text" v-model="role.nombre" class="form-control "   required  placeholder="Rol">
                 </div>
                 
 
@@ -61,7 +118,7 @@
 
            <div class="container-fluid">
                <div class="form-group">
-                   <button @click="guardar()"  class="btn btn-success">Guardar Rol</button>
+                   <b-button @click = "guardar()"  class="btn btn-success">Guardar Rol</b-button>
                </div>
            </div>
                 
@@ -91,7 +148,22 @@ export default {
             selecionados:[],
             permisos:[],
             modulos:[],
-            mpermisos:['listar','guardar','editar','eliminar']
+            mpermisos:['listar','guardar','editar','eliminar'],
+
+            
+
+            mensaje:{
+                color:'',
+                texto:''
+            },
+
+
+
+
+
+        dismissSecs: 10,
+        dismissCountDown: 0,
+        showDismissibleAlert: false
         }
         
         
@@ -120,17 +192,38 @@ created(){
 
 methods: {
 
-guardar(){
-    const params={nombre:this.role.nombre,permisos:this.selecionados}
+
+
+    guardar(){
+    const params={nombre:this.role.nombre, permisos:this.selecionados}
     axios.post('/Role',params)
                 .then(res=>{
                    // this.horarios.push(res.data)
+                
                 });
     console.log(this.selecionados)
-}
-        
-
     },
+
+
+countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+      showAlert() {
+        this.dismissCountDown = this.dismissSecs
+      },
+
+
+
+
+
+
+
+
+
+
+
+
+},
 
 }
 
