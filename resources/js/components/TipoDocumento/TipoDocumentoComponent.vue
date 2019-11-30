@@ -13,7 +13,7 @@
                             </div>
                             
                             <div class="col-5">
-                                 <button  class="btn btn-success mr-2" type="submit">Editar</button>
+                                 <button  class="btn btn-success mr-2" type="submit" @click="Validar()">Editar</button>
                             </div>
                     </div>
                     
@@ -21,7 +21,7 @@
              </form>
 
 
-             <form @submit.prevent="agregar" v-else >
+             <form @submit.prevent="agregar" v-else>
                     <div class="row center-block">
                             <div class="col-5">
                                 <input type="text" placeholder="Nombre" class="form-control mb-2" v-model="tipoDocumento.nombre">
@@ -29,7 +29,7 @@
                             
 
                             <div class="col-2">
-                                 <button  class="btn btn-primary mr-2" type="submit">Agregar</button>
+                                 <button  class="btn btn-primary mr-2" type="submit" @click="Validar()">Agregar</button>
                             </div>
                     </div>
                     
@@ -78,19 +78,27 @@ export default {
             editarActivo:false
         }
     },
+
+
+
+
 created(){
     axios.get('/TipoDocumento')
     .then(res=>{
         this.tipoDocumentos=res.data;
     })
 },
+
+
+
     methods: {
         agregar(){
 
-            if(this.tipoDocumento.nombre.trim() === '' ){
+            /*if(this.tipoDocumento.nombre.trim() === '' ){
                 alert('Debes completar todos los campos antes de guardar');
                 return;
             }
+            */
            // console.log(this.tipoEmpleado.nombre,this.tipoEmpleado.descuento);
             const params={nombre:this.tipoDocumento.nombre}
             this.tipoDocumento.nombre='';
@@ -134,7 +142,20 @@ created(){
                      this.tipoDocumento.nombre='';
                      this.editarActivo=false;
                 })
+        },
+
+        Validar(){
+            if(this.tipoDocumento.nombre == null || this.tipoDocumento.nombre.length == 0 || /^\s+$/.test(this.tipoDocumento.nombre)){
+                alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
+                return false;
+            }   
+            else if ((this.tipoDocumento.nombre).length > 20){
+                alert('ERROR: el nombre no debe tener mas de 10 caracteres');
+                return false;
+            }
+            
         }
+
     },
 }
 </script>

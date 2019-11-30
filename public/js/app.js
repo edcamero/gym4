@@ -4023,12 +4023,12 @@ __webpack_require__.r(__webpack_exports__);
     agregar: function agregar() {
       var _this2 = this;
 
-      if (this.tipoDocumento.nombre.trim() === '') {
-        alert('Debes completar todos los campos antes de guardar');
-        return;
-      } // console.log(this.tipoEmpleado.nombre,this.tipoEmpleado.descuento);
-
-
+      /*if(this.tipoDocumento.nombre.trim() === '' ){
+          alert('Debes completar todos los campos antes de guardar');
+          return;
+      }
+      */
+      // console.log(this.tipoEmpleado.nombre,this.tipoEmpleado.descuento);
       var params = {
         nombre: this.tipoDocumento.nombre
       };
@@ -4072,6 +4072,15 @@ __webpack_require__.r(__webpack_exports__);
         _this4.tipoDocumento.nombre = '';
         _this4.editarActivo = false;
       });
+    },
+    Validar: function Validar() {
+      if (this.tipoDocumento.nombre == null || this.tipoDocumento.nombre.length == 0 || /^\s+$/.test(this.tipoDocumento.nombre)) {
+        alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
+        return false;
+      } else if (this.tipoDocumento.nombre.length > 20) {
+        alert('ERROR: el nombre no debe tener mas de 10 caracteres');
+        return false;
+      }
     }
   }
 });
@@ -42821,7 +42830,21 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _c("div", { staticClass: "col-5" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success mr-2",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.Validar()
+                          }
+                        }
+                      },
+                      [_vm._v("Editar")]
+                    )
+                  ])
                 ])
               ]
             )
@@ -42865,7 +42888,21 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _c("div", { staticClass: "col-2" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary mr-2",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.Validar()
+                          }
+                        }
+                      },
+                      [_vm._v("Agregar")]
+                    )
+                  ])
                 ])
               ]
             )
@@ -42981,30 +43018,6 @@ var staticRenderFns = [
       _c("h4", { staticClass: "text-center mb-2 card-title" }, [
         _vm._v("Tipo Documento")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-5" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success mr-2", attrs: { type: "submit" } },
-        [_vm._v("Editar")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary mr-2", attrs: { type: "submit" } },
-        [_vm._v("Agregar")]
-      )
     ])
   }
 ]
@@ -56555,8 +56568,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\gym4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
