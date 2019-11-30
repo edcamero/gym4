@@ -105,7 +105,7 @@ created(){
             axios.post('/TipoDocumento',params)
                 .then(res=>{
                     if(res.data == null){
-                        alert('el tipo de documento no se ha registrado')
+                        alert('el tipo de documento no se ha registrado con exito')
                     }else{
                         alert('el tipo de documento se ha registrado')
                     }
@@ -142,7 +142,7 @@ created(){
             console.log(tc);
                 axios.put('/TipoDocumento/'+tc.id,tc)
                 .then(res=>{
-                     const index=this.tipoDocumentos.findIndex(buscar=>buscar.id==tc.id);
+                     const index=this.tipoDocumentos.findIndex(buscar=>buscar.id == tc.id);
                      console.log(res.data.status);
                      this.tipoDocumentos[index].nombre=tc.nombre;
                      this.tipoDocumento.nombre='';
