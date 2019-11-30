@@ -4,7 +4,7 @@
             <div class="col-md-10">
 
                 <div class="card">
-                    <div class="card-header">Calendario</div>
+                    <div class="card-header"> <h2> Horario de  {{this.empleado.persona.nombre}} {{this.empleado.persona.apellido}}</h2></div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-10">
@@ -96,13 +96,16 @@
             }
         },
         created(){
-            console.log("hola")
+            console.log(window.location);
+            axios.get(window.location).then(res=>{
+                    
+                    this.empleado = res.data;
+                
+                }),
             this.fechaActual();
         },
         methods: {
-            hola(){
-                console.log(this.saludo)
-            },
+            
             fechaActual(){
                 this.actual=new Date();
                 this.year=this.actual.getFullYear();

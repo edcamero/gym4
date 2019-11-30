@@ -2513,13 +2513,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    console.log("hola");
-    this.fechaActual();
+    var _this = this;
+
+    console.log(window.location);
+    axios.get(window.location).then(function (res) {
+      _this.empleado = res.data;
+    }), this.fechaActual();
   },
   methods: {
-    hola: function hola() {
-      console.log(this.saludo);
-    },
     fechaActual: function fechaActual() {
       this.actual = new Date();
       this.year = this.actual.getFullYear();
@@ -2726,7 +2727,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     verHorario: function verHorario(empleado) {
-      location.href = '/Empleado/horario/';
+      location.href = '/Empleado/horario/' + empleado.id;
     }
   }
 });
@@ -40505,7 +40506,16 @@ var render = function() {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-10" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("Calendario")]),
+          _c("div", { staticClass: "card-header" }, [
+            _c("h2", [
+              _vm._v(
+                " Horario de  " +
+                  _vm._s(this.empleado.persona.nombre) +
+                  " " +
+                  _vm._s(this.empleado.persona.apellido)
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "row" }, [

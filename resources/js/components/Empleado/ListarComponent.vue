@@ -150,7 +150,7 @@ methods:{
     verHorario(empleado){
     
         
-        location.href= '/Empleado/horario/';
+        location.href= '/Empleado/horario/'+empleado.id;
 
 
     },

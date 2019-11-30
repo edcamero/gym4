@@ -30,13 +30,18 @@ class EmpleadoController extends Controller
         }
     }
 
-    public function horarios(Request $request){
+    public function horarios(Request $request,$id){
         if($request->ajax()){
             
-            return Empleado::all();
+            $empleado = Empleado::find($id);
+
+            $empleado->persona;
+            $empleado->tipoEmpleado;
+
+            return $empleado;
         }else{
-            $tipoCli = Empleado::paginate();
-            return view('Empleado.horario', compact('tipoCli'));
+            
+            return view('Empleado.horario');
         }
     }
 

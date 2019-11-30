@@ -111,7 +111,8 @@
                     
             },
     
-            created(){
+            created(){ 
+                
                 axios.get('/Horario')
                 .then(res=>{
                     this.horarios = res.data;
