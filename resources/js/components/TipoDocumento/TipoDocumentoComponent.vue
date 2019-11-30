@@ -155,7 +155,12 @@ created(){
             if(this.tipoDocumento.nombre == null || this.tipoDocumento.nombre.length == 0 || /^\s+$/.test(this.tipoDocumento.nombre)){
                 alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
                 return false;
-            }   
+            }
+            else if ( /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(this.tipoDocumento.nombre) == false) {
+                    alert ('el nombre solo debe tener letras');
+                    this.tipoDocumento.nombre = '';
+                    return false;
+            }
             else if ((this.tipoDocumento.nombre).length > 35){
                 alert('ERROR: el nombre no debe tener mas de 35 caracteres');
                 this.tipoDocumento.nombre = '';
