@@ -161,10 +161,14 @@ created(){
                 alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
                 return false;
             }
-           
+            else if ( /^[a-z][a-z]*/.test(this.tipocliente.nombre) == true || /^[a-z][a-z]*/.test(this.tipocliente.nombre) == false) {
+                alert ('el nombre solo debe tener letras');
+                this.limpiar();
+                return false;
+            }
             else if ((this.tipocliente.nombre).length > 35){
                 alert('ERROR: el nombre no debe tener mas de 35 caracteres');
-                this.tipocliente.nombre = '';
+                this.limpiar();
                 return false;
             }
             else if (this.tipocliente.descuento == null || /^\s+$/.test(this.tipocliente.descuento)){
@@ -173,14 +177,19 @@ created(){
             }
             else if (isNaN(this.tipocliente.descuento)){
                 alert('el descuento debe ser un numero');
-                this.tipocliente.descuento = '';
+                this.limpiar();
             }
             else if ((this.tipocliente.descuento) > 100){
                 alert('ERROR: el descuento debe ser menor del 100%');
-                this.tipocliente.descuento = '';
+                this.limpiar();
                 return false;
             }
             
+        },
+
+        limpiar(){
+            this.tipocliente.nombre = '';
+            this.tipocliente.descuento = '';
         }
 
     },
