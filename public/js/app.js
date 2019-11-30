@@ -3878,6 +3878,12 @@ __webpack_require__.r(__webpack_exports__);
       this.tipocliente.nombre = '';
       this.tipocliente.descuento = '';
       axios.post('/TipoCliente', params).then(function (res) {
+        if (res.data == null) {
+          alert('el tipo de cliente no se ha registrado');
+        } else {
+          alert('el tipo de cliente se ha registrado');
+        }
+
         _this2.tipoClientes.push(res.data);
       });
     },
@@ -3889,6 +3895,8 @@ __webpack_require__.r(__webpack_exports__);
       if (confirmacion) {
         axios["delete"]('/TipoCliente/' + tipocliente.id).then(function () {
           _this3.tipoClientes.splice(index, 1);
+
+          alert('el tipo de cliente se ha eliminado con exito');
         });
       }
     },
@@ -3917,7 +3925,30 @@ __webpack_require__.r(__webpack_exports__);
         _this4.tipocliente.nombre = '';
         _this4.tipocliente.descuento = '';
         _this4.editarActivo = false;
+        alert('el tipo de cliente se ha editado con exito');
       });
+    },
+    Validar: function Validar() {
+      if (this.tipocliente.nombre == null || this.tipocliente.nombre == 0 || /^\s+$/.test(this.tipocliente.nombre)) {
+        alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
+        return false;
+      } else if (!/\S+@\S+\.\S+/.test(tipocliente.nombre)) {
+        alert('ERROR: expresion no valida');
+      } else if (this.tipocliente.nombre.length > 35) {
+        alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+        this.tipocliente.nombre = '';
+        return false;
+      } else if (this.tipocliente.descuento == null || /^\s+$/.test(this.tipocliente.descuento)) {
+        alert('ERROR: El campo descuento no debe ir vacío o lleno de solamente espacios en blanco');
+        return false;
+      } else if (isNaN(this.tipocliente.descuento)) {
+        alert('el descuento debe ser un numero');
+        this.tipocliente.descuento = '';
+      } else if (this.tipocliente.descuento > 100) {
+        alert('ERROR: el descuento debe ser menor del 100%');
+        this.tipocliente.descuento = '';
+        return false;
+      }
     }
   }
 });
@@ -4034,6 +4065,12 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.tipoDocumento.nombre = '';
       axios.post('/TipoDocumento', params).then(function (res) {
+        if (res.data == null) {
+          alert('el tipo de documento no se ha registrado');
+        } else {
+          alert('el tipo de documento se ha registrado');
+        }
+
         console.log(res.data);
 
         _this2.tipoDocumentos.push(res.data);
@@ -4047,6 +4084,8 @@ __webpack_require__.r(__webpack_exports__);
       if (confirmacion) {
         axios["delete"]('/TipoDocumento/' + tipoDocumento.id).then(function () {
           _this3.tipoDocumentos.splice(index, 1);
+
+          alert('el tipo de documento se ha eliminado con exito');
         });
       }
     },
@@ -4071,14 +4110,16 @@ __webpack_require__.r(__webpack_exports__);
         _this4.tipoDocumentos[index].nombre = tc.nombre;
         _this4.tipoDocumento.nombre = '';
         _this4.editarActivo = false;
+        alert('el tipo de documento se ha editado con exito');
       });
     },
     Validar: function Validar() {
       if (this.tipoDocumento.nombre == null || this.tipoDocumento.nombre.length == 0 || /^\s+$/.test(this.tipoDocumento.nombre)) {
         alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
         return false;
-      } else if (this.tipoDocumento.nombre.length > 20) {
-        alert('ERROR: el nombre no debe tener mas de 10 caracteres');
+      } else if (this.tipoDocumento.nombre.length > 35) {
+        alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+        this.tipoDocumento.nombre = '';
         return false;
       }
     }
@@ -42532,7 +42573,21 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _c("div", { staticClass: "col-2" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success mr-2",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.Validar()
+                          }
+                        }
+                      },
+                      [_vm._v("Editar")]
+                    )
+                  ])
                 ])
               ]
             )
@@ -42604,7 +42659,21 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _c("div", { staticClass: "col-2" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary mr-2",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.Validar()
+                          }
+                        }
+                      },
+                      [_vm._v("Agregar")]
+                    )
+                  ])
                 ])
               ]
             )
@@ -42724,30 +42793,6 @@ var staticRenderFns = [
       _c("h4", { staticClass: "text-center mb-2 card-title" }, [
         _vm._v("Tipo Cliente")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success mr-2", attrs: { type: "submit" } },
-        [_vm._v("Editar")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary mr-2", attrs: { type: "submit" } },
-        [_vm._v("Agregar")]
-      )
     ])
   }
 ]

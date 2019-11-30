@@ -15,7 +15,7 @@
                             </div>
 
                             <div class="col-2">
-                                 <button  class="btn btn-success mr-2" type="submit">Editar</button>
+                                 <button  class="btn btn-success mr-2" type="submit" @click="Validar()">Editar</button>
                             </div>
                     </div>
                     
@@ -33,7 +33,7 @@
                             </div>
 
                             <div class="col-2">
-                                 <button  class="btn btn-primary mr-2" type="submit">Agregar</button>
+                                 <button  class="btn btn-primary mr-2" type="submit" @click="Validar()">Agregar</button>
                             </div>
                     </div>
                     
@@ -104,6 +104,11 @@ created(){
             this.tipocliente.descuento='';
             axios.post('/TipoCliente',params)
                 .then(res=>{
+                    if(res.data == null){
+                        alert('el tipo de cliente no se ha registrado')
+                    }else{
+                        alert('el tipo de cliente se ha registrado')
+                    }
                     this.tipoClientes.push(res.data)
                 });
         },
@@ -115,6 +120,7 @@ created(){
                         axios.delete('/TipoCliente/'+tipocliente.id)
                         .then(()=>{
                                 this.tipoClientes.splice(index,1);
+                                alert('el tipo de cliente se ha eliminado con exito')
                         });
                     }
         },
@@ -145,8 +151,40 @@ created(){
                      this.tipocliente.nombre='';
                      this.tipocliente.descuento='';
                      this.editarActivo=false;
+                     alert('el tipo de cliente se ha editado con exito')
                 })
+        },
+
+        Validar(){
+            
+            if(this.tipocliente.nombre == null || this.tipocliente.nombre == 0 || /^\s+$/.test(this.tipocliente.nombre)){
+                alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
+                return false;
+            }
+            else if(!(/\S+@\S+\.\S+/.test(tipocliente.nombre))){
+                alert('ERROR: expresion no valida');
+            }
+            else if ((this.tipocliente.nombre).length > 35){
+                alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+                this.tipocliente.nombre = '';
+                return false;
+            }
+            else if (this.tipocliente.descuento == null || /^\s+$/.test(this.tipocliente.descuento)){
+                alert('ERROR: El campo descuento no debe ir vacío o lleno de solamente espacios en blanco');
+                return false;
+            }
+            else if (isNaN(this.tipocliente.descuento)){
+                alert('el descuento debe ser un numero');
+                this.tipocliente.descuento = '';
+            }
+            else if ((this.tipocliente.descuento) > 100){
+                alert('ERROR: el descuento debe ser menor del 100%');
+                this.tipocliente.descuento = '';
+                return false;
+            }
+            
         }
+
     },
 }
 </script>
