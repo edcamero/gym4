@@ -91,94 +91,94 @@
 
 
 <script>
-export default {
-   
-    data(){
-        return {
-            horarios:[],
-            horario:{
-                nombre:'',
-                ingreso:'Seleccione',
-                salida:'Seleccione',
-                },
-            horas:['Seleccione','00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00',
-                    '10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00',
-                     '19:00','20:00','21:00','22:00','23:00'],
-             editarActivo:false,
-            
-            };
-                      
+    export default {
+    
+        data(){
+            return {
+                horarios:[],
+                horario:{
+                    nombre:'',
+                    ingreso:'Seleccione',
+                    salida:'Seleccione',
+                    },
+                horas:['Seleccione','00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00',
+                        '10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00',
+                        '19:00','20:00','21:00','22:00','23:00'],
+                editarActivo:false,
                 
-        },
-   
-        created(){
-             axios.get('/Horario')
-            .then(res=>{
-                this.horarios = res.data;
-            })
-        },
-    methods: {
-        agregar(){
-
-            if(this.horario.nombre.trim() === '' || this.horario.ingreso.trim() === ''|| this.horario.salida.trim()===''){
-                alert('Debes completar todos los campos antes de guardar');
-                return;
-            }
-           // console.log(this.tipocliente.nombre,this.tipocliente.descuento);
-            const params={nombre:this.horario.nombre,ingreso:this.horario.ingreso,
-            salida:this.horario.salida}
-            this.horario.nombre='';
-            this.horario.ingreso='';
-            this.horario.salida='';
-
-            axios.post('/Horario',params)
+                };
+                        
+                    
+            },
+    
+            created(){
+                axios.get('/Horario')
                 .then(res=>{
-                    this.horarios.push(res.data)
-                });
-        },
-        eliminar(horario,index){
-            
-            const confirmacion = confirm(`Confirma Eliminar Tipo Cliente: ${horario.nombre}`);
-                if(confirmacion){
-                        axios.delete('/Horario/'+horario.id)
-                        .then(()=>{
-                                this.horarios.splice(index,1);
-                        });
-                    }
-        },
-
-
-        editarForm(a){
-            this.editarActivo=true;
-            this.horario.nombre=a.nombre;
-            this.horario.ingreso=a.ingreso.substring(0,5);
-            this.horario.salida=a.salida.substring(0,5);
-            this.horario.id=a.id;
-            console.log(a);
-        },
-
-
-        editar(tc){
-            const params={
-                nombre:tc.nombre,
-                ingreso:tc.ingreso,
-                salida:tc.salida
-            }
-            console.log(tc);
-                axios.put('/Horario/'+tc.id,tc)
-                .then(res=>{
-                     const index=this.horarios.findIndex(buscar=>buscar.id==tc.id);
-                     console.log(res.data.status);
-                     this.horarios[index].nombre=tc.nombre;
-                     this.horarios[index].ingreso=tc.ingreso;
-                     this.horarios[index].salida=tc.salida;
-
-                     this.horario.nombre='';
-                     this.horario.ingreso='';
-                     this.horario.salida='';
-                     this.editarActivo=false;
+                    this.horarios = res.data;
                 })
-        }
-    },
-}
+            },
+        methods: {
+            agregar(){
+
+                if(this.horario.nombre.trim() === '' || this.horario.ingreso.trim() === ''|| this.horario.salida.trim()===''){
+                    alert('Debes completar todos los campos antes de guardar');
+                    return;
+                }
+            // console.log(this.tipocliente.nombre,this.tipocliente.descuento);
+                const params={nombre:this.horario.nombre,ingreso:this.horario.ingreso,
+                salida:this.horario.salida}
+                this.horario.nombre='';
+                this.horario.ingreso='';
+                this.horario.salida='';
+
+                axios.post('/Horario',params)
+                    .then(res=>{
+                        this.horarios.push(res.data)
+                    });
+            },
+            eliminar(horario,index){
+                
+                const confirmacion = confirm(`Confirma Eliminar Tipo Cliente: ${horario.nombre}`);
+                    if(confirmacion){
+                            axios.delete('/Horario/'+horario.id)
+                            .then(()=>{
+                                    this.horarios.splice(index,1);
+                            });
+                        }
+            },
+
+
+            editarForm(a){
+                this.editarActivo=true;
+                this.horario.nombre=a.nombre;
+                this.horario.ingreso=a.ingreso.substring(0,5);
+                this.horario.salida=a.salida.substring(0,5);
+                this.horario.id=a.id;
+                console.log(a);
+            },
+
+
+            editar(tc){
+                const params={
+                    nombre:tc.nombre,
+                    ingreso:tc.ingreso,
+                    salida:tc.salida
+                }
+                console.log(tc);
+                    axios.put('/Horario/'+tc.id,tc)
+                    .then(res=>{
+                        const index=this.horarios.findIndex(buscar=>buscar.id==tc.id);
+                        console.log(res.data.status);
+                        this.horarios[index].nombre=tc.nombre;
+                        this.horarios[index].ingreso=tc.ingreso;
+                        this.horarios[index].salida=tc.salida;
+
+                        this.horario.nombre='';
+                        this.horario.ingreso='';
+                        this.horario.salida='';
+                        this.editarActivo=false;
+                    })
+            }
+        },
+    }
 </script>
