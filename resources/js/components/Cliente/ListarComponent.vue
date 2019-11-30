@@ -120,6 +120,8 @@ created(){
         //this.empleados.persona=this.buscar2(this.empleado.per_id);
     })
 },
+
+
 methods:{
 
     

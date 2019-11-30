@@ -107,10 +107,9 @@ Route::group(['middleware' => ['permission:eliminar-empleado']], function () {
 
 Route::group(['middleware' => ['permission:listar-cliente']], function () {
     Route::get('Cliente/index', 'ClienteController@index')->name('listar-cliente');
-    Route::get('Empleado/horario', 'EmpleadoController@horarios')->name('horarios-empleado');
     Route::get('/Persona/{id}', 'PersonaController@buscar')->name('persona.buscar');
     Route::get('/Persona/buscar/{id}', 'PersonaController@buscarId')->name('personaid');
-    Route::get('/Empleado/{id}', 'EmpleadoController@show')->name('ver-empleado');
+    Route::get('/Cliente/{id}', 'ClienteController@show')->name('ver-cliente');
 });
 
 
