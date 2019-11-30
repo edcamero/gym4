@@ -147,6 +147,7 @@
                             axios.delete('/Horario/'+horario.id)
                             .then(()=>{
                                     this.horarios.splice(index,1);
+                                    alert('el horario se ha eliminado con exito')
                             });
                         }
             },
@@ -181,6 +182,7 @@
                         this.horario.ingreso='';
                         this.horario.salida='';
                         this.editarActivo=false;
+                        alert('el horario se ha editado con exito')
                     })
             },
 

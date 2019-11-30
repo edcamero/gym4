@@ -3554,6 +3554,8 @@ __webpack_require__.r(__webpack_exports__);
       if (confirmacion) {
         axios["delete"]('/Horario/' + horario.id).then(function () {
           _this3.horarios.splice(index, 1);
+
+          alert('el horario se ha eliminado con exito');
         });
       }
     },
@@ -3587,6 +3589,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.horario.ingreso = '';
         _this4.horario.salida = '';
         _this4.editarActivo = false;
+        alert('el horario se ha editado con exito');
       });
     },
     Validar: function Validar() {
@@ -3688,79 +3691,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("se monto el componente agregar empleado");
@@ -3775,14 +3705,7 @@ __webpack_require__.r(__webpack_exports__);
       selecionados: [],
       permisos: [],
       modulos: [],
-      mpermisos: ['listar', 'guardar', 'editar', 'eliminar'],
-      mensaje: {
-        color: '',
-        texto: ''
-      },
-      dismissSecs: 10,
-      dismissCountDown: 0,
-      showDismissibleAlert: false
+      mpermisos: ['listar', 'guardar', 'editar', 'eliminar']
     };
   },
   created: function created() {
@@ -3799,19 +3722,33 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     guardar: function guardar() {
-      var params = {
-        nombre: this.role.nombre,
-        permisos: this.selecionados
-      };
-      axios.post('/Role', params).then(function (res) {// this.horarios.push(res.data)
-      });
-      console.log(this.selecionados);
+      if (!this.Validar()) {
+        var params = {
+          nombre: this.role.nombre,
+          permisos: this.selecionados
+        };
+        axios.post('/Role', params).then(function (res) {
+          // this.horarios.push(res.data)
+          alert('El rol se ha creado con exito');
+        });
+        console.log(this.selecionados);
+      } else {
+        alert('No se creo el rol');
+      }
     },
-    countDownChanged: function countDownChanged(dismissCountDown) {
-      this.dismissCountDown = dismissCountDown;
-    },
-    showAlert: function showAlert() {
-      this.dismissCountDown = this.dismissSecs;
+    Validar: function Validar() {
+      if (this.role.nombre == null || this.role.nombre.length == 0 || /^\s+$/.test(this.role.nombre)) {
+        alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
+        return false;
+      } else if (/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(this.role.nombre) == false) {
+        alert('el nombre solo debe tener letras');
+        this.role.nombre = '';
+        return false;
+      } else if (this.role.nombre.length > 35) {
+        alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+        this.role.nombre = '';
+        return false;
+      }
     }
   }
 });
@@ -42393,19 +42330,9 @@ var render = function() {
     _c("div", { staticClass: "card-body" }, [
       _c(
         "div",
-        { staticClass: "alert alert-primary", attrs: { role: "alert" } },
-        [_vm._v("\n  This is a primary alert—check it out!\n")]
-      ),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _c(
-        "div",
         { staticClass: "form-group row" },
         [
-          _vm._m(3),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-8 form-group" }, [
             _c("input", {
@@ -42431,27 +42358,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(4),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6 form-group" }, [
-            _c("input", {
-              attrs: { type: "checkbox", id: "checkbox", value: "" }
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "checkbox" } }, [
-              _vm._v(_vm._s("Acceso total"))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6 form-group" }, [
-            _c("input", { attrs: { type: "checkbox", id: "checkbox" } }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "checkbox" } }, [
-              _vm._v(_vm._s("Ningun Acceso"))
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(5),
+          _vm._m(2),
           _vm._v(" "),
           _vm._l(_vm.modulos, function(item) {
             return _c(
@@ -42584,65 +42491,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "alert alert-success dismissible show" }, [
-      _c(
-        "div",
-        {
-          staticClass: "alert alert-warning alert-dismissible fade show",
-          attrs: { role: "alert" }
-        },
-        [
-          _c("strong", [_vm._v("Holy guacamole!")]),
-          _vm._v(
-            " You should check in on some of those fields below.\n              "
-          ),
-          _c(
-            "button",
-            {
-              staticClass: "close",
-              attrs: {
-                type: "button",
-                "data-dismiss": "alert",
-                "aria-label": "Close"
-              }
-            },
-            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-          )
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "alert",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4" }, [
-      _c("label", [_c("strong", [_vm._v("Nombre del role:")])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 form-group" }, [
-      _c("label", [_c("strong", [_vm._v("Permisos especiales:")])])
+      _c("label", [_c("strong", [_vm._v("Nombre del rol:")])])
     ])
   },
   function() {
