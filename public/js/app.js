@@ -3506,6 +3506,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       horarios: [],
+      //indice ='',
       horario: {
         nombre: '',
         ingreso: 'Seleccione',
@@ -3526,12 +3527,7 @@ __webpack_require__.r(__webpack_exports__);
     agregar: function agregar() {
       var _this2 = this;
 
-      if (this.horario.nombre.trim() === '' || this.horario.ingreso.trim() === '' || this.horario.salida.trim() === '') {
-        alert('Debes completar todos los campos antes de guardar');
-        return;
-      } // console.log(this.tipocliente.nombre,this.tipocliente.descuento);
-
-
+      // console.log(this.tipocliente.nombre,this.tipocliente.descuento);
       var params = {
         nombre: this.horario.nombre,
         ingreso: this.horario.ingreso,
@@ -3542,6 +3538,12 @@ __webpack_require__.r(__webpack_exports__);
       this.horario.salida = '';
       axios.post('/Horario', params).then(function (res) {
         _this2.horarios.push(res.data);
+
+        console.log(res.data);
+
+        if (res.data != null) {
+          alert('el horario se ha registrado con exito');
+        }
       });
     },
     eliminar: function eliminar(horario, index) {
@@ -3586,6 +3588,30 @@ __webpack_require__.r(__webpack_exports__);
         _this4.horario.salida = '';
         _this4.editarActivo = false;
       });
+    },
+    Validar: function Validar() {
+      if (this.horario.nombre == null || this.horario.nombre.length == 0 || /^\s+$/.test(this.horario.nombre)) {
+        alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
+        return false;
+      } else if (/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(this.horario.nombre) == false) {
+        alert('el nombre solo debe tener letras');
+        this.horario.nombre = '';
+        return false;
+      } else if (this.horario.nombre.length > 35) {
+        alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+        this.horario.nombre = '';
+        return false;
+      } //var indice = document.getElementById(this.horario.nombre).selectedIndex;
+      else if (this.horario.ingreso == null || this.horario.ingreso == 'Seleccione') {
+          alert('seleccione la hora de ingreso');
+          return false;
+        } else if (this.horario.salida == null || this.horario.salida == 'Seleccione') {
+          alert('seleccione la hora de salida');
+          return false;
+        } else if (parseInt(this.horario.ingreso.substring(0, 2)) >= parseInt(this.horario.salida.substring(0, 2))) {
+          alert('la hora de ingreso debe ser menor que la hora de salida');
+          this.horario.nombre = '';
+        }
     }
   }
 });
@@ -42064,7 +42090,21 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _c("div", { staticClass: "col-2" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success mr-2",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.Validar()
+                          }
+                        }
+                      },
+                      [_vm._v("Editar")]
+                    )
+                  ])
                 ])
               ]
             )
@@ -42188,7 +42228,21 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _c("div", { staticClass: "col-2" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary mr-2",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.Validar()
+                          }
+                        }
+                      },
+                      [_vm._v("Agregar")]
+                    )
+                  ])
                 ])
               ]
             )
@@ -42309,30 +42363,6 @@ var staticRenderFns = [
       _c("h4", { staticClass: "text-center mb-2 card-title" }, [
         _vm._v("Horario")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success mr-2", attrs: { type: "submit" } },
-        [_vm._v("Editar")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary mr-2", attrs: { type: "submit" } },
-        [_vm._v("Agregar")]
-      )
     ])
   }
 ]
