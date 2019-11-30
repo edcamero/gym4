@@ -161,9 +161,7 @@ created(){
                 alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
                 return false;
             }
-            else if(!(/\S+@\S+\.\S+/.test(tipocliente.nombre))){
-                alert('ERROR: expresion no valida');
-            }
+           
             else if ((this.tipocliente.nombre).length > 35){
                 alert('ERROR: el nombre no debe tener mas de 35 caracteres');
                 this.tipocliente.nombre = '';
