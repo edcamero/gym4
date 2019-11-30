@@ -189,7 +189,9 @@ methods: {
 
 
         editar(empleado){
-            const params = {
+
+            if(!this.Validar()){
+                const params = {
 
                 emp_id:empleado.id,
                 per_id:empleado.persona.id,
@@ -207,7 +209,7 @@ methods: {
             }
 
             console.log(empleado);
-                axios.put('/Empleado/'+empleado.id, params)
+                axios.put('/Empleado/' + empleado.id, params)
                 .then(res=>{
 
                      this.empleado.persona.tipo_doc            = '';
@@ -225,15 +227,111 @@ methods: {
 
                      this.editarActivo = false;
                      console.log(res.data);
+                     alert('el empleado se ha modificado con exito');
                 })
+                
+            }
+            else {
+                alert('el empleado no se ha modificado');
+            }
+            
         },
 
         ver(){
                 console.log('entro al evento');
+        },
+
+        Validar(){
+
+            if(this.empleado.persona.tipo_doc == null || this.empleado.persona.tipo_doc == 'Seleccione un tipo de documento'){
+                    alert('seleccione un tipo de documento');
+                    return false;
+            }
+            else if(this.empleado.persona.documento == null || this.empleado.persona.documento.length == 0 || /^\s+$/.test(this.empleado.persona.documento)){
+                alert('ERROR: no debe campos vacíos o lleno de solamente espacios en blanco');
+                return false;
+            }
+            else if ((this.empleado.persona.documento).length > 35){
+                alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+                this.empleado.persona.documento = '';
+                return false;
+            }
+            else if(this.empleado.persona.nombre == null || this.empleado.persona.nombre.length == 0 || /^\s+$/.test(this.empleado.persona.nombre)){
+                    alert('ERROR: no debe campos vacíos o lleno de solamente espacios en blanco');
+                    return false;
+            }
+            else if ( /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(this.empleado.persona.nombre) == false) {
+                        alert ('el nombre solo debe tener letras');
+                        this.empleado.persona.nombre = '';
+                        return false;
+            }
+            else if ((this.empleado.persona.nombre).length > 35){
+                    alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+                    this.empleado.persona.nombre = '';
+                    return false;
+            }
+            else if(this.empleado.persona.apellido == null || this.empleado.persona.apellido.length == 0 || /^\s+$/.test(this.empleado.persona.apellido)){
+                    alert('ERROR: no debe campos vacíos o lleno de solamente espacios en blanco');
+                    return false;
+            }
+            else if ( /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(this.empleado.persona.apellido) == false) {
+                        alert ('el nombre solo debe tener letras');
+                        this.empleado.persona.apellido = '';
+                        return false;
+            }
+            else if ((this.empleado.persona.apellido).length > 35){
+                    alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+                    this.empleado.persona.apellido = '';
+                    return false;
+            }
+            else if(!isNaN(this.empleado.persona.fecha_nac)){
+                alert('ERROR: selecccione la fecha de nacimiento');
+                return false;
+            }
+            else if(this.empleado.persona.sexo == null || this.empleado.persona.sexo == 'Sexo'){
+                    alert('seleccione el sexo');
+                return false;
+            }
+            else if(this.empleado.persona.altura == null || this.empleado.persona.altura.length == 0 || /^\s+$/.test(this.empleado.persona.altura)){
+                    alert('ERROR: no debe campos vacíos o lleno de solamente espacios en blanco');
+                    return false;
+            }
+            else if (isNaN(this.empleado.persona.altura)){
+                alert('la altura debe ser un numero');
+                //this.limpiar();
+                return false;
+            }
+            else if ((this.empleado.persona.altura) > 220 || (this.empleado.persona.altura) < 60){
+                alert('ERROR: la altura debe ser menor de 220 cm 0 mayor a 60cm');
+                //this.limpiar();
+                return false;
+            }
+
+            else if (isNaN(this.empleado.persona.telefono)){
+                alert('el telefono debe ser un numero');
+                //this.limpiar();
+            }
+            else if(this.empleado.persona.telefono == null || this.empleado.persona.telefono.length == 0 || /^\s+$/.test(this.empleado.persona.telefono)){
+                    alert('ERROR: no debe tener campos vacíos o lleno de solamente espacios en blanco');
+                    return false;
+            }
+            else if ((this.empleado.persona.telefono) > 9999999999){
+                alert('ERROR: el telefono debe tener 10 numeros');
+                //this.limpiar();
+                return false;
+            }
+            else if(this.empleado.persona.direccion == null || this.empleado.persona.direccion.length == 0 || /^\s+$/.test(this.empleado.persona.direccion)){
+                    alert('ERROR: no debe tener campos vacíos o lleno de solamente espacios en blanco');
+                    return false;
+            }
+            else if(this.empleado.tipo_emple == null || this.empleado.tipo_emple == 'Seleccione un tipo de empleado'){
+                    alert('seleccione el tipo de empleado');
+                return false;
+            }
         }
 
-    },
 
+    },
 }
 
 
