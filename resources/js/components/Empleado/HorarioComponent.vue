@@ -34,8 +34,28 @@
                                    <tr v-for="(semana,index) in this.vectorMes" :key="index" > 
                                    <td  v-for="dia in semana" :key="dia.id"   >
                                        <div v-if="dia.data==diaActual" :class="{'bg-info':true}">{{dia.data}}</div>
-                                       <div v-else >{{dia.data}}</div>
-                                       </td>
+                                       <div data-toggle="modal" :data-target="'#seleccion'+dia.data" v-else >{{dia.data}}</div>
+                                       <!-- Modal -->
+            <div class="modal fade" :id="'seleccion'+dia.data" tabindex="-1" role="dialog" :aria-labelledby="'seleccion'+dia.data" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLongTitle">Horarios Registrados en el dia {{dia.data}}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+                                    </td>
                                    
                                </tr>
                                
@@ -46,6 +66,7 @@
                 
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -105,6 +126,9 @@
             this.fechaActual();
         },
         methods: {
+            seleccion(mensaje) {
+                alert(mensaje);
+            },
             
             fechaActual(){
                 this.actual=new Date();

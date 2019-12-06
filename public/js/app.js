@@ -2471,6 +2471,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2521,6 +2542,9 @@ __webpack_require__.r(__webpack_exports__);
     }), this.fechaActual();
   },
   methods: {
+    seleccion: function seleccion(mensaje) {
+      alert(mensaje);
+    },
     fechaActual: function fechaActual() {
       this.actual = new Date();
       this.year = this.actual.getFullYear();
@@ -40515,7 +40539,69 @@ var render = function() {
                           ? _c("div", { class: { "bg-info": true } }, [
                               _vm._v(_vm._s(dia.data))
                             ])
-                          : _c("div", [_vm._v(_vm._s(dia.data))])
+                          : _c(
+                              "div",
+                              {
+                                attrs: {
+                                  "data-toggle": "modal",
+                                  "data-target": "#seleccion" + dia.data
+                                }
+                              },
+                              [_vm._v(_vm._s(dia.data))]
+                            ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "modal fade",
+                            attrs: {
+                              id: "seleccion" + dia.data,
+                              tabindex: "-1",
+                              role: "dialog",
+                              "aria-labelledby": "seleccion" + dia.data,
+                              "aria-hidden": "true"
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "modal-dialog modal-dialog-centered",
+                                attrs: { role: "document" }
+                              },
+                              [
+                                _c("div", { staticClass: "modal-content" }, [
+                                  _c("div", { staticClass: "modal-header" }, [
+                                    _c(
+                                      "h4",
+                                      {
+                                        staticClass: "modal-title",
+                                        attrs: { id: "exampleModalLongTitle" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "Horarios Registrados en el dia " +
+                                            _vm._s(dia.data)
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._m(1, true)
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "modal-body" }, [
+                                    _vm._v(
+                                      "\n                    ...\n                "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._m(2, true)
+                                ])
+                              ]
+                            )
+                          ]
+                        )
                       ])
                     }),
                     0
@@ -40551,6 +40637,44 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Sabado ")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("Save changes")]
+      )
     ])
   }
 ]
@@ -56578,8 +56702,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\gym4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
