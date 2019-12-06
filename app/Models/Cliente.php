@@ -9,7 +9,7 @@ use Carbon\Carbon;
  * @property int $tip_cli_id
  * @property int $per_id
  * @property Persona $persona
- * @property TipoEmpleado $tipoCliente
+ * @property TipoCliente $tipocliente
  * @property EvaluacionEmple[] $evaluacionEmples
  * @property Horarios[] $horarios
  */
@@ -39,12 +39,12 @@ class Cliente extends Model
      */
     public function persona()
     {
-        return $this->hasOne('App\Models\Persona','id','per_id');
+        return $this->hasOne('App\Models\Persona','id','pers_id');
     }
 
-    public function tipoCliente()
+    public function tipocliente()
     {
-        return $this->hasOne('App\Models\TipoCliente','id','tip_cli_id');
+        return $this->hasOne('App\Models\TipoCliente','id','tipo_cliente_id');
     }
 
     /**

@@ -103,6 +103,42 @@ Route::group(['middleware' => ['permission:eliminar-empleado']], function () {
 
 
 
+
+//Permisos y rutas definidos para cliente
+
+Route::group(['middleware' => ['permission:listar-cliente']], function () {
+    Route::get('Cliente/index', 'ClienteController@index')->name('listar-cliente');
+    Route::get('/Persona/{id}', 'PersonaController@buscar')->name('persona.buscar');
+    Route::get('/Persona/buscar/{id}', 'PersonaController@buscarId')->name('personaid');
+    Route::get('/Cliente/{id}', 'ClienteController@show')->name('ver-cliente');
+});
+
+
+
+Route::group(['middleware' => ['permission:editar-empleado']], function () {
+    Route::get('Empleado/actualizar/{id}', 'EmpleadoController@edit')->name('empleado.editar');
+    Route::put('Empleado/{id}', 'EmpleadoController@update')->name('editar-empleado');
+});
+
+Route::group(['middleware' => ['permission:guardar-empleado']], function () {
+    Route::get('Empleado', 'EmpleadoController@create')->name('create-empleado');
+    Route::post('Empleado', 'EmpleadoController@store')->name('guardar-empleado');
+});
+
+
+
+Route::group(['middleware' => ['permission:eliminar-empleado']], function () {
+    Route::delete('/Empleado/{id}', 'EmpleadoController@destroy')->name('eliminar-empleado');
+});
+
+
+
+
+
+
+
+
+
 //Permisos y rutas definidos para Tipo-Documento
 
 

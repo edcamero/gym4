@@ -16,29 +16,21 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     { 
-        $empleados = Cliente::all();
+        $clientes = Cliente::all();
         
         if($request->ajax()){
-            foreach ($empleados as $em){
-                $em->persona;
-                $em->tipoEmpleado;
+            foreach ($clientes as $c){
+                $c->persona;
+                $c->tipocliente;
             }
-            return $empleados;
+            return $clientes;
         }else{
-            $tipoCli = Cliente::paginate();
-            return view('Empleado.index', compact('tipoCli'));
+            $cliente = Cliente::paginate();
+            return view('Cliente.index', compact('cliente'));
         }
     }
 
-    public function horarios(Request $request){
-        if($request->ajax()){
-            
-            return Cliente::all();
-        }else{
-            $tipoCli = Cliente::paginate();
-            return view('Empleado.horario', compact('tipoCli'));
-        }
-    }
+    
 
 
     /**
@@ -97,22 +89,22 @@ class ClienteController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$id)
+    public function show(Request $request, $id)
     {
         if($request->ajax()){
 
-            $empleado = Cliente::find($id);
+            $cliente = Cliente::find($id);
 
-            $empleado->persona;
-            $empleado->tipoEmpleado;
-            $empleado->persona->user;
-            $empleado->persona->tipoDocumento;
+            $cliente->persona;
+            $cliente->tipocliente;
+            $cliente->Persona->user;
+            $cliente->persona->tipoDocumento;
 
-            return $empleado;
+            return $cliente;
             
         }else{
 
-            return view('Empleado.show');
+            return view('Cliente.show');
 
         }
     }

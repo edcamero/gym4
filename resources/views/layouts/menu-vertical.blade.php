@@ -79,6 +79,13 @@
                                   </li>
                                 @endcan
 
+                                 @can('listar-cliente')
+                                <li class="nav-item"><a class="nav-link py-0" href="{{ route('listar-cliente') }}">
+                                    Consultar Cliente
+                                  </a>
+                                </li>
+                                  @endcan
+
                                 
                               </ul>
 
