@@ -35,6 +35,8 @@
                                    <td  v-for="dia in semana" :key="dia.id"   >
                                        <div v-if="dia.data==diaActual" :class="{'bg-info':true}">{{dia.data}}</div>
                                        <div data-toggle="modal" :data-target="'#seleccion'+dia.data" v-else >{{dia.data}}</div>
+                                      
+                                      
                                        <!-- Modal -->
             <div class="modal fade" :id="'seleccion'+dia.data" tabindex="-1" role="dialog" :aria-labelledby="'seleccion'+dia.data" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -49,8 +51,8 @@
                         ...
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Guardar Cambios</button>
                     </div>
                     </div>
                 </div>
@@ -87,6 +89,7 @@
                 semana:[],
                 dia:{
                     numero:'',
+
 
                 },
                  empleado:{

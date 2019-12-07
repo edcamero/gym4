@@ -85,5 +85,17 @@ class Empleado extends Model
         //$horario=App\Models\Horario::find($id_horario);
         $this->horarios()->attach($id_horario,['dia'=>$dia,'created_at'=>Carbon::now()->format('Y-m-d'),'updated_at'=>Carbon::now()->format('Y-m-d')]);
     }
-}
+
+
+    public function AgregarHorarios($vectorHorarios,$dia){
+        $dia2=strtotime($dia);
+         $fecha_actua=Carbon::now();
+         $vectorColum = array_fill(0, count($vectorHorarios), ['dia'=>date('Y-m-d',$dia2),'created_at'=>$fecha_actua,'updated_at'=>$fecha_actua->toDateString()]);
+         $vectorFinal=array_combine($vectorHorarios,$vectorColum);
+         $this->horarios()->sync($vectorFinal);
+        
+         }
+        
+        
+    }
 
