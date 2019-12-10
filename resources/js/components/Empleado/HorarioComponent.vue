@@ -93,6 +93,7 @@
 
                 },
                  empleado:{
+                     id:'',
                     persona:{
                         tipo_doc:'',
                         documento:'',
@@ -120,13 +121,22 @@
             }
         },
         created(){
-            console.log(window.location);
+            
             axios.get(window.location).then(res=>{
                     
                     this.empleado = res.data;
+                    this.empleado.id=res.data['id'];
+                  
                 
                 }),
+                console.log("hola"+this.empleado.id),
+           axios.get('/Empleado/mishorarios/'+this.empleado.id).then(res=>{
+              // console.log(this.empleado.id);
+           })
             this.fechaActual();
+        },
+        mounted(){
+            //console.log("hola numero "+this.empleado);
         },
         methods: {
             seleccion(mensaje) {

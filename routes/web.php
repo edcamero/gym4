@@ -87,6 +87,9 @@ Route::group(['middleware' => ['permission:listar-empleado']], function () {
 Route::group(['middleware' => ['permission:editar-empleado']], function () {
     Route::get('Empleado/actualizar/{id}', 'EmpleadoController@edit')->name('empleado.editar');
     Route::put('Empleado/{id}', 'EmpleadoController@update')->name('editar-empleado');
+    Route::get('Empleado/actualizar/{id}', 'EmpleadoController@edit')->name('empleado.editar');
+    Route::put('Empleado/{id}', 'EmpleadoController@update')->name('editar-empleado');
+    Route::get('Empleado/mishorarios/{id}','EmpleadoController@misHorarios')->name('mis-horarios');
 });
 
 Route::group(['middleware' => ['permission:guardar-empleado']], function () {
@@ -114,11 +117,6 @@ Route::group(['middleware' => ['permission:listar-cliente']], function () {
 });
 
 
-
-Route::group(['middleware' => ['permission:editar-empleado']], function () {
-    Route::get('Empleado/actualizar/{id}', 'EmpleadoController@edit')->name('empleado.editar');
-    Route::put('Empleado/{id}', 'EmpleadoController@update')->name('editar-empleado');
-});
 
 Route::group(['middleware' => ['permission:guardar-empleado']], function () {
     Route::get('Empleado', 'EmpleadoController@create')->name('create-empleado');

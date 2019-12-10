@@ -2511,6 +2511,7 @@ __webpack_require__.r(__webpack_exports__);
         numero: ''
       },
       empleado: {
+        id: '',
         persona: {
           tipo_doc: '',
           documento: '',
@@ -2538,10 +2539,14 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    console.log(window.location);
     axios.get(window.location).then(function (res) {
       _this.empleado = res.data;
-    }), this.fechaActual();
+      _this.empleado.id = res.data['id'];
+    }), console.log("hola" + this.empleado.id), axios.get('/Empleado/mishorarios/' + this.empleado.id).then(function (res) {// console.log(this.empleado.id);
+    });
+    this.fechaActual();
+  },
+  mounted: function mounted() {//console.log("hola numero "+this.empleado);
   },
   methods: {
     seleccion: function seleccion(mensaje) {
@@ -3906,7 +3911,7 @@ __webpack_require__.r(__webpack_exports__);
       this.tipocliente.descuento = '';
       axios.post('/TipoCliente', params).then(function (res) {
         if (res.data == null) {
-          alert('el tipo de cliente no se ha registrado');
+          alert('el tipo de cliente no se ha registrado con exito');
         } else {
           alert('el tipo de cliente se ha registrado');
         }
@@ -4099,7 +4104,7 @@ __webpack_require__.r(__webpack_exports__);
       this.tipoDocumento.nombre = '';
       axios.post('/TipoDocumento', params).then(function (res) {
         if (res.data == null) {
-          alert('el tipo de documento no se ha registrado');
+          alert('el tipo de documento no se ha registrado con exito');
         } else {
           alert('el tipo de documento se ha registrado');
         }
@@ -4260,17 +4265,18 @@ __webpack_require__.r(__webpack_exports__);
     agregar: function agregar() {
       var _this2 = this;
 
-      if (this.tipoEmpleado.nombre.trim() === '') {
-        alert('Debes completar todos los campos antes de guardar');
-        return;
-      } // console.log(this.tipoEmpleado.nombre,this.tipoEmpleado.descuento);
-
-
+      // console.log(this.tipoEmpleado.nombre,this.tipoEmpleado.descuento);
       var params = {
         nombre: this.tipoEmpleado.nombre
       };
       this.tipoEmpleado.nombre = '';
       axios.post('/TipoEmpleado', params).then(function (res) {
+        if (res.data == null) {
+          alert('el tipo de empleado no se ha registrado con exito');
+        } else {
+          alert('el tipo de empleado se ha registrado');
+        }
+
         console.log(res.data);
 
         _this2.tipoEmpleados.push(res.data);
@@ -4284,6 +4290,8 @@ __webpack_require__.r(__webpack_exports__);
       if (confirmacion) {
         axios["delete"]('/TipoEmpleado/' + tipoEmpleado.id).then(function () {
           _this3.tipoEmpleados.splice(index, 1);
+
+          alert('el tipo de empleado se ha eliminado con exito');
         });
       }
     },
@@ -4312,7 +4320,22 @@ __webpack_require__.r(__webpack_exports__);
         _this4.tipoEmpleado.nombre = '';
         _this4.tipoEmpleado.descuento = '';
         _this4.editarActivo = false;
+        alert('el tipo de empleado se ha editado con exito');
       });
+    },
+    Validar: function Validar() {
+      if (this.tipoEmpleado.nombre == null || this.tipoEmpleado.nombre.length == 0 || /^\s+$/.test(this.tipoEmpleado.nombre)) {
+        alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
+        return false;
+      } else if (/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(this.tipoEmpleado.nombre) == false) {
+        alert('el nombre solo debe tener letras');
+        this.tipoEmpleado.nombre = '';
+        return false;
+      } else if (this.tipoEmpleado.nombre.length > 35) {
+        alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+        this.tipoEmpleado.nombre = '';
+        return false;
+      }
     }
   }
 });
@@ -42344,20 +42367,7 @@ var render = function() {
         [_vm._v("\n  This is a primary alert—check it out!\n")]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "alert alert-success dismissible show",
-          model: {
-            value: _vm.showDismissibleAlert,
-            callback: function($$v) {
-              _vm.showDismissibleAlert = $$v
-            },
-            expression: "showDismissibleAlert"
-          }
-        },
-        [_vm._m(1)]
-      ),
+      _vm._m(1),
       _vm._v(" "),
       _vm._m(2),
       _vm._v(" "),
@@ -42544,31 +42554,33 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "alert alert-warning alert-dismissible fade show",
-        attrs: { role: "alert" }
-      },
-      [
-        _c("strong", [_vm._v("Holy guacamole!")]),
-        _vm._v(
-          " You should check in on some of those fields below.\n              "
-        ),
-        _c(
-          "button",
-          {
-            staticClass: "close",
-            attrs: {
-              type: "button",
-              "data-dismiss": "alert",
-              "aria-label": "Close"
-            }
-          },
-          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-        )
-      ]
-    )
+    return _c("div", { staticClass: "alert alert-success dismissible show" }, [
+      _c(
+        "div",
+        {
+          staticClass: "alert alert-warning alert-dismissible fade show",
+          attrs: { role: "alert" }
+        },
+        [
+          _c("strong", [_vm._v("Holy guacamole!")]),
+          _vm._v(
+            " You should check in on some of those fields below.\n              "
+          ),
+          _c(
+            "button",
+            {
+              staticClass: "close",
+              attrs: {
+                type: "button",
+                "data-dismiss": "alert",
+                "aria-label": "Close"
+              }
+            },
+            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+          )
+        ]
+      )
+    ])
   },
   function() {
     var _vm = this
@@ -43291,7 +43303,21 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _c("div", { staticClass: "col-5" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success mr-2",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.Validar()
+                          }
+                        }
+                      },
+                      [_vm._v("Editar")]
+                    )
+                  ])
                 ])
               ]
             )
@@ -43343,7 +43369,21 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _c("div", { staticClass: "col-2" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary mr-2",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.Validar()
+                          }
+                        }
+                      },
+                      [_vm._v("Agregar")]
+                    )
+                  ])
                 ])
               ]
             )
@@ -43458,30 +43498,6 @@ var staticRenderFns = [
       _c("h4", { staticClass: "text-center mb-2 card-title" }, [
         _vm._v("Tipo Empleado")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-5" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success mr-2", attrs: { type: "submit" } },
-        [_vm._v("Editar")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary mr-2", attrs: { type: "submit" } },
-        [_vm._v("Agregar")]
-      )
     ])
   }
 ]

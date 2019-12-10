@@ -105,7 +105,7 @@ created(){
             axios.post('/TipoCliente',params)
                 .then(res=>{
                     if(res.data == null){
-                        alert('el tipo de cliente no se ha registrado')
+                        alert('el tipo de cliente no se ha registrado con exito')
                     }else{
                         alert('el tipo de cliente se ha registrado')
                     }
