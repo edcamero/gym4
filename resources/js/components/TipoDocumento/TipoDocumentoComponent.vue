@@ -105,7 +105,7 @@ created(){
             axios.post('/TipoDocumento',params)
                 .then(res=>{
                     if(res.data == null){
-                        alert('el tipo de documento no se ha registrado')
+                        alert('el tipo de documento no se ha registrado con exito')
                     }else{
                         alert('el tipo de documento se ha registrado')
                     }
@@ -142,7 +142,7 @@ created(){
             console.log(tc);
                 axios.put('/TipoDocumento/'+tc.id,tc)
                 .then(res=>{
-                     const index=this.tipoDocumentos.findIndex(buscar=>buscar.id==tc.id);
+                     const index=this.tipoDocumentos.findIndex(buscar=>buscar.id == tc.id);
                      console.log(res.data.status);
                      this.tipoDocumentos[index].nombre=tc.nombre;
                      this.tipoDocumento.nombre='';
@@ -155,7 +155,12 @@ created(){
             if(this.tipoDocumento.nombre == null || this.tipoDocumento.nombre.length == 0 || /^\s+$/.test(this.tipoDocumento.nombre)){
                 alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
                 return false;
-            }   
+            }
+            else if ( /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(this.tipoDocumento.nombre) == false) {
+                    alert ('el nombre solo debe tener letras');
+                    this.tipoDocumento.nombre = '';
+                    return false;
+            }
             else if ((this.tipoDocumento.nombre).length > 35){
                 alert('ERROR: el nombre no debe tener mas de 35 caracteres');
                 this.tipoDocumento.nombre = '';

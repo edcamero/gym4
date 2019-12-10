@@ -15,7 +15,7 @@
                             </div>
                             
                             <div class="col-5">
-                                 <button  class="btn btn-success mr-2" type="submit">Editar</button>
+                                 <button  class="btn btn-success mr-2" type="submit" @click="Validar()">Editar</button>
                             </div>
                     </div>
              </form>
@@ -28,7 +28,7 @@
                             
 
                             <div class="col-2">
-                                 <button  class="btn btn-primary mr-2" type="submit">Agregar</button>
+                                 <button  class="btn btn-primary mr-2" type="submit" @click="Validar()">Agregar</button>
                             </div>
                     </div> 
              </form>
@@ -83,10 +83,6 @@ created(){
     methods: {
         agregar(){
 
-            if(this.tipoEmpleado.nombre.trim() === '' ){
-                alert('Debes completar todos los campos antes de guardar');
-                return;
-            }
            // console.log(this.tipoEmpleado.nombre,this.tipoEmpleado.descuento);
             const params={
                 nombre:this.tipoEmpleado.nombre
@@ -95,6 +91,11 @@ created(){
 
             axios.post('/TipoEmpleado',params)
                 .then(res=>{
+                    if(res.data == null){
+                        alert('el tipo de empleado no se ha registrado con exito')
+                    }else{
+                        alert('el tipo de empleado se ha registrado')
+                    }
                     console.log(res.data)
                     this.tipoEmpleados.push(res.data)
         });
@@ -109,6 +110,7 @@ created(){
                         axios.delete('/TipoEmpleado/'+tipoEmpleado.id)
                         .then(()=>{
                                 this.tipoEmpleados.splice(index,1);
+                                alert('el tipo de empleado se ha eliminado con exito')
                         });
                     }
         },
@@ -138,7 +140,25 @@ created(){
                      this.tipoEmpleado.nombre='';
                      this.tipoEmpleado.descuento='';
                      this.editarActivo=false;
+                     alert('el tipo de empleado se ha editado con exito')
                 })
+        },
+
+        Validar(){
+            if(this.tipoEmpleado.nombre == null || this.tipoEmpleado.nombre.length == 0 || /^\s+$/.test(this.tipoEmpleado.nombre)){
+                alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
+                return false;
+            }
+            else if ( /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(this.tipoEmpleado.nombre) == false) {
+                    alert ('el nombre solo debe tener letras');
+                    this.tipoEmpleado.nombre = '';
+                    return false;
+            }
+            else if ((this.tipoEmpleado.nombre).length > 35){
+                alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+                this.tipoEmpleado.nombre = '';
+                return false;
+            }
         }
 
     },
