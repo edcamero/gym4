@@ -34,7 +34,7 @@ class EmpleadoController extends Controller
         if($request->ajax()){
             
             $empleado = Empleado::find($id);
-            
+            $empleado->id=$id;
             $empleado->persona;
             $empleado->tipoEmpleado;
 
@@ -199,7 +199,7 @@ class EmpleadoController extends Controller
 
     public function misHorarios($id){
         $e=Empleado::find($id);
-        return  $e->horarios();
+        return  $e->horarios;
 
     }
     

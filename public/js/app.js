@@ -2494,9 +2494,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      turnos: [],
+      turno: {},
       actual: '',
       mes: '',
       year: '',
@@ -2508,8 +2512,10 @@ __webpack_require__.r(__webpack_exports__);
       vectorMes: [],
       semana: [],
       dia: {
-        numero: ''
+        numero: '',
+        turnos: []
       },
+      horariosDias: [],
       empleado: {
         id: '',
         persona: {
@@ -2541,16 +2547,27 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get(window.location).then(function (res) {
       _this.empleado = res.data;
-      _this.empleado.id = res.data['id'];
-    }), console.log("hola" + this.empleado.id), axios.get('/Empleado/mishorarios/' + this.empleado.id).then(function (res) {// console.log(this.empleado.id);
+
+      _this.verHorario(_this.empleado.id);
     });
-    this.fechaActual();
   },
-  mounted: function mounted() {//console.log("hola numero "+this.empleado);
+  mounted: function mounted() {
+    //console.log("hola numero "+this.empleado);
+    console.log("hola" + this.empleado.persona.nombre);
   },
   methods: {
     seleccion: function seleccion(mensaje) {
       alert(mensaje);
+    },
+    verHorario: function verHorario(id) {
+      var _this2 = this;
+
+      axios.get('/Empleado/mishorarios/' + id).then(function (res) {
+        _this2.horariosDias = res.data;
+        console.log(_this2.horariosDias);
+
+        _this2.fechaActual();
+      });
     },
     fechaActual: function fechaActual() {
       this.actual = new Date();
@@ -2577,8 +2594,6 @@ __webpack_require__.r(__webpack_exports__);
       this.primerDiaSemana = this.now.getDay();
       var ultimoDiaMes = this.last.getDate();
       var last_cell = this.primerDiaSemana + ultimoDiaMes;
-      console.log(ultimoDiaMes);
-      console.log(this.primerDiaSemana);
       var dia = 1;
       this.vectorMes = new Array(6);
 
@@ -2587,30 +2602,42 @@ __webpack_require__.r(__webpack_exports__);
         var id = 1;
 
         for (var j = 0; j < 7; j++) {
+          this.ValidarDia("2019-12-11");
+
           if (j == this.primerDiaSemana && i == 0 && dia == 1) {
             this.vectorMes[i][j] = {
               id: id++,
-              data: dia
+              data: dia,
+              turnos: this.ValidarDia(this.year + "-" + this.month + "-" + dia)
             };
             dia++;
-            console.log(dia);
-            console.log(this.primerDiaSemana);
           } else {
             if (dia > 1 && dia <= ultimoDiaMes) {
               this.vectorMes[i][j] = {
                 id: id++,
-                data: dia
+                data: dia,
+                turnos: this.ValidarDia(this.year + "-" + this.month + "-" + dia)
               };
               dia++;
             } else {
               this.vectorMes[i][j] = {
                 id: id++,
-                data: ''
+                data: '',
+                turnos: this.ValidarDia(this.year + "-" + this.month + "-" + dia)
               };
             }
           }
         }
       }
+    },
+    ValidarDia: function ValidarDia(dia) {
+      var turnos = new Array();
+      this.horariosDias.forEach(function (turno) {
+        if (turno.pivot.dia = dia) {
+          turnos.push(turno.nombre);
+        }
+      });
+      return turnos;
     },
     GetMes: function GetMes(m) {
       var meses = Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
@@ -40623,7 +40650,18 @@ var render = function() {
                                   "data-target": "#seleccion" + dia.data
                                 }
                               },
-                              [_vm._v(_vm._s(dia.data))]
+                              [
+                                _vm._v(
+                                  _vm._s(dia.data) +
+                                    "\n                                       "
+                                ),
+                                _vm._l(dia, function(turnos, index) {
+                                  return _c("div", { key: index }, [
+                                    _vm._v(_vm._s(_vm.turno.nombre))
+                                  ])
+                                })
+                              ],
+                              2
                             ),
                         _vm._v(" "),
                         _c(
@@ -56775,8 +56813,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\gym4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\blade\OneDrive\Desktop\gym4\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

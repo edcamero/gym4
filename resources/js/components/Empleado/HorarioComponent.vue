@@ -34,7 +34,9 @@
                                    <tr v-for="(semana,index) in this.vectorMes" :key="index" > 
                                    <td  v-for="dia in semana" :key="dia.id"   >
                                        <div v-if="dia.data==diaActual" :class="{'bg-info':true}">{{dia.data}}</div>
-                                       <div data-toggle="modal" :data-target="'#seleccion'+dia.data" v-else >{{dia.data}}</div>
+                                       <div data-toggle="modal" :data-target="'#seleccion'+dia.data" v-else >{{dia.data}}
+                                           <div v-for="(turnos,index) in dia" :key="index">{{turno.nombre}}</div>
+                                       </div>
                                       
                                       
                                        <!-- Modal -->
@@ -77,6 +79,8 @@
         
         data(){
             return{
+                turnos:[],
+                turno:{},
                 actual:'',
                 mes:'',
                 year:'',
@@ -89,9 +93,10 @@
                 semana:[],
                 dia:{
                     numero:'',
+                    turnos:[],
 
 
-                },
+                },horariosDias:[],
                  empleado:{
                      id:'',
                     persona:{
@@ -125,22 +130,25 @@
             axios.get(window.location).then(res=>{
                     
                     this.empleado = res.data;
-                    this.empleado.id=res.data['id'];
-                  
+                    this.verHorario(this.empleado.id);
+                    
                 
-                }),
-                console.log("hola"+this.empleado.id),
-           axios.get('/Empleado/mishorarios/'+this.empleado.id).then(res=>{
-              // console.log(this.empleado.id);
-           })
-            this.fechaActual();
+                })
         },
         mounted(){
             //console.log("hola numero "+this.empleado);
+             console.log("hola"+this.empleado.persona.nombre)
         },
         methods: {
             seleccion(mensaje) {
                 alert(mensaje);
+            },
+            verHorario(id){
+                axios.get('/Empleado/mishorarios/'+id).then(res=>{
+                        this.horariosDias=res.data;
+                        console.log(this.horariosDias);
+                        this.fechaActual();
+                    })
             },
             
             fechaActual(){
@@ -171,8 +179,7 @@
                  this.primerDiaSemana=this.now.getDay();
                 var ultimoDiaMes=this.last.getDate();
                 var last_cell=this.primerDiaSemana+ultimoDiaMes
-                console.log(ultimoDiaMes);
-                console.log(this.primerDiaSemana);
+               
                 var dia=1;
                 this.vectorMes=new Array(6);
                 for(let i=0;i<6;i++){
@@ -180,24 +187,23 @@
                     this.vectorMes[i]=new Array(7);
                     var id=1;
                     for (let j = 0; j < 7; j++) {
-                        
+                        this.ValidarDia("2019-12-11")
                         if(j==this.primerDiaSemana&&i==0&&dia==1){
-                           this.vectorMes[i][j] = {id:id++,data:dia
+                           this.vectorMes[i][j] = {id:id++,data:dia,turnos:this.ValidarDia(this.year+"-"+this.month+"-"+dia)
                            };
                           dia++
-                           console.log(dia)
-                           console.log(this.primerDiaSemana);
+                           
                              
                         }else{
 
 
                             if(dia>1&&dia<=ultimoDiaMes){
-                                this.vectorMes[i][j] = {id:id++,data:dia};
+                                this.vectorMes[i][j] = {id:id++,data:dia,turnos:this.ValidarDia(this.year+"-"+this.month+"-"+dia)};
                                 dia++;
                                 
 
                             }else{
-                                this.vectorMes[i][j] = {id:id++,data:''};
+                                this.vectorMes[i][j] = {id:id++,data:'',turnos:this.ValidarDia(this.year+"-"+this.month+"-"+dia)};
                             }
                         }
                         
@@ -215,7 +221,21 @@
 	
             },
 
-            
+            ValidarDia(dia){
+                var turnos=new Array();
+              
+                
+                this.horariosDias
+                .forEach(function (turno) {
+                    
+                    if(turno.pivot.dia=dia){
+                        turnos.push(turno.nombre);
+                        
+                    }
+                   
+                    });
+                    return turnos;
+            },
             GetMes(m){
                 var meses=Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
                 this.mes=meses[m];
