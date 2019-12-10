@@ -3533,6 +3533,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       horarios: [],
+      //indice ='',
       horario: {
         nombre: '',
         ingreso: 'Seleccione',
@@ -3553,12 +3554,7 @@ __webpack_require__.r(__webpack_exports__);
     agregar: function agregar() {
       var _this2 = this;
 
-      if (this.horario.nombre.trim() === '' || this.horario.ingreso.trim() === '' || this.horario.salida.trim() === '') {
-        alert('Debes completar todos los campos antes de guardar');
-        return;
-      } // console.log(this.tipocliente.nombre,this.tipocliente.descuento);
-
-
+      // console.log(this.tipocliente.nombre,this.tipocliente.descuento);
       var params = {
         nombre: this.horario.nombre,
         ingreso: this.horario.ingreso,
@@ -3569,6 +3565,12 @@ __webpack_require__.r(__webpack_exports__);
       this.horario.salida = '';
       axios.post('/Horario', params).then(function (res) {
         _this2.horarios.push(res.data);
+
+        console.log(res.data);
+
+        if (res.data != null) {
+          alert('el horario se ha registrado con exito');
+        }
       });
     },
     eliminar: function eliminar(horario, index) {
@@ -3579,6 +3581,8 @@ __webpack_require__.r(__webpack_exports__);
       if (confirmacion) {
         axios["delete"]('/Horario/' + horario.id).then(function () {
           _this3.horarios.splice(index, 1);
+
+          alert('el horario se ha eliminado con exito');
         });
       }
     },
@@ -3612,7 +3616,32 @@ __webpack_require__.r(__webpack_exports__);
         _this4.horario.ingreso = '';
         _this4.horario.salida = '';
         _this4.editarActivo = false;
+        alert('el horario se ha editado con exito');
       });
+    },
+    Validar: function Validar() {
+      if (this.horario.nombre == null || this.horario.nombre.length == 0 || /^\s+$/.test(this.horario.nombre)) {
+        alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
+        return false;
+      } else if (/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(this.horario.nombre) == false) {
+        alert('el nombre solo debe tener letras');
+        this.horario.nombre = '';
+        return false;
+      } else if (this.horario.nombre.length > 35) {
+        alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+        this.horario.nombre = '';
+        return false;
+      } //var indice = document.getElementById(this.horario.nombre).selectedIndex;
+      else if (this.horario.ingreso == null || this.horario.ingreso == 'Seleccione') {
+          alert('seleccione la hora de ingreso');
+          return false;
+        } else if (this.horario.salida == null || this.horario.salida == 'Seleccione') {
+          alert('seleccione la hora de salida');
+          return false;
+        } else if (parseInt(this.horario.ingreso.substring(0, 2)) >= parseInt(this.horario.salida.substring(0, 2))) {
+          alert('la hora de ingreso debe ser menor que la hora de salida');
+          this.horario.nombre = '';
+        }
     }
   }
 });
@@ -3689,79 +3718,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("se monto el componente agregar empleado");
@@ -3776,14 +3732,7 @@ __webpack_require__.r(__webpack_exports__);
       selecionados: [],
       permisos: [],
       modulos: [],
-      mpermisos: ['listar', 'guardar', 'editar', 'eliminar'],
-      mensaje: {
-        color: '',
-        texto: ''
-      },
-      dismissSecs: 10,
-      dismissCountDown: 0,
-      showDismissibleAlert: false
+      mpermisos: ['listar', 'guardar', 'editar', 'eliminar']
     };
   },
   created: function created() {
@@ -3800,19 +3749,33 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     guardar: function guardar() {
-      var params = {
-        nombre: this.role.nombre,
-        permisos: this.selecionados
-      };
-      axios.post('/Role', params).then(function (res) {// this.horarios.push(res.data)
-      });
-      console.log(this.selecionados);
+      if (!this.Validar()) {
+        var params = {
+          nombre: this.role.nombre,
+          permisos: this.selecionados
+        };
+        axios.post('/Role', params).then(function (res) {
+          // this.horarios.push(res.data)
+          alert('El rol se ha creado con exito');
+        });
+        console.log(this.selecionados);
+      } else {
+        alert('No se creo el rol');
+      }
     },
-    countDownChanged: function countDownChanged(dismissCountDown) {
-      this.dismissCountDown = dismissCountDown;
-    },
-    showAlert: function showAlert() {
-      this.dismissCountDown = this.dismissSecs;
+    Validar: function Validar() {
+      if (this.role.nombre == null || this.role.nombre.length == 0 || /^\s+$/.test(this.role.nombre)) {
+        alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
+        return false;
+      } else if (/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(this.role.nombre) == false) {
+        alert('el nombre solo debe tener letras');
+        this.role.nombre = '';
+        return false;
+      } else if (this.role.nombre.length > 35) {
+        alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+        this.role.nombre = '';
+        return false;
+      }
     }
   }
 });
@@ -42102,7 +42065,21 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _c("div", { staticClass: "col-2" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success mr-2",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.Validar()
+                          }
+                        }
+                      },
+                      [_vm._v("Editar")]
+                    )
+                  ])
                 ])
               ]
             )
@@ -42226,7 +42203,21 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _c("div", { staticClass: "col-2" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary mr-2",
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.Validar()
+                          }
+                        }
+                      },
+                      [_vm._v("Agregar")]
+                    )
+                  ])
                 ])
               ]
             )
@@ -42348,30 +42339,6 @@ var staticRenderFns = [
         _vm._v("Horario")
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success mr-2", attrs: { type: "submit" } },
-        [_vm._v("Editar")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary mr-2", attrs: { type: "submit" } },
-        [_vm._v("Agregar")]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -42401,19 +42368,9 @@ var render = function() {
     _c("div", { staticClass: "card-body" }, [
       _c(
         "div",
-        { staticClass: "alert alert-primary", attrs: { role: "alert" } },
-        [_vm._v("\n  This is a primary alert—check it out!\n")]
-      ),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _c(
-        "div",
         { staticClass: "form-group row" },
         [
-          _vm._m(3),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-8 form-group" }, [
             _c("input", {
@@ -42439,27 +42396,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(4),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6 form-group" }, [
-            _c("input", {
-              attrs: { type: "checkbox", id: "checkbox", value: "" }
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "checkbox" } }, [
-              _vm._v(_vm._s("Acceso total"))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6 form-group" }, [
-            _c("input", { attrs: { type: "checkbox", id: "checkbox" } }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "checkbox" } }, [
-              _vm._v(_vm._s("Ningun Acceso"))
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(5),
+          _vm._m(2),
           _vm._v(" "),
           _vm._l(_vm.modulos, function(item) {
             return _c(
@@ -42592,65 +42529,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "alert alert-success dismissible show" }, [
-      _c(
-        "div",
-        {
-          staticClass: "alert alert-warning alert-dismissible fade show",
-          attrs: { role: "alert" }
-        },
-        [
-          _c("strong", [_vm._v("Holy guacamole!")]),
-          _vm._v(
-            " You should check in on some of those fields below.\n              "
-          ),
-          _c(
-            "button",
-            {
-              staticClass: "close",
-              attrs: {
-                type: "button",
-                "data-dismiss": "alert",
-                "aria-label": "Close"
-              }
-            },
-            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-          )
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "alert",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-4" }, [
-      _c("label", [_c("strong", [_vm._v("Nombre del role:")])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 form-group" }, [
-      _c("label", [_c("strong", [_vm._v("Permisos especiales:")])])
+      _c("label", [_c("strong", [_vm._v("Nombre del rol:")])])
     ])
   },
   function() {

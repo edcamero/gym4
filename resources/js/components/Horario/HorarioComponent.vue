@@ -24,7 +24,7 @@
                             </div>
 
                             <div class="col-2">
-                                 <button  class="btn btn-success mr-2" type="submit">Editar</button>
+                                 <button  class="btn btn-success mr-2" type="submit" @click="Validar()">Editar</button>
                             </div>
                     </div>
                     
@@ -39,19 +39,19 @@
                             </div>
 
                             <div class="col-4  form-group">
-                                <select class=" form-control" v-model="horario.ingreso" >
+                                <select class=" form-control" v-model = "horario.ingreso">
                                 <option v-for="item in horas" v-bind:key = "item" >{{ item }}</option>
                                 </select>
                             </div>
 
                             <div class="col-4 form-gruop">
-                                <select class="form-control" v-model="horario.salida" >
+                                <select class="form-control" v-model = "horario.salida" >
                                 <option v-for="item in horas" v-bind:key = "item" >{{ item }}</option>
                                 </select>
                             </div>
 
                             <div class="col-2">
-                                 <button  class="btn btn-primary mr-2" type="submit">Agregar</button>
+                                 <button  class="btn btn-primary mr-2" type="submit" @click="Validar()">Agregar</button>
                             </div>
                     </div>
                     
@@ -96,11 +96,12 @@
         data(){
             return {
                 horarios:[],
+                //indice ='',
                 horario:{
                     nombre:'',
                     ingreso:'Seleccione',
                     salida:'Seleccione',
-                    },
+                },
                 horas:['Seleccione','00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00',
                         '10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00',
                         '19:00','20:00','21:00','22:00','23:00'],
@@ -121,10 +122,8 @@
         methods: {
             agregar(){
 
-                if(this.horario.nombre.trim() === '' || this.horario.ingreso.trim() === ''|| this.horario.salida.trim()===''){
-                    alert('Debes completar todos los campos antes de guardar');
-                    return;
-                }
+
+                
             // console.log(this.tipocliente.nombre,this.tipocliente.descuento);
                 const params={nombre:this.horario.nombre,ingreso:this.horario.ingreso,
                 salida:this.horario.salida}
@@ -135,6 +134,10 @@
                 axios.post('/Horario',params)
                     .then(res=>{
                         this.horarios.push(res.data)
+                        console.log(res.data);
+                        if(res.data != null){
+                            alert('el horario se ha registrado con exito')
+                        }
                     });
             },
             eliminar(horario,index){
@@ -144,6 +147,7 @@
                             axios.delete('/Horario/'+horario.id)
                             .then(()=>{
                                     this.horarios.splice(index,1);
+                                    alert('el horario se ha eliminado con exito')
                             });
                         }
             },
@@ -178,8 +182,45 @@
                         this.horario.ingreso='';
                         this.horario.salida='';
                         this.editarActivo=false;
+                        alert('el horario se ha editado con exito')
                     })
+            },
+
+            Validar(){
+
+                if(this.horario.nombre == null || this.horario.nombre.length == 0 || /^\s+$/.test(this.horario.nombre)){
+                    alert('ERROR: El campo nombre no debe ir vacío o lleno de solamente espacios en blanco');
+                    return false;
+                }
+                else if ( /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(this.horario.nombre) == false) {
+                        alert ('el nombre solo debe tener letras');
+                        this.horario.nombre = '';
+                        return false;
+                }
+                else if ((this.horario.nombre).length > 35){
+                    alert('ERROR: el nombre no debe tener mas de 35 caracteres');
+                    this.horario.nombre = '';
+                    return false;
+                }
+                //var indice = document.getElementById(this.horario.nombre).selectedIndex;
+                else if(this.horario.ingreso == null || this.horario.ingreso == 'Seleccione'){
+                    alert('seleccione la hora de ingreso');
+                    return false;
+                }
+                else if(this.horario.salida == null || this.horario.salida == 'Seleccione'){
+                    alert('seleccione la hora de salida');
+                    return false;
+                }
+
+                else if(parseInt((this.horario.ingreso).substring(0,2)) >= parseInt((this.horario.salida).substring(0,2))){
+                    alert('la hora de ingreso debe ser menor que la hora de salida');
+                    this.horario.nombre = '';
+
+                }
             }
+
+
+
         },
     }
 </script>
