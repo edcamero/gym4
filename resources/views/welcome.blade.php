@@ -195,7 +195,7 @@ Transformar la vida de nuestros clientes a través del entrenamiento físico, ha
 							<h4>Carlos Fuentes</h4>
 							<span>Programador
 </span>
-							<p>Negro.</p>	
+							<p>Desarrollador Senior</p>	
 						<div class="social-bnr-agileits footer-icons-agileinfo">
 							<ul class="social-icons3">
 								<li><a href="#" class="fa fa-facebook icon-border facebook"> </a></li>
@@ -212,7 +212,7 @@ Transformar la vida de nuestros clientes a través del entrenamiento físico, ha
 						</div>
 						<div class="col-md-6 team-Info-agileits">
 							<h4>Alejandra Carreño</h4>
-							<span>-</span>
+							<span>Diseñadora y Programadora Auxiliar</span>
 							<p>.</p>
 						<div class="social-bnr-agileits footer-icons-agileinfo">
 							<ul class="social-icons3">
