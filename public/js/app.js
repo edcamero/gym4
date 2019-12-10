@@ -2511,6 +2511,7 @@ __webpack_require__.r(__webpack_exports__);
         numero: ''
       },
       empleado: {
+        id: '',
         persona: {
           tipo_doc: '',
           documento: '',
@@ -2538,10 +2539,14 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    console.log(window.location);
     axios.get(window.location).then(function (res) {
       _this.empleado = res.data;
-    }), this.fechaActual();
+      _this.empleado.id = res.data['id'];
+    }), console.log("hola" + this.empleado.id), axios.get('/Empleado/mishorarios/' + this.empleado.id).then(function (res) {// console.log(this.empleado.id);
+    });
+    this.fechaActual();
+  },
+  mounted: function mounted() {//console.log("hola numero "+this.empleado);
   },
   methods: {
     seleccion: function seleccion(mensaje) {
@@ -42340,20 +42345,7 @@ var render = function() {
         [_vm._v("\n  This is a primary alert—check it out!\n")]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "alert alert-success dismissible show",
-          model: {
-            value: _vm.showDismissibleAlert,
-            callback: function($$v) {
-              _vm.showDismissibleAlert = $$v
-            },
-            expression: "showDismissibleAlert"
-          }
-        },
-        [_vm._m(1)]
-      ),
+      _vm._m(1),
       _vm._v(" "),
       _vm._m(2),
       _vm._v(" "),
@@ -42540,31 +42532,33 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "alert alert-warning alert-dismissible fade show",
-        attrs: { role: "alert" }
-      },
-      [
-        _c("strong", [_vm._v("Holy guacamole!")]),
-        _vm._v(
-          " You should check in on some of those fields below.\n              "
-        ),
-        _c(
-          "button",
-          {
-            staticClass: "close",
-            attrs: {
-              type: "button",
-              "data-dismiss": "alert",
-              "aria-label": "Close"
-            }
-          },
-          [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-        )
-      ]
-    )
+    return _c("div", { staticClass: "alert alert-success dismissible show" }, [
+      _c(
+        "div",
+        {
+          staticClass: "alert alert-warning alert-dismissible fade show",
+          attrs: { role: "alert" }
+        },
+        [
+          _c("strong", [_vm._v("Holy guacamole!")]),
+          _vm._v(
+            " You should check in on some of those fields below.\n              "
+          ),
+          _c(
+            "button",
+            {
+              staticClass: "close",
+              attrs: {
+                type: "button",
+                "data-dismiss": "alert",
+                "aria-label": "Close"
+              }
+            },
+            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+          )
+        ]
+      )
+    ])
   },
   function() {
     var _vm = this

@@ -16,7 +16,7 @@
 </div>
 
 
-        <div class="alert alert-success dismissible show" v-model="showDismissibleAlert">
+        <div class="alert alert-success dismissible show">
             
 
         

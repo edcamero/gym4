@@ -21,6 +21,7 @@ class CreateEmpleadoHorariosTable extends Migration
             $table->foreign('id_emp')->references('id')->on('empleados')->onDelete('cascade');
             $table->Date('dia');
             $table->timestamps();
+            $table->unique(['id_hor','id_emp','dia']);
         });
     }
 

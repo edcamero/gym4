@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 /**
  * @property int $id
@@ -75,7 +76,7 @@ class Empleado extends Model
     {
         //return $this->hasMany('App\Horarioasignado', 'emp_id', 'id');
         return $this->belongsToMany('App\Models\Horario','empleado_horarios','id_emp','id_hor')
-        ->withPivot('id_emp');
+        ->withPivot('id_hor','dia');
     }
 
 
@@ -90,12 +91,29 @@ class Empleado extends Model
     public function AgregarHorarios($vectorHorarios,$dia){
         $dia2=strtotime($dia);
          $fecha_actua=Carbon::now();
-         $vectorColum = array_fill(0, count($vectorHorarios), ['dia'=>date('Y-m-d',$dia2),'created_at'=>$fecha_actua,'updated_at'=>$fecha_actua->toDateString()]);
+         $vectorColum = array_fill(0, count($vectorHorarios), ['dia'=>$dia,'id_emp'=>$this->id,'created_at'=>$fecha_actua,'updated_at'=>$fecha_actua->toDateString()]);
          $vectorFinal=array_combine($vectorHorarios,$vectorColum);
-         $this->horarios()->sync($vectorFinal);
+         return $this->horarios()->updateExistingPivot($vectorFinal);
         
          }
         
+
+         public function AgregarHorarios2($vectorHorarios,$dia){
+
+            DB::table('empleado_horarios')->where('id_emp',$this->id)
+            ->where('dia',$dia)->delete();
+
+                foreach($vectorHorarios as $id_horario){
+                    
+                    $this->horarios()->attach($id_horario,['dia'=>$dia,'created_at'=>Carbon::now()->format('Y-m-d'),'updated_at'=>Carbon::now()->format('Y-m-d')]);
+                }
+             }
+            
+             
+             
+            
+             
+         
         
     }
 
