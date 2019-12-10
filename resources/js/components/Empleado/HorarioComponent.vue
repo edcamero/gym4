@@ -35,7 +35,7 @@
                                    <td  v-for="dia in semana" :key="dia.id"   >
                                        <div v-if="dia.data==diaActual" :class="{'bg-info':true}">{{dia.data}}</div>
                                        <div data-toggle="modal" :data-target="'#seleccion'+dia.data" v-else >{{dia.data}}
-                                           <div v-for="(turnos,index) in dia" :key="index">{{turno.nombre}}</div>
+                                           <div v-for="(turno,index) in dia.turnos" :key="index">{{turno.nombre}}</div>
                                        </div>
                                       
                                       
@@ -228,8 +228,8 @@
                 this.horariosDias
                 .forEach(function (turno) {
                     
-                    if(turno.pivot.dia=dia){
-                        turnos.push(turno.nombre);
+                    if(turno.pivot.dia==dia){
+                        turnos.push({nombre:turno.nombre});
                         
                     }
                    

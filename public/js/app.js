@@ -2633,8 +2633,10 @@ __webpack_require__.r(__webpack_exports__);
     ValidarDia: function ValidarDia(dia) {
       var turnos = new Array();
       this.horariosDias.forEach(function (turno) {
-        if (turno.pivot.dia = dia) {
-          turnos.push(turno.nombre);
+        if (turno.pivot.dia == dia) {
+          turnos.push({
+            nombre: turno.nombre
+          });
         }
       });
       return turnos;
@@ -40618,9 +40620,9 @@ var render = function() {
                                   _vm._s(dia.data) +
                                     "\n                                       "
                                 ),
-                                _vm._l(dia, function(turnos, index) {
+                                _vm._l(dia.turnos, function(turno, index) {
                                   return _c("div", { key: index }, [
-                                    _vm._v(_vm._s(_vm.turno.nombre))
+                                    _vm._v(_vm._s(turno.nombre))
                                   ])
                                 })
                               ],
